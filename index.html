@@ -1,0 +1,758 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="custom_icon.png">
+    <meta name="apple-mobile-web-app-title" content="Cascadion">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="translucent black">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/glm-js.min.js"></script>
+    <script type="text/javascript" src="./js/glm-gl-matrix.min.js"></script>
+    <script type="text/javascript" src="./js/Hotspot_Manager.js"></script>
+    <script type="text/javascript" src="./js/jquery.mobile.custom.js"></script> 
+
+    <title>Phadia Thermo Thingy</title>
+    
+    <style>
+        /* For mobile phones: */
+        /* [class*="col-"] {
+          width: 100%;
+        }*/
+
+        html { height: 100%; overflow-x: hidden; }
+        body { height: 100%; display: flex; overflow-x: hidden; position: relative; background-image: url("./assets/BLUE_POLLEN.png") }
+        body > div { flex: 1; }
+        div.layoutCont { width:80%; height:90vh; margin-left: auto; margin-right: auto; padding-bottom: 50px; }
+
+        div.topRow { height:50px; margin-bottom: 10px;}
+        
+        div.leftBorder { border-left: solid 1px gray; }
+        
+        div.animDivs {  }
+        div.videContCell { text-align:center; height: 100%; width: 100%}
+        div.videContBlock { display:inline-block; height: 100%; width: 100%}
+        div.videoContainer { position: relative; }
+        div.videoCont {  position:relative; text-align:center; width:100% }
+        div.vidContRow { height: 65vh; }
+
+        div.infoBlock { height: 150px; padding-top: 30px; }
+
+        div.sysName { font-family: Arial; font-face:bold; font-size:22px; color: gray; width: 50%; margin-left: auto; margin-right: auto; }
+        div.headline, div.spec-headline { font-family: Arial; font-size:26px; margin-bottom:10px;
+           display: inline-block; padding-left: 40px; padding-right: 40px; }
+        div.headline {
+            color:rgb(220, 50, 0);
+        }
+        div.spec-headline {
+            color:#333;
+            margin-top:10%; /*TODO decide how that will look on mobile */
+        }
+        div.nsNumberRed {
+            color: rbg(220, 50, 0);
+        }
+        div.hsNumber, div.spec-hsNumber, div.hsNumberRed { font-family: Arial; font-size:16px; display: inline-block; white-space: nowrap; position: relative; text-align: center; width: 100%;}
+        div.hsNumberRed {
+            color: rgb(220,50,0)
+        }
+        div.spec-hsNumber {
+            color: #333;
+            color: #333;
+            font-size: 26px;
+            line-height: 30px;
+        }
+        div.hsNumberCont, div.hsNumberContRed { display: inline-block; border: solid 1px #333;-webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; margin-right: -23px;  white-space: nowrap; vertical-align: text-bottom; }
+
+        div.hsNumberContRed {
+            width: 23px; height: 23px;
+        }
+
+        div.hsNumberCont {
+            width: 32px; height: 32px;
+        }
+
+        div.hsNumberContRed {
+            border: solid 1px rgb(220, 50, 0);
+        }
+        
+        div.message { font-family: Arial; font-size:20px; margin-bottom:10px; width: 80%; margin-left: auto; margin-right: auto; color:gray;}
+
+        div.spec-message {
+            color:#333;font-family: Arial; font-size:20px; margin-bottom:10px; margin-left: 52px;
+        }
+        ul.infoTexts { color: #333; font-family: Arial; padding-left: 0; margin-left:61px; }
+        div.hotspotCont { position: absolute; display: inline-block; background-position: center; background-repeat: no-repeat; background-size: contain; -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; }
+        .hotspotContText { -webkit-border-radius: 60; -moz-border-radius: 60; border-radius: 60px; font-family: Arial; color: #ffffff;  background: #ff0000; padding: 0px;  border: solid #ffffff; text-decoration: none;  width: inherit;  height: inherit; }
+        .hotspotContText:hover { background: #a10202; text-decoration: none; }
+  
+        div.hotspotCircleCont { position: absolute; display: inline-block; }
+        div.hotspotCircle { position: relative; }
+        
+        div.playHotspot { margin-top: 10px; }
+
+
+        button.playHotspotButton { -webkit-border-radius: 80; -moz-border-radius: 80; border-radius: 80px; width:45px;height:45px; background-image:url("pics/play_hotspot.jpg");  background-position: center; background-repeat: no-repeat; background-size: contain; margin-bottom: 5px; border: 0; }
+
+        #playAllBut {position: absolute; font-size: 1.2em; bottom: 15%; right: 25%;}
+
+         button.playAll { -webkit-border-radius: 80; -moz-border-radius: 80; border-radius: 80px; width:45px;height:45px; background-image:url("pics/play_hotspot.jpg");  background-position: center; background-repeat: no-repeat; background-size: contain; margin-bottom: 5px; border: 0; }
+       
+        button.addRes { border: 0px; background-color: rgba(0,0,0,0); font-family: Arial; color: gray; font-size: 1.2em; }
+        
+        div.overlayFrame { position: absolute; border: solid 1px black; background-color: white; position: absolute; z-index: 1000; }
+
+        div.closeButtonCont { position: absolute; top:10px; left:20px; width:25px; }
+
+        button.closeButton {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("pics/Close_Button.svg"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; width:100%;}
+        .noselect {
+          -webkit-touch-callout: none;
+            -webkit-user-select: none;
+             -khtml-user-select: none;
+               -moz-user-select: none; 
+                -ms-user-select: none;
+                    user-select: none;
+        }
+
+        div.itemTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); }
+        div.primeItemTile { margin: 1%; width: 23%}
+        div.primeTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); }
+        #tileVideo {
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background-color: white;
+        }
+        div.sideTile { margin: 3%; }
+
+        div.ring {
+        display: block;
+        float: left;
+        position: absolute;
+        border-radius: 55px;
+        padding: 50px;
+        transform: scale(.25);
+        -ms-transform: scale(.25);
+        /* IE 9 */
+        -webkit-transform: scale(.25);
+        /* Safari and Chrome */
+        -o-transform: scale(.25);
+        /* Opera */
+        -moz-transform: scale(.25);
+        /* Firefox */
+        -webkit-transform-origin: center;
+        animation-iteration-count: infinite;
+        /* W3C and Opera */
+        -moz-animation-iteration-count: infinite;
+        /* Firefox */
+        -webkit-animation-iteration-count: infinite;
+        /*Safari and Chrome*/
+        -webkit-transform-origin: center;
+        }
+        .ping {
+            top: -35px;
+            left: -35px;
+            border: solid #FFF 3px;
+            -moz-animation-duration: 3s;
+            -webkit-animation-duration: 3s;
+            -moz-animation-name: ping;
+            -webkit-animation-name: ping;
+        }
+
+        .hotspot-sonar {
+          border-radius: 50%;
+          border: solid 1px white;
+          width: 50%;
+          height: 50%;
+          color: #fff;
+          top: 25%;
+          left: 25%;
+          outline: none;
+          animation: sonar-effect 1.5s ease-in-out .1s infinite;
+          &::before {
+            content: '';
+            width: 50%;
+            height: 50%;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+          }
+        }
+
+        @keyframes sonar-effect {
+          0% {
+            opacity: 1;
+          }
+          40% {
+            opacity: 1;
+            /*box-shadow: 0 0 0 5px #fff, 0 0 10px 10px #fff, 0 0 0 10px #fff;*/
+          }
+          100% {
+            /*box-shadow: 0 0 0 5px #fff, 0 0 10px 10px #fff, 0 0 0 10px #fff;*/
+            transform: scale(2.25);
+            opacity: 1;
+          }
+        }
+
+
+        .background-screen {
+            opacity: 1; 
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            z-index: -1;
+        }
+
+
+        /*div.topRow {padding-top: 20px;}*/
+        @media only screen and (max-width: 415px) {
+            /*div.videContCell { display:block; text-align:center; }*/
+            div.topRow { height:auto; padding-top: 5px; }
+            div.colLeft { display:block; width:100%; margin-bottom: 20px;}
+            div.colRight { display:block; width:100%; }
+            div.leftBorder { border-left:0; }
+            div.sysName { margin-bottom:0; margin-top:5px; }
+            div.layoutCont { padding-bottom: 10px; }
+            div.infoBlock { height: auto; padding-left: 0; padding-right: 0; padding-top: 20px;}
+            div.row { display:block; border: 0 }
+            button.playAll { min-height:25px; font-size: 1.0em;  }
+            div.playHotspot { display: none; }
+            div.message { height: 58px; }
+            #playAllBut {right: 13%;}
+            div.closeButtonCont { top:45px; }
+        }
+
+        /*Wide mobile devices*/
+        @media only screen and (max-width: 520px) {
+            div.sysName { font-size: 16px; }
+            div.message { font-size: 16px; }
+            div.headline { font-size: 12px; }
+            div.infoBlock { min-height: 100px; }
+            div.playHotspot { display: none; }
+            div.hsNumberContRed { width: 21px; height: 22px; }
+            div.hsNumberRed { font-size: 13px; }
+            #playAllBut {right: 13%;}
+            div.closeButtonCont { top:80px; }
+        }
+        /*Tall mobile devices*/
+        @media only screen and (max-height: 625px) {
+            div.sysName { font-size: 16px; }
+            div.message { font-size: 16px; }
+            div.headline { font-size: 14px; }
+            div.infoBlock { height: 50px; }
+            div.playHotspot { display: none; }
+            /*div.videContCell { display:block; text-align:center; }*/
+            div.topRow { height:auto; padding-top: 5px; }
+            div.colLeft { display:block; width:100%; margin-bottom: 20px;}
+            div.colRight { display:block; width:100%; }
+            div.leftBorder { border-left:0; }
+            div.sysName { margin-bottom:0; margin-top:5px; }
+            div.layoutCont { padding-bottom: 10px; }
+            div.infoBlock { height: auto; padding-left: 0; padding-right: 0; padding-top: 20px;}
+            div.row { display:block; border: 0 }
+            button.playAll { min-height:25px; font-size: 1.0em;  }
+            div.playHotspot { display: none; }
+            div.message { height: 58px; }
+            #playAllBut {right: 13%;}
+            div.closeButtonCont { top:45px; }
+        }
+
+        /*Ipads*/
+        @media only screen and (max-width: 1024px) {
+            #playAllBut {bottom: 10%; right: 20%;}
+            div.closeButtonCont { top:45px; }
+        }
+
+        .scientific-logo {
+            position: relative;
+            margin: auto;
+            width: 75%;
+            display: block;
+        }
+
+
+        .splash-content {
+            position: relative;
+        }
+
+        </style>
+</head>
+
+
+<body>
+    <!-- Layout Example -->
+    
+    <!-- table with 2 columns and 3 rows -->
+    <div id="layoutCont" class="container-fluid d-flex flex-column layoutCont" style="padding-left: 0px; padding-right: 0px;">
+        <div class="d-flex">
+            <div class="d-flex col-xs-6 vidContRow">
+                <div class="col videContCell">
+                    <div class="videContBlock">
+                        <!-- width and size MUST be relative values (%) -->
+                        <img id="mySlider" width="100%" height="100%" class="mx-auto d-block" />
+                    </div>
+                </div>
+                <div class="row" id="playAllBut">
+                    <div class="col">
+                        <button class="playAll"></button>
+                    </div>
+                    <div class="col">
+                        <span id="playAllText" class="playAllText">Play All</span>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex col-xs-6 infoBlock" style="text-align: center;">
+                <div class="col">
+                    <div class="hsNumberContRed noselect" id="hsNumberCont" style="display: none;">
+                         <div class="hsNumberRed noselect" id="hsNumber" ></div>
+                    </div>
+                    <div class="col headline noselect" id="headline">CASCADION SM CLINICAL ANALYSER</div>
+                </div>
+                <div class="message col noselect" id="message">Breaking the barrier between LC-MS/MS and the clinical lab
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlayFrame" id="overlay-frame" style="width:100%; height: 100%; left: 0%; top:0; position: absolute; border: 0;overflow: hidden;">
+        <div class="overlay-details" id="overlay-details" style="width: 70%; height: 100%; right: -70%; top: 0px; position: absolute;background-color: rgba(255,255,255,0.9); ">
+            <!-- use this to show the product details after a video finished -->
+            <div style="margin-left: 20%;margin-top: 10%;">
+                <div >
+                    <div class="hsNumberCont noselect">
+                         <div class="spec-hsNumber noselect" id="spec-hsNumber" ></div>
+                    </div>
+                    <div class="col spec-headline noselect" id="spec-headline"></div>
+                </div>
+                <div class="spec-message row noselect" id="spec-message"></div>
+                <ul class="infoTexts noselect" id="infoTexts" />           
+                </ul>
+            </div>
+        </div>
+        <img src="./assets/BLUE_POLLEN.png" class="splash-screen landscape-screen background-screen">
+        <div id="phadiaPrime-content" class="container" style="display: none;">
+            <div class="row">
+                <div class="col">
+                    <h2 style="color: white; text-align: center;">Thermo Scientific Phadia Prime Software</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Consumables.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-1.png" class="img-responsive center-block"/>
+                </div>
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Managing_Request.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-2.png" class="img-responsive center-block"/>
+                </div>
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Connectivity.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-3.png" class="img-responsive center-block"/>
+                </div>
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_DataBases.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-4.png" class="img-responsive center-block"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_EventLog.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-5.png" class="img-responsive center-block"/>
+                </div>
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Help_And_Search.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-6.png" class="img-responsive center-block"/>
+                </div>
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Lab_Community.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-7.png" class="img-responsive center-block"/>
+                </div>
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Outsourced_Tests.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-8.png" class="img-responsive center-block"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Settings.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-9.png" class="img-responsive center-block"/>
+                </div>
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Results.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-10.png" class="img-responsive center-block"/>
+                </div>
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Rack.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-11.png" class="img-responsive center-block"/>
+                </div>
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Quality.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-12.png" class="img-responsive center-block"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_StockManager.mp4" data-video-type="video/mp4">
+                    <img src="./assets/PhadiaPrime/pp_button-13.png" class="img-responsive center-block"/>
+                </div>
+            </div>
+        </div>
+        <div id="splash-content" class="splash-content container">
+            <div id="phadiaLogo" class="row menu">
+                <img src="./assets/Phadia_Systems_Logo.svg" class="splash-screen systems-logo" />
+            </div>
+            <div id="thermoLogo" class="row">
+                <img src="./assets/Thermo-Scientific-Single-Line_Cropped.svg" class="splash-screen scientific-logo" />
+            </div>
+            <div id="mainMenuCont" class="row mainMenuCont h-100 menu" style="display: none;">
+                <div class="col-md-8">
+                    <div class='itemTile col-xs-5' data-video-url="./assets/1/Phadia200_Scene Intro01_Jan05.mov" data-video-type="video/mov">
+                        <img src="./assets/1/carousel.png" class="img-responsive center-block"/>
+                    </div>
+                    <div class='itemTile col-xs-5' data-video-url="./assets/2/Phadia250_HotSpot Intro Jan18.mov" data-video-type="video/mov">
+                        <img src="./assets/2/carousel.png" class="img-responsive center-block"/>
+                    </div>
+                    <div class='itemTile col-xs-5' data-video-url="./assets/3/Thermo Ph1000_Scene intro_Jan15.mov" data-video-type="video/mov">
+                        <img src="./assets/3/carousel.png" class="img-responsive center-block"/>
+                    </div>
+                    <div class='itemTile col-xs-5' data-video-url="">
+                        <img src="./assets/4/carousel.png" class="img-responsive center-block"/>
+                    </div>
+                </div>
+                <div class="col-md-4 side-row">
+                    <div id="eliaTile" class="itemTile sideTile col" data-video-url="./assets/EliA/Phadia_ELIA.mp4" data-video-type="video/mp4">
+                        <img src="./assets/EliA/carousel.png" class="img-responsive center-block"/>
+                    </div>
+                    <div id="immunocapTile" class="itemTile sideTile col" data-video-url="./assets/ImmunoCap/Phadia_ImmunoCAP.mp4" data-video-type="video/mp4">
+                        <img src="./assets/ImmunoCap/carousel.png" class="img-responsive center-block"/>
+                    </div>
+                    <div  id="phadiaprimeTile" class="primeTile sideTile col">
+                        <img src="./assets/PhadiaPrime/carousel.png" class="img-responsive center-block"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script id="systemData" type="application/json">
+      {
+        "zeropos_ind": 310,
+        "nr_frames": 360,
+        "range" : 108,
+        "camPos" : [ "0.0", "-5.20", "2.22" ],
+        "camFocLength" : "30.00",
+        "camSensorSize" : "20.12",
+        "imageSize" : [540, 405],
+        "headline": "Cascadion SM Clinical Analyser",
+        "text": "Breaking the barrier between LC-MS/MS and the clinical lab",
+        "hotspots": [
+          {
+            "video": "Cascadion_HotSpot_01",
+            "visible": true,
+            "position": [ -0.81, -0.5, 0.967 ],
+            "headline": "Sample Compartment",
+            "text": "Random access sample loading for continuous operation and fast turnaround times",
+            "valuemessage": "Random access sample loading for continuous operation and fast turnaround times",
+            "infotext": [
+              "Up to 60 samples can be loaded at a time",
+              "Different sample tube types into the same compartment",
+              "Accommodates serum, plasma and whole blood matrices"
+            ]
+          },
+          {
+            "video": "Cascadion_HotSpot_02",
+            "visible": true,
+            "position": [ -0.695, -0.48, 0.8 ],
+            "headline": "Barcode Reader",
+            "text": "Samples with barcode-IDs are automatically scanned",
+            "valuemessage": "Samples with barcode-IDs are automatically scanned",
+            "infotext": [
+              "Patient test query sent to LIS to download the request"
+            ]
+          },
+          {
+            "video": "Cascadion_HotSpot_03",
+            "visible": true,
+            "position": [ -0.53, -0.5, 0.96 ],
+            "headline": "Reagent Rack",
+            "text": "Holds both reagents and controls and features automatic barcode scanning",
+            "valuemessage": "Holds both reagents and controls and features automatic barcode scanning",
+            "infotext": []
+          },
+          {
+            "video": "Cascadion_HotSpot_04",
+            "visible": true,
+            "position": [ 0.09, -0.5, 0.96 ],
+            "headline": "Calibrators",
+            "text": "Calibrators are loaded and processed in the sample rack",
+            "valuemessage": "Calibrators are loaded and processed in the sample rack",
+            "infotext": []
+          },
+          {
+            "video": "Cascadion_HotSpot_05",
+            "visible": true,
+            "position": [ -0.25, -0.5, 1.05 ],
+            "headline": "Assay Kits",
+            "text": "Each assay is supplied with its own reagents and multiple assays can be run in parallel",
+            "valuemessage": "Each assay is supplied with its own reagents and multiple assays can be run in parallel",
+            "infotext": []
+          },
+          {
+            "video": "Cascadion_HotSpot_06",
+            "visible": true,
+            "position": [ 0.143, -0.448, 1.29 ],
+            "headline": "Start Button",
+            "text": "Start your run with touchscreen operation",
+            "valuemessage": "Start your run with touchscreen operation",
+            "infotext": []
+          },
+          {
+            "video": "Cascadion_HotSpot_07",
+            "visible": true,
+            "position": [ -0.748, -0.37, 1.32 ],
+            "headline": "Sample Preparation",
+            "text": "Fully automated, walkaway sample preparation",
+            "valuemessage": "Fully automated, walkaway sample preparation",
+            "infotext": [
+              "Liquid level sensing and clot detection to help ensure sample"
+            ]
+          },
+          {
+            "video": "Cascadion_HotSpot_08",
+            "visible": true,
+            "position": [-0.1, -0.44, 0.48 ],
+            "headline": "LC Unit for Chromatographic Separation",
+            "text": "Two channels for enhanced throughput with multiplexing capabilities",
+            "valuemessage": "Two channels for enhanced throughput with multiplexing capabilities",
+            "infotext": []
+          },
+          {
+            "video": "Cascadion_HotSpot_09",
+            "visible": true,
+            "position": [ -0.288, -0.44, 0.267 ],
+            "headline": "Quick Connect Cartridge",
+            "text": "Replace columns in seconds without the need for special tools",
+            "valuemessage": "Replace columns in seconds without the need for special tools",
+            "infotext": [
+              "USB-connection to keep track of injection count"
+            ]
+          },
+          {
+            "video": "Cascadion_HotSpot_10",
+            "visible": true,
+            "position": [ 0.065, -0.448, 0.267 ],
+            "headline": "TurboFlow Technology (sample clean up)",
+            "text": "Removes non-target molecules to ensure a clean sample is introduced to the MS",
+            "valuemessage": "Removes non-target molecules to ensure a clean sample is introduced to the MS",
+            "infotext": []
+          },
+          {
+            "video": "Cascadion_HotSpot_11",
+            "visible": true,
+            "position": [ 0.787, -0.586, 0.484 ],
+            "headline": "Triple Quadrupole Tandem Mass Spectrometry",
+            "text": "Sensitive detection and quantitation of small molecules run after run",
+            "valuemessage": "Sensitive detection and quantitation of small molecules run after run",
+            "infotext": [
+              "Many application areas including specialty tests in endocrinology and therapeutic drug monitoring"
+            ]
+          },
+          {
+            "video": "Cascadion_HotSpot_12",
+            "visible": true,
+            "position": [ 0.787, -0.417, 1.284 ],
+            "headline": "Color coded solvent bottles",
+            "text": "Ensures all bottles are placed in the correct location",
+            "valuemessage": "Ensures all bottles are placed in the correct location",
+            "infotext": [
+              ""
+            ]
+          },
+          {
+            "video": "Cascadion_HotSpot_13",
+            "visible": true,
+            "position": [ 0.575, -0.616, 0.865 ],
+            "headline": "Full Traceability",
+            "text": "Each result can be linked to the specific lot of reagent, calibrators and controls",
+            "valuemessage": "Each result can be linked to the specific lot of reagent, calibrators and controls",
+            "infotext": [
+              "Complete assay kits provide standardization among calibrators and reagents"
+            ]
+          },
+          {
+            "video": "Cascadion_HotSpot_14",
+            "visible": true,
+            "position": [ -0.005, -0.44, 1.399 ],
+            "headline": "Touchscreen",
+            "text": "Intuitive user interface with pictures and colors to guide operator actions",
+            "valuemessage": "Intuitive user interface with pictures and colors to guide operator actions",
+            "infotext": [
+              "Instrument status screen alerts the operator to any items that need attention",
+              "Sophisticated algorithms for accurate peak detection and integration",
+              "LIS connection for a fully automated workflow from sample loading to results reporting"
+            ]
+          }
+        ]
+      }
+    </script>
+    <script type="text/javascript">
+
+        let hotspotSize;
+        let timeoutIDshort;
+        let timeoutIDlong;
+
+        function readTextFile(file, callback) {
+            var rawFile = new XMLHttpRequest();
+            rawFile.overrideMimeType("application/json");
+            rawFile.open("GET", file, true);
+            rawFile.onreadystatechange = function() {
+                if (rawFile.readyState === 4 && rawFile.status == "200") {
+                    callback(rawFile.responseText);
+                }
+            }
+            rawFile.send(null);
+        }
+
+        function checkHotSpotSizeMobile(mediaQuery) {
+            if (mediaQuery.matches){
+                return true
+            } else {
+                return false
+            }
+        }
+
+        var content = document.getElementById('layoutCont');
+        content.addEventListener('touchstart', function(event) {
+            this.allowUp = (this.scrollTop > 0);
+            this.allowDown = (this.scrollTop < this.scrollHeight - this.clientHeight);
+            this.slideBeginY = event.pageY;
+        });
+
+        content.addEventListener('touchmove', function(event) {
+            var up = (event.pageY > this.slideBeginY);
+            var down = (event.pageY < this.slideBeginY);
+            this.slideBeginY = event.pageY;
+            if ((up && this.allowUp) || (down && this.allowDown)) {
+                event.stopPropagation();
+            }
+            else {
+                event.preventDefault();
+            }
+        });
+
+        var overlay_content = document.getElementById('overlay-frame');
+        overlay_content.addEventListener('touchstart', function(event) {
+            this.allowUp = (this.scrollTop > 0);
+            this.allowDown = (this.scrollTop < this.scrollHeight - this.clientHeight);
+            this.slideBeginY = event.pageY;
+        });
+
+        overlay_content.addEventListener('touchmove', function(event) {
+            var up = (event.pageY > this.slideBeginY);
+            var down = (event.pageY < this.slideBeginY);
+            this.slideBeginY = event.pageY;
+            if ((up && this.allowUp) || (down && this.allowDown)) {
+                event.stopPropagation();
+            }
+            else {
+                event.preventDefault();
+            }
+        });
+
+        function videoEnded(){
+            $('video').remove();
+        }
+        
+
+        $(document).ready(function()
+        {
+            
+            var images;
+            var videos;
+            var online;
+            
+            /*
+            if(navigator.onLine) { // true|false
+                images = "https://s3.amazonaws.com/www.dcasf.com/cascadion/images"
+                videos = "https://s3.amazonaws.com/www.dcasf.com/cascadion/videos"
+                online = true;
+            } else {
+                images = "pics"
+                videos = "videos"
+                online = false
+            }
+            */
+            images = "pics"
+            videos = "videos"
+            online = false
+
+            // Get the media size
+
+            var mobileWide = window.matchMedia("(max-width: 768px)")
+            var mobileTall = window.matchMedia("(max-height: 475px)")
+
+            var ua = window.navigator.userAgent;
+            var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+            var webkit = !!ua.match(/WebKit/i);
+            var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+
+
+            if (checkHotSpotSizeMobile(mobileWide) || checkHotSpotSizeMobile(mobileTall)){
+                hotspotSize = 0.032
+            } else if (iOSSafari){
+                hotspotSize = 0.038
+            } else {
+                hotspotSize = 0.018
+            }
+
+            var systemData = JSON.parse($('#systemData').html());
+            var hsMan = new Hotspot_Manager(
+                systemData,
+                //"./SystemsData.json", // url to json database with hotspot info
+                "cascadion",                                                    // the actual system corresponding to the actual video
+                "mySlider",                                                     // the id of the video tag
+                //"http://silicon-int.com/thermo/web/cascadion/pics",         
+                images,
+                // "./pics",      
+                //"http://silicon-int.com/thermo/web/cascadion/videos",  
+                videos,                             // the url with the  hotspot videos
+                hotSpotClicked,                                                 // the callback function which is called, if a hotspot has been clicked
+               "playAllBut",                                                    // id of the play-all button
+                "png",
+                //Size of the hotspots
+                // hotspotSize.size
+                hotspotSize,
+                online,
+            );  
+
+            // callback function example to draw the contents
+            function hotSpotClicked(headline, valuemessage, infoTexts, id, sysName, hideId)
+            {               
+                $("#sysName").text( sysName );
+
+                $("#hsNumber").text( id );
+                
+                //$("#hsNumber").css({ opacity: 1.0 });
+                //$("#hsNumberCont").css({ opacity: 1.0 });
+                $("#headline").text( headline );
+               
+                $("#message").text( valuemessage );
+
+                if (hideId == true){
+                    $('#hsNumberCont').hide();
+                    $('#headline').text('CASCADION SM CLINICAL ANALYSER');
+                    $('#message').text('Breaking the barrier between LC-MS/MS and the clinical lab')
+                } else {
+                    $('#hsNumberCont').show();
+                }
+            }
+
+            $('.itemTile').on('click', function(){
+                $('#overlay-frame').append("<Video id='tileVideo' controls autoplay onended='videoEnded()'><source src='"+ $(this).data('video-url') +"'></Video>")
+            });
+
+            $('.primeItemTile').on('click', function(){
+                $('#overlay-frame').append("<Video id='tileVideo' controls autoplay onended='videoEnded()'><source src='"+ $(this).data('video-url') +"'></Video>")
+            });
+
+            $('#phadiaprimeTile').on('click', function(){
+                $('#splash-content').hide();
+                $('#phadiaPrime-content').fadeIn(200);
+            });
+        });
+
+    </script>
+</body>
+</html>
