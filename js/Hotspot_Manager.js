@@ -1061,9 +1061,14 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
 
     $('.splash-screen').on('click',function(){
         // hide the splash screen
+<<<<<<< HEAD
         $('#thermoLogo').hide();
         $('#mainMenuCont').fadeIn("slow");
         // $('#overlay-frame').fadeOut("slow");
+=======
+        $('.splash-screen').fadeOut("slow");
+        $('#overlay-frame').fadeOut("slow");
+>>>>>>> 8249f2def8f201ecb221c292709514cbc0964070
         // init the Hotspot Manager
         //$("#videoContainer").mousemove()
         setPos(1, true)
