@@ -66,8 +66,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         $("#overlay-details").animate({
             right: "-70%"
         });
-        $('#overlay-frame').show();
-        $('.splash-screen').show();
+        $('#mainMenuCloseBtn').trigger( "click" );
     }
      
     function goActive() {
@@ -1060,12 +1059,6 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     
 
     $('.splash-screen').on('click',function(){
-        // hide the splash screen
-        $('#thermoLogo').hide();
-        $('#mainMenuCont').fadeIn("slow");
-        // $('#overlay-frame').fadeOut("slow");
-        // init the Hotspot Manager
-        //$("#videoContainer").mousemove()
         setPos(1, true)
         //TODO - look at starting the device at the middle posisiton using setPOs, and setting a cutomer headline and message right darn here
     })

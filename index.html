@@ -15,6 +15,7 @@
     <script type="text/javascript" src="./js/glm-gl-matrix.min.js"></script>
     <script type="text/javascript" src="./js/Hotspot_Manager.js"></script>
     <script type="text/javascript" src="./js/jquery.mobile.custom.js"></script> 
+    <script type="text/javascript" src="./js/index.js"></script>
 
     <title>Phadia Thermo Thingy</title>
     
@@ -105,9 +106,12 @@
         
         div.overlayFrame { position: absolute; border: solid 1px black; background-color: white; position: absolute; z-index: 1000; }
 
-        div.closeButtonCont { position: absolute; top:10px; left:20px; width:25px; }
+        div.closeButtonCont { position: fixed; top:0px; left:0px; width:3%; z-index: 1000;}
 
-        button.closeButton {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("pics/Close_Button.svg"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; width:100%;}
+        #showMainMenuBtn { position: fixed; bottom:1%; left:1%; width:5%; z-index: 1000;}
+
+        button.closeButton {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Close_Button.svg"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; width:100%;}
+        button.mainMenuBtn {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Carousel.png"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; width:100%;}
         .noselect {
           -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -118,6 +122,7 @@
         }
 
         div.itemTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); }
+        div.deviceTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); }
         div.primeItemTile { margin: 1%; width: 23%}
         div.primeTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); }
         #tileVideo {
@@ -321,6 +326,9 @@
         </div>
     </div>
     <div class="overlayFrame" id="overlay-frame" style="width:100%; height: 100%; left: 0%; top:0; position: absolute; border: 0;overflow: hidden;">
+        <div class="closeButtonCont" id="videoCloseBtn" style="display: none;">
+            <button class="closeButton" onClick="videoClose()"></button>
+        </div>
         <div class="overlay-details" id="overlay-details" style="width: 70%; height: 100%; right: -70%; top: 0px; position: absolute;background-color: rgba(255,255,255,0.9); ">
             <!-- use this to show the product details after a video finished -->
             <div style="margin-left: 20%;margin-top: 10%;">
@@ -397,18 +405,24 @@
             <div id="thermoLogo" class="row">
                 <img src="./assets/Thermo-Scientific-Single-Line_Cropped.svg" class="splash-screen scientific-logo" />
             </div>
+            <div id="showMainMenuBtn">
+                <button class="mainMenuBtn" onClick="showMainMenu()"></button>
+            </div>
             <div id="mainMenuCont" class="row mainMenuCont h-100 menu" style="display: none;">
+                <div class="closeButtonCont" id="mainMenuCloseBtn">
+                    <button class="closeButton" onClick="mainMenuClose()"></button>
+                </div>
                 <div class="col-md-8">
-                    <div class='itemTile col-xs-5' data-video-url="./assets/1/Phadia200_Scene Intro01_Jan05.mov" data-video-type="video/mov">
+                    <div class='deviceTile col-xs-5' data-device-id="1" data-device-data-id="phadia200-data" data-device-folder-id="1">
                         <img src="./assets/1/carousel.png" class="img-responsive center-block"/>
                     </div>
-                    <div class='itemTile col-xs-5' data-video-url="./assets/2/Phadia250_HotSpot Intro Jan18.mov" data-video-type="video/mov">
+                    <div class='deviceTile col-xs-5' data-device-id="2" data-device-data-id="phadia250-data" data-device-folder-id="2">
                         <img src="./assets/2/carousel.png" class="img-responsive center-block"/>
                     </div>
-                    <div class='itemTile col-xs-5' data-video-url="./assets/3/Thermo Ph1000_Scene intro_Jan15.mov" data-video-type="video/mov">
+                    <div class='deviceTile col-xs-5' data-device-id="3" data-device-data-id="phadia1000-data" data-device-folder-id="3">
                         <img src="./assets/3/carousel.png" class="img-responsive center-block"/>
                     </div>
-                    <div class='itemTile col-xs-5' data-video-url="">
+                    <div class='deviceTile col-xs-5' data-device-id="4" data-device-data-id="phadia2500-data" data-device-folder-id="4">
                         <img src="./assets/4/carousel.png" class="img-responsive center-block"/>
                     </div>
                 </div>
@@ -426,7 +440,7 @@
             </div>
         </div>
     </div>
-    <script id="systemData" type="application/json">
+    <script id="phadia200-data" type="application/json">
       {
         "zeropos_ind": 310,
         "nr_frames": 360,
@@ -586,173 +600,6 @@
           }
         ]
       }
-    </script>
-    <script type="text/javascript">
-
-        let hotspotSize;
-        let timeoutIDshort;
-        let timeoutIDlong;
-
-        function readTextFile(file, callback) {
-            var rawFile = new XMLHttpRequest();
-            rawFile.overrideMimeType("application/json");
-            rawFile.open("GET", file, true);
-            rawFile.onreadystatechange = function() {
-                if (rawFile.readyState === 4 && rawFile.status == "200") {
-                    callback(rawFile.responseText);
-                }
-            }
-            rawFile.send(null);
-        }
-
-        function checkHotSpotSizeMobile(mediaQuery) {
-            if (mediaQuery.matches){
-                return true
-            } else {
-                return false
-            }
-        }
-
-        var content = document.getElementById('layoutCont');
-        content.addEventListener('touchstart', function(event) {
-            this.allowUp = (this.scrollTop > 0);
-            this.allowDown = (this.scrollTop < this.scrollHeight - this.clientHeight);
-            this.slideBeginY = event.pageY;
-        });
-
-        content.addEventListener('touchmove', function(event) {
-            var up = (event.pageY > this.slideBeginY);
-            var down = (event.pageY < this.slideBeginY);
-            this.slideBeginY = event.pageY;
-            if ((up && this.allowUp) || (down && this.allowDown)) {
-                event.stopPropagation();
-            }
-            else {
-                event.preventDefault();
-            }
-        });
-
-        var overlay_content = document.getElementById('overlay-frame');
-        overlay_content.addEventListener('touchstart', function(event) {
-            this.allowUp = (this.scrollTop > 0);
-            this.allowDown = (this.scrollTop < this.scrollHeight - this.clientHeight);
-            this.slideBeginY = event.pageY;
-        });
-
-        overlay_content.addEventListener('touchmove', function(event) {
-            var up = (event.pageY > this.slideBeginY);
-            var down = (event.pageY < this.slideBeginY);
-            this.slideBeginY = event.pageY;
-            if ((up && this.allowUp) || (down && this.allowDown)) {
-                event.stopPropagation();
-            }
-            else {
-                event.preventDefault();
-            }
-        });
-
-        function videoEnded(){
-            $('video').remove();
-        }
-        
-
-        $(document).ready(function()
-        {
-            
-            var images;
-            var videos;
-            var online;
-            
-            /*
-            if(navigator.onLine) { // true|false
-                images = "https://s3.amazonaws.com/www.dcasf.com/cascadion/images"
-                videos = "https://s3.amazonaws.com/www.dcasf.com/cascadion/videos"
-                online = true;
-            } else {
-                images = "pics"
-                videos = "videos"
-                online = false
-            }
-            */
-            images = "pics"
-            videos = "videos"
-            online = false
-
-            // Get the media size
-
-            var mobileWide = window.matchMedia("(max-width: 768px)")
-            var mobileTall = window.matchMedia("(max-height: 475px)")
-
-            var ua = window.navigator.userAgent;
-            var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-            var webkit = !!ua.match(/WebKit/i);
-            var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
-
-
-            if (checkHotSpotSizeMobile(mobileWide) || checkHotSpotSizeMobile(mobileTall)){
-                hotspotSize = 0.032
-            } else if (iOSSafari){
-                hotspotSize = 0.038
-            } else {
-                hotspotSize = 0.018
-            }
-
-            var systemData = JSON.parse($('#systemData').html());
-            var hsMan = new Hotspot_Manager(
-                systemData,
-                //"./SystemsData.json", // url to json database with hotspot info
-                "cascadion",                                                    // the actual system corresponding to the actual video
-                "mySlider",                                                     // the id of the video tag
-                //"http://silicon-int.com/thermo/web/cascadion/pics",         
-                images,
-                // "./pics",      
-                //"http://silicon-int.com/thermo/web/cascadion/videos",  
-                videos,                             // the url with the  hotspot videos
-                hotSpotClicked,                                                 // the callback function which is called, if a hotspot has been clicked
-               "playAllBut",                                                    // id of the play-all button
-                "png",
-                //Size of the hotspots
-                // hotspotSize.size
-                hotspotSize,
-                online,
-            );  
-
-            // callback function example to draw the contents
-            function hotSpotClicked(headline, valuemessage, infoTexts, id, sysName, hideId)
-            {               
-                $("#sysName").text( sysName );
-
-                $("#hsNumber").text( id );
-                
-                //$("#hsNumber").css({ opacity: 1.0 });
-                //$("#hsNumberCont").css({ opacity: 1.0 });
-                $("#headline").text( headline );
-               
-                $("#message").text( valuemessage );
-
-                if (hideId == true){
-                    $('#hsNumberCont').hide();
-                    $('#headline').text('CASCADION SM CLINICAL ANALYSER');
-                    $('#message').text('Breaking the barrier between LC-MS/MS and the clinical lab')
-                } else {
-                    $('#hsNumberCont').show();
-                }
-            }
-
-            $('.itemTile').on('click', function(){
-                $('#overlay-frame').append("<Video id='tileVideo' controls autoplay onended='videoEnded()'><source src='"+ $(this).data('video-url') +"'></Video>")
-            });
-
-            $('.primeItemTile').on('click', function(){
-                $('#overlay-frame').append("<Video id='tileVideo' controls autoplay onended='videoEnded()'><source src='"+ $(this).data('video-url') +"'></Video>")
-            });
-
-            $('#phadiaprimeTile').on('click', function(){
-                $('#splash-content').hide();
-                $('#phadiaPrime-content').fadeIn(200);
-            });
-        });
-
     </script>
 </body>
 </html>
