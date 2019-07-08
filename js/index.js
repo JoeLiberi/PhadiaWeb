@@ -29,9 +29,14 @@ function videoEnded(){
 }
 
 function mainMenuClose(){
-    $('#thermoLogo').fadeIn("slow");
     $('#mainMenuCont').hide();
-    $('#showMainMenuBtn').show()
+    $('#thermoLogo').fadeIn("slow");
+    $('#showMainMenuBtn').fadeIn("slow")
+}
+
+function phadiaPrimeClose(){
+    $('#phadiaPrime-content').hide();
+    $('#splash-content').fadeIn(200);
 }
 
 function videoPause(){
