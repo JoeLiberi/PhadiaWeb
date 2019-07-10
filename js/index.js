@@ -25,7 +25,6 @@ function checkHotSpotSizeMobile(mediaQuery) {
 function videoEnded(){
     $('video').remove();
     $('#videoCloseBtn').hide();
-    $('#mainMenuCloseBtn').show();
 }
 
 function mainMenuClose(){
@@ -171,11 +170,15 @@ $(document).ready(function()
         }
     }
 
+    /*
+    Item tile and phadia prime tile functionality. When one is clicked we add a html5 video 
+    to the screen.
+    */
     $('.itemTile, .primeItemTile').on('click', function(){
-        $('#mainMenuCloseBtn').hide();
         $('#overlay-frame').append("<Video id='tileVideo' controls autoplay onended='videoEnded()' onpause='videoPause()'><source src='"+ $(this).data('video-url') +"'></Video>")
     });
 
+    // Phadia prime close button
     $('#phadiaprimeTile').on('click', function(){
         $('#splash-content').hide();
         $('#phadiaPrime-content').fadeIn(200);
@@ -183,18 +186,19 @@ $(document).ready(function()
 
 
     /*
-    When a device tile is clicked we are going to grab f
-
+    When a device tile is clicked we are going to grab folder id of the videos and images
+    Here is where we are going to initialize the hotspot_manager and load all of the 
+    static files and calculate the hotspots.
     */
     $('.deviceTile').on('click', function(){
         $('.overlayFrame').hide();
 
-        images = "./assets/" + $(this).data('device-folder-id') + "/images"
-        videos = "./assets/" + $(this).data('device-folder-id') + "/videos"
+        // images = "./assets/" + $(this).data('device-folder-id') + "/images"
+        // videos = "./assets/" + $(this).data('device-folder-id') + "/videos"
 
         // testing
-        // images - "./assets/cascadion_testing/images"
-        // videos - "./assets/cascadion_testing/videos"
+        images - "./assets/cascadion_testing/images"
+        videos - "./assets/cascadion_testing/videos"
         online = false
 
         var systemData = JSON.parse($('#systemData').html());
@@ -217,6 +221,10 @@ $(document).ready(function()
             online,
         );
     });
+
+    /*
+    When the splash screen is clicked we show the main menu
+    */
 
     $('.splash-screen').on('click',function(){
         // hide the splash screen
