@@ -47,8 +47,9 @@ function videoClose(){
 }
 
 function showMainMenu(){
+    alert('show main')
     $('#thermoLogo').hide();
-    $('#mainMenuCont').fadeIn("slow");
+    $('#mainMenuCont').slideUp("slow");
     $('#showMainMenuBtn').hide();
 }
 
@@ -227,9 +228,21 @@ $(document).ready(function()
     */
 
     $('.splash-screen').on('click',function(){
+        //alert('clicked')
         // hide the splash screen
         $('#thermoLogo').hide();
-        $('#mainMenuCont').fadeIn("slow");
+
         $('#showMainMenuBtn').hide();
+        if ($('#mainMenuCont').hasClass('open')) {
+            //close it
+            $('#mainMenuCont').animate({bottom: '-1000px'}, 'slow', function() {
+                $('#mainMenuCont').removeClass('open'); 
+            });
+        } else {
+            // open it
+            $('#mainMenuCont').animate({bottom: '0px'}, 'slow', function() {
+                $('#mainMenuCont').addClass('open');
+            });
+        }
     })
 });
