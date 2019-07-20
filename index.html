@@ -124,7 +124,7 @@
         }
 
         div.itemTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); }
-        div.deviceTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); height: 30vh;}
+        div.deviceTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); height: 32vh; width: 22vw;}
         div.primeItemTile { margin: 1%; width: 23%}
         div.primeTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); }
         #tileVideo {
@@ -136,7 +136,7 @@
             left: 0px;
             background-color: white;
         }
-        div.sideTile { margin: 3%; height: 20vh; margin-top: 4.3%; }
+        div.sideTile { margin: 3%; height: 21.3vh; margin-top: 4.3%; }
 
         div.ring {
         display: block;
@@ -277,6 +277,12 @@
             div.closeButtonCont { top:45px; }
         }
 
+        @media only screen and (max-width: 1440px) {
+            .deviceTile img {
+                margin-top: 10%;
+            }
+        }
+
         .scientific-logo {
             position: relative;
             margin: auto;
@@ -309,6 +315,11 @@
         #mainMenuCont {
             width: 75vw;
             margin: 0 auto;
+        }
+
+        .tileContainer {
+            width: 80vw;
+            margin: auto;
         }
 
         </style>
@@ -368,53 +379,53 @@
             </div>
         </div>
         <img src="./assets/BLUE_POLLEN.png" class="splash-screen landscape-screen background-screen">
-        <div id="phadiaPrime-content" class="container" style="display: none;">
+        <div id="phadiaPrime-content" class="container-fluid" style="display: none;">
             <div class="closeButtonCont" id="phadiaPrimeClose" style="display: block;">
                 <button class="closeButton" onClick="phadiaPrimeClose()"></button>
             </div>
             <div class="row">
-                <div class="col">
-                    <h2 style="color: white; text-align: center;">Thermo Scientific Phadia Prime Software</h2>
+                <div class="col" style="height: 10vh;">
+                    <h2 style="color: white; text-align: center; margin-top: 5%;">Thermo Scientific Phadia Prime Software</h2>
                 </div>
             </div>
-            <div style="display: flex; flex-direction: column;">
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Consumables.mp4" data-video-type="video/mp4">
+            <div class="row tileContainer">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Consumables.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-1.png" class="img-responsive center-block"/>
                 </div>
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Managing_Request.mp4" data-video-type="video/mp4">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Managing_Request.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-2.png" class="img-responsive center-block"/>
                 </div>
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Connectivity.mp4" data-video-type="video/mp4">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Connectivity.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-3.png" class="img-responsive center-block"/>
                 </div>
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_DataBases.mp4" data-video-type="video/mp4">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_DataBases.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-4.png" class="img-responsive center-block"/>
                 </div>
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_EventLog.mp4" data-video-type="video/mp4">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_EventLog.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-5.png" class="img-responsive center-block"/>
                 </div>
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Help_And_Search.mp4" data-video-type="video/mp4">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Help_And_Search.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-6.png" class="img-responsive center-block"/>
                 </div>
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Lab_Community.mp4" data-video-type="video/mp4">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Lab_Community.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-7.png" class="img-responsive center-block"/>
                 </div>
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Outsourced_Tests.mp4" data-video-type="video/mp4">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Outsourced_Tests.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-8.png" class="img-responsive center-block"/>
                 </div>
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Settings.mp4" data-video-type="video/mp4">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Settings.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-9.png" class="img-responsive center-block"/>
                 </div>
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Results.mp4" data-video-type="video/mp4">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Results.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-10.png" class="img-responsive center-block"/>
                 </div>
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Rack.mp4" data-video-type="video/mp4">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Rack.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-11.png" class="img-responsive center-block"/>
                 </div>
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Quality.mp4" data-video-type="video/mp4">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Quality.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-12.png" class="img-responsive center-block"/>
                 </div>
-                <div class='' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_StockManager.mp4" data-video-type="video/mp4">
+                <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_StockManager.mp4" data-video-type="video/mp4">
                     <img src="./assets/PhadiaPrime/pp_button-13.png" class="img-responsive center-block"/>
                 </div>
             </div>
@@ -433,9 +444,11 @@
                 <div class="closeButtonCont" id="mainMenuCloseBtn" style="display: block;">
                     <button class="closeButton" onClick="mainMenuClose()"></button>
                 </div>
-                <div class="col-md-8" style="padding-right: 0px; margin-right: -6%;">
+                <div class="col-md-8" style="padding-right: 0px; margin-right: -2%;">
                     <div class='deviceTile col-xs-5' data-device-id="1" data-device-data-id="phadia200-data" data-device-folder-id="1">
-                        <img src="./assets/1/carousel.png" class="img-responsive center-block"/>
+                        <span>
+                            <img src="./assets/1/carousel.png" class="img-responsive center-block"/>
+                        </span>
                     </div>
                     <div class='deviceTile col-xs-5' data-device-id="2" data-device-data-id="phadia250-data" data-device-folder-id="2">
                         <img src="./assets/2/carousel.png" class="img-responsive center-block"/>
