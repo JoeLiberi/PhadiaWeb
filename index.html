@@ -124,7 +124,7 @@
         }
 
         div.itemTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); }
-        div.deviceTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); }
+        div.deviceTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); height: 30vh;}
         div.primeItemTile { margin: 1%; width: 23%}
         div.primeTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); }
         #tileVideo {
@@ -136,7 +136,7 @@
             left: 0px;
             background-color: white;
         }
-        div.sideTile { margin: 3%; }
+        div.sideTile { margin: 3%; height: 20vh; margin-top: 4.3%; }
 
         div.ring {
         display: block;
@@ -301,6 +301,16 @@
             flex-direction: column;
         }
 
+        #phadiaLogo {
+            height: 25vh;
+            margin-top: 2%;
+        }
+
+        #mainMenuCont {
+            width: 75vw;
+            margin: 0 auto;
+        }
+
         </style>
 </head>
 
@@ -409,9 +419,9 @@
                 </div>
             </div>
         </div>
-        <div id="splash-content" class="splash-content container">
+        <div id="splash-content" class="splash-content container-fluid">
             <div id="phadiaLogo" class="row menu">
-                <img src="./assets/Phadia_Systems_Logo.svg" class="splash-screen systems-logo" />
+                <img src="./assets/Phadia_Systems_Logo.svg" class="splash-screen systems-logo img-responsive center-block" style="height: 75%;" />
             </div>
             <div id="thermoLogo" class="row">
                 <img src="./assets/Thermo-Scientific-Single-Line_Cropped.svg" class="splash-screen scientific-logo" />
@@ -423,7 +433,7 @@
                 <div class="closeButtonCont" id="mainMenuCloseBtn" style="display: block;">
                     <button class="closeButton" onClick="mainMenuClose()"></button>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8" style="padding-right: 0px; margin-right: -6%;">
                     <div class='deviceTile col-xs-5' data-device-id="1" data-device-data-id="phadia200-data" data-device-folder-id="1">
                         <img src="./assets/1/carousel.png" class="img-responsive center-block"/>
                     </div>
