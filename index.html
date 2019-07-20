@@ -28,26 +28,28 @@
         html { height: 100%; overflow-x: hidden; }
         body { height: 100%; display: flex; overflow-x: hidden; position: relative; background-image: url("./assets/BLUE_POLLEN.png") }
         body > div { flex: 1; }
-        div.layoutCont { width:80%; height:90vh; margin-left: auto; margin-right: auto; padding-bottom: 50px; }
+        div.layoutCont { width:100%; height:100%; margin-left: auto; margin-right: auto; }
 
         div.topRow { height:50px; margin-bottom: 10px;}
         
         div.leftBorder { border-left: solid 1px gray; }
         
         div.animDivs {  }
-        div.videContCell { text-align:center; height: 100%; width: 100%}
+        div.videContCell { text-align:center; height: 65vh; width: 100%; top: 15vh; position: relative;} /*height was 100% */
         div.videContBlock { display:inline-block; height: 100%; width: 100%}
         div.videoContainer { position: relative; }
         div.videoCont {  position:relative; text-align:center; width:100% }
-        div.vidContRow { height: 65vh; }
+        div.vidContRow { height: 100%; } /*Height was 65vh */
 
-        div.infoBlock { height: 150px; padding-top: 30px; }
+        div.infoBlock { height: 100%; padding-top: 30px; }
 
         div.sysName { font-family: Arial; font-face:bold; font-size:22px; color: gray; width: 50%; margin-left: auto; margin-right: auto; }
-        div.headline, div.spec-headline { font-family: Arial; font-size:26px; margin-bottom:10px;
+        div.headline, div.spec-headline { font-family: Arial; font-size:26px;
            display: inline-block; padding-left: 40px; padding-right: 40px; }
+        div.spec-headline { margin-bottom:10px; }
+
         div.headline {
-            color:rgb(220, 50, 0);
+            color:#fff;
         }
         div.spec-headline {
             color:#333;
@@ -80,7 +82,9 @@
             border: solid 1px rgb(220, 50, 0);
         }
         
-        div.message { font-family: Arial; font-size:20px; margin-bottom:10px; width: 80%; margin-left: auto; margin-right: auto; color:gray;}
+        div.message { font-family: Arial; font-size:20px; margin-bottom:10px; width: 80%; margin-left: auto; margin-right: auto; color:#fff;}
+
+        div.disclaimer {color:#fff;}
 
         div.spec-message {
             color:#333;font-family: Arial; font-size:20px; margin-bottom:10px; margin-left: 52px;
@@ -98,7 +102,7 @@
 
         button.playHotspotButton { -webkit-border-radius: 80; -moz-border-radius: 80; border-radius: 80px; width:45px;height:45px; background-image:url("pics/play_hotspot.jpg");  background-position: center; background-repeat: no-repeat; background-size: contain; margin-bottom: 5px; border: 0; }
 
-        #playAllBut {position: absolute; font-size: 1.2em; bottom: 15%; right: 25%;}
+        #playAllBut {position: absolute; font-size: 1.2em; bottom: 30px; width:100%; color: #fff; cursor: pointer;}
 
          button.playAll { -webkit-border-radius: 80; -moz-border-radius: 80; border-radius: 80px; width:45px;height:45px; background-image:url("pics/play_hotspot.jpg");  background-position: center; background-repeat: no-repeat; background-size: contain; margin-bottom: 5px; border: 0; }
        
@@ -340,17 +344,9 @@
             width: 80vw;
             margin: auto;
         }
-
-        .slide-up
-        {
-            bottom: 0px !important;
+        .tile {
+            cursor: pointer;
         }
-
-        .slide-down
-        {
-            bottom: -1500px !important;
-        }
-
         </style>
 </head>
 
@@ -360,7 +356,7 @@
     
     <!-- table with 2 columns and 3 rows -->
     <div id="layoutCont" class="container-fluid d-flex flex-column layoutCont" style="padding-left: 0px; padding-right: 0px;">
-        <div class="d-flex">
+        <div class="d-flex" style="width: 100%; height: 100%;">
             <div class="d-flex col-xs-6 vidContRow">
                 <div class="col videContCell">
                     <div class="videContBlock">
@@ -369,10 +365,8 @@
                     </div>
                 </div>
                 <div class="row" id="playAllBut">
-                    <div class="col">
-                        <button class="playAll"></button>
-                    </div>
-                    <div class="col">
+                    
+                    <div class="col" style="text-align: center;">
                         <span id="playAllText" class="playAllText">Play All</span>
                     </div>
                 </div>
@@ -382,9 +376,13 @@
                     <div class="hsNumberContRed noselect" id="hsNumberCont" style="display: none;">
                          <div class="hsNumberRed noselect" id="hsNumber" ></div>
                     </div>
-                    <div class="col headline noselect" id="headline">CASCADION SM CLINICAL ANALYSER</div>
+                    <div class="col headline noselect" id="headline">Phadia 200 System</div>
+                    <div class="col disclaimer">Not Available in the US</div>
                 </div>
                 <div class="message col noselect" id="message">Breaking the barrier between LC-MS/MS and the clinical lab
+                </div>
+                <div style="position: absolute; bottom: 30px; width: 100%;">
+                    <a style="color:#fff;">Additional Resources</a>
                 </div>
             </div>
         </div>
@@ -476,29 +474,29 @@
                     <button class="closeButton" onClick="mainMenuClose()"></button>
                 </div>
                 <div class="col-md-8" style="padding-right: 0px; margin-right: -2%;">
-                    <div class='deviceTile col-xs-5' data-device-id="1" data-device-data-id="phadia200-data" data-device-folder-id="1">
+                    <div class='deviceTile col-xs-5 tile' data-device-id="1" data-device-data-id="phadia200-data" data-device-folder-id="1">
                         <span>
                             <img src="./assets/1/carousel.png" class="img-responsive center-block"/>
                         </span>
                     </div>
-                    <div class='deviceTile col-xs-5' data-device-id="2" data-device-data-id="phadia250-data" data-device-folder-id="2">
+                    <div class='deviceTile col-xs-5 tile' data-device-id="2" data-device-data-id="phadia250-data" data-device-folder-id="2">
                         <img src="./assets/2/carousel.png" class="img-responsive center-block"/>
                     </div>
-                    <div class='deviceTile col-xs-5' data-device-id="3" data-device-data-id="phadia1000-data" data-device-folder-id="3">
+                    <div class='deviceTile col-xs-5 tile' data-device-id="3" data-device-data-id="phadia1000-data" data-device-folder-id="3">
                         <img src="./assets/3/carousel.png" class="img-responsive center-block"/>
                     </div>
-                    <div class='deviceTile col-xs-5' data-device-id="4" data-device-data-id="phadia2500-data" data-device-folder-id="4">
+                    <div class='deviceTile col-xs-5 tile' data-device-id="4" data-device-data-id="phadia2500-data" data-device-folder-id="4">
                         <img src="./assets/4/carousel.png" class="img-responsive center-block"/>
                     </div>
                 </div>
                 <div class="col-md-4 side-row">
-                    <div  id="phadiaprimeTile" class="primeTile sideTile col">
+                    <div  id="phadiaprimeTile" class="primeTile sideTile col tile">
                         <img src="./assets/PhadiaPrime/carousel.png" class="img-responsive center-block"/>
                     </div>
-                    <div id="immunocapTile" class="itemTile sideTile col" data-video-url="./assets/ImmunoCap/Phadia_ImmunoCAP.mp4" data-video-type="video/mp4">
+                    <div id="immunocapTile" class="itemTile sideTile col tile" data-video-url="./assets/ImmunoCap/Phadia_ImmunoCAP.mp4" data-video-type="video/mp4">
                         <img src="./assets/ImmunoCap/carousel.png" class="img-responsive center-block"/>
                     </div>
-                    <div id="eliaTile" class="itemTile sideTile col" data-video-url="./assets/EliA/Phadia_ELIA.mp4" data-video-type="video/mp4">
+                    <div id="eliaTile" class="itemTile sideTile col tile" data-video-url="./assets/EliA/Phadia_ELIA.mp4" data-video-type="video/mp4">
                         <img src="./assets/EliA/carousel.png" class="img-responsive center-block"/>
                     </div>
                     
