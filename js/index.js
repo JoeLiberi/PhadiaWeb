@@ -31,6 +31,7 @@ function mainMenuClose(){
     $('#mainMenuCont').hide();
     $('#thermoLogo').fadeIn("slow");
     $('#showMainMenuBtn').fadeIn("slow")
+    $('#mainMenuCont').animate({bottom: '-1000px'}, 'slow', function() {})
 }
 
 function phadiaPrimeClose(){
@@ -238,6 +239,7 @@ $(document).ready(function()
         //alert('clicked')
         // hide the splash screen
         $('#thermoLogo').hide();
+        $('#mainMenuCont').show();
 
         $('#showMainMenuBtn').hide();
         
