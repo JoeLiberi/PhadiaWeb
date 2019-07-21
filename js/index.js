@@ -47,10 +47,14 @@ function videoClose(){
 }
 
 function showMainMenu(){
-    alert('show main')
+
     $('#thermoLogo').hide();
-    $('#mainMenuCont').slideUp("slow");
+    $('#mainMenuCont').show();
     $('#showMainMenuBtn').hide();
+    $('.overlayFrame').show();
+    $('#mainMenuCont').animate({bottom: '0px'}, 'slow', function() {
+        $('#mainMenuCont').addClass('open');
+    });
 }
 
 $(document).ready(function()
@@ -193,6 +197,9 @@ $(document).ready(function()
     */
     $('.deviceTile').on('click', function(){
         $('.overlayFrame').hide();
+        $('#mainMenuCont').animate({bottom: '-1000px'}, 'fast', function() {
+            $('#mainMenuCont').removeClass('open'); 
+        });
 
         // images = "./assets/" + $(this).data('device-folder-id') + "/images"
         // videos = "./assets/" + $(this).data('device-folder-id') + "/videos"
