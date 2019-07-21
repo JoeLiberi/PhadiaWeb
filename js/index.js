@@ -240,16 +240,10 @@ $(document).ready(function()
         $('#thermoLogo').hide();
 
         $('#showMainMenuBtn').hide();
-        if ($('#mainMenuCont').hasClass('open')) {
-            //close it
-            $('#mainMenuCont').animate({bottom: '-1000px'}, 'slow', function() {
-                $('#mainMenuCont').removeClass('open'); 
-            });
-        } else {
-            // open it
-            $('#mainMenuCont').animate({bottom: '0px'}, 'slow', function() {
-                $('#mainMenuCont').addClass('open');
-            });
-        }
+        
+        // open it
+        $('#mainMenuCont').animate({bottom: '0px'}, 'slow', function() {
+        
+        })
     })
 });
