@@ -243,6 +243,7 @@ $(document).ready(function()
 
         $('#showMainMenuBtn').hide();
         
+        $('#mainMenuCloseBtn').show();
         // open it
         $('#mainMenuCont').animate({bottom: '0px'}, 'slow', function() {
         
