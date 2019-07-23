@@ -352,6 +352,7 @@
         }
 
         @media only screen and (orientation:portrait){
+            body { background-image: none; }
             #wrapper { display:none; }
             #warning-message { display:block; }
         }
@@ -364,8 +365,9 @@
 
 
 <body>
-    <div id="warning-message" style="display: none;">
+    <div id="warning-message" style="display: none; z-index: 1000">
         <h1>this website is only viewable in landscape mode</h1>
+        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
     </div>
     
     <div id="wrapper">
