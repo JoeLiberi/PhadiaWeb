@@ -228,6 +228,19 @@
             height: 75%;
         }
 
+        .scientific-logo {
+            position: relative;
+            margin: auto;
+            width: 75%;
+            display: block;
+            top: 50%;
+        }
+
+
+
+        .side-row {
+            margin-top: 0.25%;
+        }
 
         /*div.topRow {padding-top: 20px;}*/
         @media only screen and (max-width: 415px) {
@@ -245,6 +258,14 @@
             div.message { height: 58px; }
             #playAllBut {right: 13%;}
             div.closeButtonCont { top:45px; }
+
+            div.scientific-logo {
+                top: 50%;
+            }
+
+            .side-row {
+                margin-top: 0.25%;
+            }
         }
 
         /*Wide mobile devices*/
@@ -258,6 +279,10 @@
             div.hsNumberRed { font-size: 13px; }
             #playAllBut {right: 13%;}
             div.closeButtonCont { top:80px; }
+
+            .side-row {
+                margin-top: 0.25%;
+            }
         }
         /*Tall mobile devices*/
         @media only screen and (max-height: 625px) {
@@ -308,14 +333,6 @@
                 height: 70%;
             }
         }
-
-        .scientific-logo {
-            position: relative;
-            margin: auto;
-            width: 75%;
-            display: block;
-        }
-
 
         .splash-content {
             position: relative;
@@ -509,7 +526,7 @@
                     <div class="closeButtonCont" id="mainMenuCloseBtn" style="display: none;">
                         <button class="closeButton" onClick="mainMenuClose()"></button>
                     </div>
-                    <div class="col-md-8" style="padding-right: 0px; margin-right: -2%;">
+                    <div class="col-md-8 col-xs-8" style="padding-right: 0px; margin-right: -2%;">
                         <div class='deviceTile col-xs-5 tile' data-device-id="1" data-device-data-id="phadia200-data" data-device-folder-id="1">
                             <span>
                                 <img src="./assets/1/carousel.png" class="img-responsive center-block"/>
@@ -525,7 +542,7 @@
                             <img src="./assets/4/carousel.png" class="img-responsive center-block"/>
                         </div>
                     </div>
-                    <div class="col-md-4 side-row">
+                    <div class="col-md-4 col-xs-4 side-row">
                         <div  id="phadiaprimeTile" class="primeTile sideTile col tile">
                             <img src="./assets/PhadiaPrime/carousel.png" class="img-responsive center-block"/>
                         </div>
