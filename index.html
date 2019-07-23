@@ -352,7 +352,11 @@
         }
 
         @media only screen and (orientation:portrait){
-            body { background-image: none; }
+            body { 
+                background-image: none; 
+                background: lightgray;
+                opacity: 0.8;
+            }
             #wrapper { display:none; }
             #warning-message { display:block; }
         }
@@ -360,14 +364,26 @@
         @media only screen and (orientation:landscape){
             #warning-message { display:none; }
         }
+
+        .rotate-img {
+            width: 50vw;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #warning-message {
+            width: 100vw;
+            height: 100vh;
+        }
         </style>
 </head>
 
 
 <body>
-    <div id="warning-message" style="display: none; z-index: 1000">
-        <h1>this website is only viewable in landscape mode</h1>
-        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+    <div id="warning-message">
+        <img src="./assets/rotate_screen.svg" class="rotate-img">
     </div>
     
     <div id="wrapper">
