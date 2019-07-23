@@ -236,7 +236,10 @@
             top: 50%;
         }
 
-
+        #phadiaLogo {
+            height: 25vh;
+            margin-top: 2%;
+        }
 
         .side-row {
             margin-top: 0.25%;
@@ -263,9 +266,9 @@
                 top: 50%;
             }
 
-            .side-row {
-                margin-top: 0.25%;
-            }
+            #phaidaLogo {
+                height: 24vh;
+            }            
         }
 
         /*Wide mobile devices*/
@@ -279,10 +282,9 @@
             div.hsNumberRed { font-size: 13px; }
             #playAllBut {right: 13%;}
             div.closeButtonCont { top:80px; }
-
-            .side-row {
-                margin-top: 0.25%;
-            }
+            #phaidaLogo {
+                height: 24vh;
+            }  
         }
         /*Tall mobile devices*/
         @media only screen and (max-height: 625px) {
@@ -304,13 +306,15 @@
             div.playHotspot { display: none; }
             div.message { height: 58px; }
             #playAllBut {right: 13%;}
-            div.closeButtonCont { top:45px; }
+
+            #phadiaLogo {
+                height: 24vh;
+            }  
         }
 
         /*Ipads*/
         @media only screen and (max-width: 1024px) {
             #playAllBut {bottom: 10%; right: 20%;}
-            div.closeButtonCont { top:45px; }
         }
 
         @media only screen and (max-width: 1440px) {
@@ -348,11 +352,6 @@
             display: flex;
             justify-content: center;
             flex-direction: column;
-        }
-
-        #phadiaLogo {
-            height: 25vh;
-            margin-top: 2%;
         }
 
         #mainMenuCont {
