@@ -53,7 +53,7 @@ function showMainMenu(){
     $('#mainMenuCont').show();
     $('#showMainMenuBtn').hide();
     $('.overlayFrame').show();
-    $('#mainMenuCont').animate({bottom: '0px'}, 'slow', function() {
+    $('#mainMenuCont').animate({}, 'slow', function() {
         $('#mainMenuCont').addClass('open');
     });
 }
