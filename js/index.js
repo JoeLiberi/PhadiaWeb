@@ -176,14 +176,6 @@ $(document).ready(function()
         }
     }
 
-    /*
-    Item tile and phadia prime tile functionality. When one is clicked we add a html5 video 
-    to the screen.
-    */
-    $('.itemTile, .primeItemTile').on('click', function(){
-        $('#overlay-frame').append("<Video id='tileVideo' controls autoplay onended='videoEnded()' onpause='videoPause()'><source src='"+ $(this).data('video-url') +"'></Video>")
-    });
-
     // Phadia prime close button
     $('#phadiaprimeTile').on('click', function(){
         $('#splash-content').hide();
