@@ -1,5 +1,5 @@
 
-function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, buttonCallbackFunc, playAllButId, ending, hotSpotRelSize, online)
+function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, buttonCallbackFunc, playAllButId, ending, hotSpotRelSize, online, hotspotSelect)
 {
     var sysName = sysSelect;
     var sysHeadline = "";
@@ -332,7 +332,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
                 hotspotDivs[i].style.opacity = "0";
                 hotspotDivs[i].style.filter = 'alpha(opacity=0)'; // IE fallback
                 hotspotDivs[i].style.transition = "width 0.4s, height 0.4s";
-                hotspotDivs[i].style.backgroundImage = "url('pics/nricon_"+Math.floor((i+1)/10)+((i+1)%10)+".png')";
+                hotspotDivs[i].style.backgroundImage = "url('assets/nricon_"+Math.floor((i+1)/10)+((i+1)%10)+".png')";
                 hotspotDivs[i].style.zIndex = "2";
 
                 videoContainer.appendChild(hotspotDivs[i]);
@@ -461,7 +461,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
            var ind = i;
            var imgInd = ((i * vidNrFramesDiv) + loadFrom) % vidNrSrc;
            loadedImgs[ind] = new Image();
-           imgPaths[ind] = imgPath+"/"+sysSelect+"/"+sysSelect+"_"+(Math.floor(imgInd/1000))+(Math.floor(imgInd/100))+(Math.floor(imgInd/10%10))+(imgInd %10)+"."+ending;
+           imgPaths[ind] = imgPath+"/"+sysSelect+"_"+(Math.floor(imgInd/1000))+(Math.floor(imgInd/1000))+(Math.floor(imgInd/100))+(Math.floor(imgInd/10%10))+(imgInd %10)+"."+ending;
 
             // preload the images in a img tag
             // we need to add them to the dom in a hidden img element to prevent flickering
@@ -504,15 +504,14 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         } else {
             var split_ind = srcName.split('/')
 
-            var filename = split_ind[split_ind.length - 3] + '/' + split_ind[split_ind.length - 2] + '/' + split_ind[split_ind.length - 1]
-
-            //console.log(filename)
+            var filename = "./assets/" + split_ind[split_ind.length - 3] + '/' + split_ind[split_ind.length - 2] + '/' + split_ind[split_ind.length - 1]
 
             var divInd = imgPaths.indexOf(filename);
             validImages.push(divInd);
         }
 
         imgDivs[divInd].style.backgroundImage = "url('"+srcName+"')";
+        
     }
 
     //------------------------------------------------------------------
@@ -833,7 +832,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         
         // create videoSource
         videoSourceElem = document.createElement('source')
-        videoSourceElem.setAttribute('src', videoPath+'/'+sysSelect+'/'+jsonObj.hotspots[butId].video+'.mp4');
+        videoSourceElem.setAttribute('src', videoPath +'/'+ jsonObj.hotspots[butId].video+'.mp4');
         hotSpotVideoElem.appendChild(videoSourceElem);        
         
         overlayFrameObj.appendChild(hotSpotVideoElem);        
@@ -982,6 +981,8 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         var relFrame = Math.floor(relPos * vidNrFrames);
         var nextValid = closest(relFrame, validImages);
         // if we need a new frame
+        // console.log(validImages)
+        // console.log(lastFrame != nextValid)
         if (lastFrame != nextValid)
         {
             imgDivs[nextValid].style.opacity = "1.0";

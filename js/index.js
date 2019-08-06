@@ -203,19 +203,20 @@ $(document).ready(function()
             $('#mainMenuCont').removeClass('open'); 
         });
 
-        // images = "./assets/" + $(this).data('device-folder-id') + "/images"
-        // videos = "./assets/" + $(this).data('device-folder-id') + "/videos"
-
-        // testing
-        images - "./assets/cascadion_testing/images"
-        videos - "./assets/cascadion_testing/videos"
+        images = "./assets/" + $(this).data('device-folder-id') + "/images"
+        videos = "./assets/" + $(this).data('device-folder-id') + "/hotspots"
+        sysSelect = $(this).data('device-file-select')
+        hotspotSelect = $(this).data('device-hotspot-select')
+        data = $(this).data('device-data-id')
         online = false
 
-        var systemData = JSON.parse($('#systemData').html());
+        console.log(data)
+
+        var systemData = JSON.parse($(data).html()); 
         var hsMan = new Hotspot_Manager(
             systemData,
             //"./SystemsData.json", // url to json database with hotspot info
-            "cascadion",                                                    // the actual system corresponding to the actual video
+            sysSelect,                                                    // the actual system corresponding to the actual video
             "mySlider",                                                     // the id of the video tag
             //"http://silicon-int.com/thermo/web/cascadion/pics",         
             images,
@@ -229,6 +230,7 @@ $(document).ready(function()
             // hotspotSize.size
             hotspotSize,
             online,
+            hotspotSelect,
         );
     });
 
