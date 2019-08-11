@@ -24,57 +24,6 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
 
     //------------------------------------------------------------------
     //splash screen settings
-    function setup() {
-        this.addEventListener("mousemove", resetTimer, false);
-        this.addEventListener("mousedown", resetTimer, false);
-        this.addEventListener("keypress", resetTimer, false);
-        this.addEventListener("DOMMouseScroll", resetTimer, false);
-        this.addEventListener("mousewheel", resetTimer, false);
-        this.addEventListener("touchmove", resetTimer, false);
-        this.addEventListener("MSPointerMove", resetTimer, false);
-     
-        startShortTimer();
-        startLongTimer();
-    }
-
-    function startShortTimer() {
-        // wait 2 seconds before calling goInactive
-        timeoutIDshort = window.setTimeout(goInactiveShort, 30000);
-    }
-
-    function startLongTimer() {
-        // wait 2 seconds before calling goInactive
-        timeoutIDlong = window.setTimeout(goInactiveLong, 120000);
-    }
-    
-    function clearTimers(){
-        window.clearTimeout(timeoutIDshort);
-        window.clearTimeout(timeoutIDlong);
-    }
-    function resetTimer(e) {
-        clearTimers();
-        goActive();
-    }
-     
-    function goInactiveShort() {
-        $('.splash-screen').trigger( "click" );
-        $('.closeButtonCont').remove();
-        $('video').remove();
-    }
-
-    function goInactiveLong() {
-        $("#overlay-details").animate({
-            right: "-70%"
-        });
-        $('#mainMenuCloseBtn').trigger( "click" );
-    }
-     
-    function goActive() {
-        startShortTimer();
-        startLongTimer();
-    }
-
-    setup();
 
     //------------------------------------------------------------------
     // design variables
@@ -262,7 +211,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     // always load at indices distributed over the whole sequence
     // we sequentially fill up all the "gaps"
     var loadInd = 0;
-    var nrParallelLoads = 10;
+    var nrParallelLoads = 360;
 
     var loadFrom = 0;
     var loadTo = 0;
@@ -509,6 +458,8 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
             var divInd = imgPaths.indexOf(filename);
             validImages.push(divInd);
         }
+
+        console.log(srcName);
 
         imgDivs[divInd].style.backgroundImage = "url('"+srcName+"')";
         
@@ -1004,11 +955,12 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     //------------------------------------------------------------------
     
     // Dragging
+    var startX = 450;
     var isDragging = false;
     var isPressed = false;
     var dragStartX = 0;
-    var lastX = 0;
-    var relX = 0;
+    var lastX = startX;
+    var relX = startX;
     
     
     $("#"+videoContainer.id)
@@ -1026,7 +978,8 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     })
     .mousemove(function(event) {
         if (isDragging) {
-            relX = Math.max( lastX + (dragStartX - event.pageX), 0.0 );
+            // relX = Math.max( lastX + (dragStartX - event.pageX), 0.0 );
+            relX = lastX + (dragStartX - event.pageX)
             setPos(relX);
         }
     })
@@ -1034,7 +987,8 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         //e.preventDefault();
         if (isDragging) {
             var actPos = e.originalEvent.touches[0].pageX;
-            relX = Math.max( lastX + (dragStartX - actPos), 0.0 );
+            // relX = Math.max( lastX + (dragStartX - actPos), 0.0 );
+            relX = lastX + (dragStartX - actPos)
             setPos(relX);
         }
     })
@@ -1060,7 +1014,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     
 
     $('.splash-screen').on('click',function(){
-        setPos(1, true)
+        setPos(lastX, true)
         //TODO - look at starting the device at the middle posisiton using setPOs, and setting a cutomer headline and message right darn here
     })
        
