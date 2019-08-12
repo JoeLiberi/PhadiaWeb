@@ -221,6 +221,14 @@ $(document).ready(function()
             $("<div class='col title noselect' id='title'><h1>" + title + "</h1></div>").appendTo("#deviceTitle");
             $("<div class='col title-disclaimer' id='disclaimer'><h3>" + disclaimer + "</h3></div>").appendTo("#deviceTitle");
         });
+
+        $('.mainMenuBtn').on('click', function(){
+            $("#title").remove();
+            $("#disclaimer").remove();
+            $("#videoContainer").remove();
+            $("#mySlider").remove();
+            $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
+        });
     });
 
     /*
