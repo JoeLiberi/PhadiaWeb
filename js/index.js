@@ -53,7 +53,7 @@ function showMainMenu(){
     $('#mainMenuCont').show();
     $('#showMainMenuBtn').hide();
     $('.overlayFrame').show();
-    $('#mainMenuCont').animate({bottom: '100px'}, 'slow', function() {
+    $('#mainMenuCont').animate({bottom: '0px'}, 'slow', function() {
         $('#mainMenuCont').addClass('open');
     });
 }
@@ -134,27 +134,6 @@ $(document).ready(function()
         hotspotSize = 0.018
     }
 
-    // var systemData = JSON.parse($('#systemData').html());
-    // var hsMan = new Hotspot_Manager(
-    //     systemData,
-    //     //"./SystemsData.json", // url to json database with hotspot info
-    //     "cascadion",                                                    // the actual system corresponding to the actual video
-    //     "mySlider",                                                     // the id of the video tag
-    //     //"http://silicon-int.com/thermo/web/cascadion/pics",         
-    //     images,
-    //     // "./pics",      
-    //     //"http://silicon-int.com/thermo/web/cascadion/videos",  
-    //     videos,                             // the url with the  hotspot videos
-    //     hotSpotClicked,                                                 // the callback function which is called, if a hotspot has been clicked
-    //    "playAllBut",                                                    // id of the play-all button
-    //     "png",
-    //     //Size of the hotspots
-    //     // hotspotSize.size
-    //     hotspotSize,
-    //     online,
-    // );  
-
-
     // callback function example to draw the contents
     function hotSpotClicked(headline, valuemessage, infoTexts, id, sysName, hideId)
     {               
@@ -190,7 +169,6 @@ $(document).ready(function()
         $('#splash-content').hide();
         $('#phadiaPrime-content').fadeIn(200);
     });
-
 
     /*
     When a device tile is clicked we are going to grab folder id of the videos and images
