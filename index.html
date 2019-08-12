@@ -132,7 +132,7 @@
 
         div.itemTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); }
         div.deviceTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); height: 32vh; width: 22vw;}
-        div.deviceTile:active {transform: translateY(2px); border-color: white; border-width: 1px;}
+        div.deviceTile:active {transform: translateY(2px); border-color: white; border-width: 3px; border-style: solid;}
         div.primeItemTile { margin: 1%; width: 23%}
         div.primeTile {  background: rgb(0,0,0, 0.5); margin: 2%; box-shadow: 0 1px 2px rgb(0, 0, 0); }
         #tileVideo {
@@ -178,6 +178,18 @@
             -webkit-animation-duration: 3s;
             -moz-animation-name: ping;
             -webkit-animation-name: ping;
+        }
+
+        .btn-sonar:active {
+          border-radius: 50%;
+          border: solid 1px white;
+          width: 50%;
+          height: 50%;
+          color: #fff;
+          top: 25%;
+          left: 25%;
+          outline: none;
+          animation: sonar-effect 1.5s ease-in-out .1s infinite;
         }
 
         .hotspot-sonar {
@@ -421,6 +433,25 @@
             width: 100vw;
             height: 100vh;
         }
+
+        .tile:active{
+            border-style: solid;
+            border-width: 3px;
+            border-color: white;
+        }
+
+        .primeImgTile:active{
+            margin: -1%;
+            border-style: solid;
+            border-width: 3px;
+            border-color: white;
+        }
+
+        .edgeTile:active{
+            border-style: solid;
+            border-width: 3px;
+            border-color: white;
+        }
         </style>
 </head>
 
@@ -496,44 +527,44 @@
                     </div>
                 </div>
                 <div class="row tileContainer">
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Consumables.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-1.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-1.png" class="img-responsive center-block primeImgTile" data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Consumables.mp4" data-video-type="video/mp4"/>
                     </div>
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Managing_Request.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-2.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-2.png" class="img-responsive center-block primeImgTile"  data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Managing_Request.mp4" data-video-type="video/mp4"/>
                     </div>
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Connectivity.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-3.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-3.png" class="img-responsive center-block primeImgTile"  data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Connectivity.mp4" data-video-type="video/mp4"/>
                     </div>
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_DataBases.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-4.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-4.png" class="img-responsive center-block edgeTile"  data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_DataBases.mp4" data-video-type="video/mp4"/>
                     </div>
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_EventLog.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-5.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-5.png" class="img-responsive center-block primeImgTile" data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_EventLog.mp4" data-video-type="video/mp4"/>
                     </div>
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Help_And_Search.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-6.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-6.png" class="img-responsive center-block primeImgTile" data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Help_And_Search.mp4" data-video-type="video/mp4"/>
                     </div>
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Lab_Community.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-7.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-7.png" class="img-responsive center-block primeImgTile"  data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Lab_Community.mp4" data-video-type="video/mp4"/>
                     </div>
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Outsourced_Tests.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-8.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-8.png" class="img-responsive center-block edgeTile"  data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Outsourced_Tests.mp4" data-video-type="video/mp4"/>
                     </div>
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Settings.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-9.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-9.png" class="img-responsive center-block primeImgTile" data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Settings.mp4" data-video-type="video/mp4"/>
                     </div>
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Results.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-10.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-10.png" class="img-responsive center-block primeImgTile"  data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Results.mp4" data-video-type="video/mp4"/>
                     </div>
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Rack.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-11.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-11.png" class="img-responsive center-block primeImgTile" data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Rack.mp4" data-video-type="video/mp4"/>
                     </div>
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Quality.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-12.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-12.png" class="img-responsive center-block edgeTile"  data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_Quality.mp4" data-video-type="video/mp4"/>
                     </div>
-                    <div class='primeItemTile col-xs-3' data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_StockManager.mp4" data-video-type="video/mp4">
-                        <img src="./assets/PhadiaPrime/pp_button-13.png" class="img-responsive center-block"/>
+                    <div class='primeItemTile col-xs-3'>
+                        <img src="./assets/PhadiaPrime/pp_button-13.png" class="img-responsive center-block primeImgTile"  data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_StockManager.mp4" data-video-type="video/mp4"/>
                     </div>
                 </div>
             </div>
@@ -551,7 +582,7 @@
                 </div>
                 <div id="mainMenuCont" class="row mainMenuCont h-100 menu" style="position: absolute; bottom:-1000px; left: 12.5vw;">
                     <div class="closeButtonCont" id="mainMenuCloseBtn" style="display: none;">
-                        <button class="closeButton" onClick="mainMenuClose()"></button>
+                        <button class="closeButton btn-sonar" onClick="mainMenuClose()"></button>
                     </div>
                     <div class="col-md-8 col-xs-8" style="padding-right: 0px; margin-right: -2%;">
                         <div class='deviceTile col-xs-5 tile' data-device-id="1" data-device-data-id="#phadia200-data" data-device-file-select="Phadia200_360_Rotation" data-device-hotspot-select="Phadia200_HotSpot" data-device-folder-id="1">
