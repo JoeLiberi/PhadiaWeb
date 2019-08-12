@@ -1010,7 +1010,6 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         isDragging = false;
         lastX = relX;        
     });
-
     
 
     $('.splash-screen').on('click',function(){

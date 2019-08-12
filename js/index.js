@@ -183,12 +183,14 @@ $(document).ready(function()
 
         images = "./assets/" + $(this).data('device-folder-id') + "/images"
         videos = "./assets/" + $(this).data('device-folder-id') + "/hotspots"
+        title = $(this).data('device-title')
+        disclaimer = $(this).data('disclaimer')
         sysSelect = $(this).data('device-file-select')
         hotspotSelect = $(this).data('device-hotspot-select')
         data = $(this).data('device-data-id')
         online = false
 
-        console.log(data)
+        // console.log(data)
 
         var systemData = JSON.parse($(data).html()); 
         var hsMan = new Hotspot_Manager(
@@ -210,6 +212,15 @@ $(document).ready(function()
             online,
             hotspotSelect,
         );
+
+
+        $('#videoContainer').on('touchstart touchmove mousedown', function(){
+            // set the title and the disclaimer
+            $("#title").remove();
+            $("#disclaimer").remove();
+            $("<div class='col title noselect' id='title'><h1>" + title + "</h1></div>").appendTo("#deviceTitle");
+            $("<div class='col title-disclaimer' id='disclaimer'><h3>" + disclaimer + "</h3></div>").appendTo("#deviceTitle");
+        });
     });
 
     /*

@@ -38,7 +38,7 @@
         div.leftBorder { border-left: solid 1px gray; }
         
         div.animDivs {  }
-        div.videContCell { text-align:center; height: 65vh; width: 100%; top: 15vh; position: relative;} /*height was 100% */
+        div.videContCell { text-align:center; height: 65vh; width: 100%; top: 10vh; position: relative;} /*height was 100% */
         div.videContBlock { display:inline-block; height: 100%; width: 100%}
         div.videoContainer { position: relative; }
         div.videoCont {  position:relative; text-align:center; width:100% }
@@ -47,7 +47,7 @@
         div.infoBlock { height: 100%; padding-top: 30px; }
 
         div.sysName { font-family: Arial; font-face:bold; font-size:22px; color: gray; width: 50%; margin-left: auto; margin-right: auto; }
-        div.headline, div.spec-headline { font-family: Arial; font-size:26px;
+        div.headline, div.spec-headline { font-family: Arial; font-size:2vh;
            display: inline-block; padding-left: 40px; padding-right: 40px; }
         div.spec-headline { margin-bottom:10px; }
 
@@ -61,9 +61,9 @@
         div.nsNumberRed {
             color: rbg(220, 50, 0);
         }
-        div.hsNumber, div.spec-hsNumber, div.hsNumberRed { font-family: Arial; font-size:16px; display: inline-block; white-space: nowrap; position: relative; text-align: center; width: 100%;}
+        div.hsNumber, div.spec-hsNumber, div.hsNumberRed { font-family: Arial; font-size:23px; display: inline-block; white-space: nowrap; position: relative; text-align: center; width: 100%;}
         div.hsNumberRed {
-            color: rgb(220,50,0)
+            color: white
         }
         div.spec-hsNumber {
             color: #333;
@@ -74,7 +74,7 @@
         div.hsNumberCont, div.hsNumberContRed { display: inline-block; border: solid 1px #333;-webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; margin-right: -23px;  white-space: nowrap; vertical-align: text-bottom; }
 
         div.hsNumberContRed {
-            width: 23px; height: 23px;
+            width: 35px; height: 35px;
         }
 
         div.hsNumberCont {
@@ -82,7 +82,7 @@
         }
 
         div.hsNumberContRed {
-            border: solid 1px rgb(220, 50, 0);
+            border: solid 1px rgb(255, 255, 255);
         }
         
         div.message { font-family: Arial; font-size:20px; margin-bottom:10px; width: 80%; margin-left: auto; margin-right: auto; color:#fff;}
@@ -294,7 +294,7 @@
         @media only screen and (max-width: 520px) {
             div.sysName { font-size: 16px; }
             div.message { font-size: 16px; }
-            div.headline { font-size: 12px; }
+            div.headline { font-size: 2vh; }
             div.infoBlock { min-height: 100px; }
             div.playHotspot { display: none; }
             div.hsNumberContRed { width: 21px; height: 22px; }
@@ -309,7 +309,7 @@
         @media only screen and (max-height: 625px) {
             div.sysName { font-size: 16px; }
             div.message { font-size: 16px; }
-            div.headline { font-size: 14px; }
+            div.headline { font-size: 2vh; }
             div.infoBlock { height: 50px; }
             div.playHotspot { display: none; }
             /*div.videContCell { display:block; text-align:center; }*/
@@ -452,6 +452,18 @@
             border-width: 3px;
             border-color: white;
         }
+
+        .playHotspotContainer{
+
+        }
+
+        #title{
+            color: white;
+        }
+
+        #disclaimer{
+            color: white
+        }
         </style>
 </head>
 
@@ -466,14 +478,17 @@
         <div id="layoutCont" class="container-fluid d-flex flex-column layoutCont" style="padding-left: 0px; padding-right: 0px;">
             <div class="d-flex" style="width: 100%; height: 100%;">
                 <div class="d-flex col-xs-6 vidContRow">
-                    <div class="col videContCell">
+                    <div class="row" id="deviceTitle" style="text-align: center; margin-top: 5%; margin-bottom: -10%; height: 15%">
+                        <div class="col title noselect" id="title"></div>
+                        <div class="col title-disclaimer" id="disclaimer"></div>
+                    </div>
+                    <div class="row videContCell">
                         <div class="videContBlock">
                             <!-- width and size MUST be relative values (%) -->
                             <img id="mySlider" width="100%" height="100%" class="mx-auto d-block" />
                         </div>
                     </div>
                     <div class="row" id="playAllBut">
-                        
                         <div class="col" style="text-align: center;">
                             <span id="playAllText" class="playAllText">Play All</span>
                         </div>
@@ -483,14 +498,28 @@
                     </div>
                 </div>
                 <div class="d-flex col-xs-6 infoBlock" style="text-align: center;">
-                    <div class="col">
-                        <div class="hsNumberContRed noselect" id="hsNumberCont" style="display: none;">
-                             <div class="hsNumberRed noselect" id="hsNumber" ></div>
+                    <div class="col" style="height: 25vh; margin-top: 15%;">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="hsNumberContRed noselect" id="hsNumberCont" style="display: none;">
+                                     <div class="hsNumberRed noselect" id="hsNumber" ></div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="col headline noselect" id="headline">Phadia 200 System</div>
+                                <div class="col disclaimer">Not Available in the US</div>
+                            </div>
                         </div>
-                        <div class="col headline noselect" id="headline">Phadia 200 System</div>
-                        <div class="col disclaimer">Not Available in the US</div>
+                        <div class="row">
+                            <div class="messagenoselect" id="message" style="color: white;font-size: 3vh;">
+                                Breaking the barrier between LC-MS/MS and the clinical lab
+                            </div>
+                        </div>
                     </div>
-                    <div class="message col noselect" id="message">Breaking the barrier between LC-MS/MS and the clinical lab
+                    <div class="row align-items-end">
+                        <div class="col-md-auto">
+                            <img src="./assets/buttons/play_hotspot.png" class="img-responsive center-block" style="width: 30%;margin-top: 15%;">
+                        </div>
                     </div>
                     <div style="position: absolute; bottom: 30px; width: 100%;">
                         <a style="color:#fff;">Additional Resources</a>
@@ -585,15 +614,15 @@
                         <button class="closeButton btn-sonar" onClick="mainMenuClose()"></button>
                     </div>
                     <div class="col-md-8 col-xs-8" style="padding-right: 0px; margin-right: -2%;">
-                        <div class='deviceTile col-xs-5 tile' data-device-id="1" data-device-data-id="#phadia200-data" data-device-file-select="Phadia200_360_Rotation" data-device-hotspot-select="Phadia200_HotSpot" data-device-folder-id="1">
+                        <div class='deviceTile col-xs-5 tile' data-device-id="1" data-device-data-id="#phadia200-data" data-device-file-select="Phadia200_360_Rotation" data-device-hotspot-select="Phadia200_HotSpot" data-device-folder-id="1" data-device-title="Phadia 200 System" data-disclaimer="Not Availible in the US">
                             <span>
                                 <img src="./assets/1/carousel.png" class="img-responsive center-block"/>
                             </span>
                         </div>
-                        <div class='deviceTile col-xs-5 tile' data-device-id="2" data-device-data-id="#phadia250-data" data-device-file-select="Phadia250_360_Rotation" data-device-hotspot-select="Phadia250_HotSpot" data-device-folder-id="2">
+                        <div class='deviceTile col-xs-5 tile' data-device-id="2" data-device-data-id="#phadia250-data" data-device-file-select="Phadia250_360_Rotation" data-device-hotspot-select="Phadia250_HotSpot" data-device-folder-id="2" data-device-title="Phadia 250 System" data-disclaimer="">
                             <img src="./assets/2/carousel.png" class="img-responsive center-block"/>
                         </div>
-                        <div class='deviceTile col-xs-5 tile' data-device-id="3" data-device-data-id="#phadia1000-data" data-device-file-select="Phadia1000_360_Rotation" data-device-hotspot-select="Phadia1000_HotSpot" data-device-folder-id="3">
+                        <div class='deviceTile col-xs-5 tile' data-device-id="3" data-device-data-id="#phadia1000-data" data-device-file-select="Phadia1000_360_Rotation" data-device-hotspot-select="Phadia1000_HotSpot" data-device-folder-id="3" data-device-title="Phadia 1000 System" data-disclaimer="">
                             <img src="./assets/3/carousel.png" class="img-responsive center-block"/>
                         </div>
                         <div class='deviceTile col-xs-5 tile' data-device-id="4" data-device-data-id="#phadia2500-data" data-device-folder-id="4">
