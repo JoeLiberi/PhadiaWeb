@@ -211,7 +211,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     // always load at indices distributed over the whole sequence
     // we sequentially fill up all the "gaps"
     var loadInd = 0;
-    var nrParallelLoads = 360;
+    var nrParallelLoads = 25;
 
     var loadFrom = 0;
     var loadTo = 0;
@@ -459,7 +459,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
             validImages.push(divInd);
         }
 
-        console.log(srcName);
+        // console.log(srcName);
 
         imgDivs[divInd].style.backgroundImage = "url('"+srcName+"')";
         
@@ -480,14 +480,14 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
             
             if (i == nrParallelLoads-1) {
                 loadedImgs[loadInd].onload = function(){
+                    console.log("Image loaded");
                     appendNewDiv(this.src);
                     loadImgSequence(loadIncr);
                 }         
             } else {
-                
                 loadedImgs[loadInd].onload = function(){
                     appendNewDiv(this.src);
-                }               
+                }
             }
             
             imgPreload[loadInd].src = imgPaths[loadInd];
@@ -922,8 +922,9 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     function setPos(relPos, hideId)
     {
         systemWasRotated = true;
-        //alert('relpos' + relPos)
+        console.log('relpos' + relPos)
         relPos = 1.0 -  Math.max(Math.min(relPos / vidContSize[0], 1.0), 0.0);
+        // relPos = 1.0 -  Math.min(relPos / vidContSize[0], 1.0);
         lastRelPos = 1.0 - relPos;
 
         calcHotSpotPos3D(lastRelPos, hideId);
@@ -978,8 +979,8 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     })
     .mousemove(function(event) {
         if (isDragging) {
-            // relX = Math.max( lastX + (dragStartX - event.pageX), 0.0 );
-            relX = lastX + (dragStartX - event.pageX)
+            relX = Math.max( lastX + (dragStartX - event.pageX), 0.0 );
+            // relX = lastX + (dragStartX - event.pageX)
             setPos(relX);
         }
     })
@@ -987,8 +988,8 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         //e.preventDefault();
         if (isDragging) {
             var actPos = e.originalEvent.touches[0].pageX;
-            // relX = Math.max( lastX + (dragStartX - actPos), 0.0 );
-            relX = lastX + (dragStartX - actPos)
+            relX = Math.max( lastX + (dragStartX - actPos), 0.0 );
+            // relX = lastX + (dragStartX - actPos)
             setPos(relX);
         }
     })

@@ -190,6 +190,11 @@ $(document).ready(function()
         data = $(this).data('device-data-id')
         online = false
 
+        $("#headline").remove();
+        $("#headline-disclaimer").remove();
+        $("<div class='col headline noselect' id='headline'>" + title + "</div>").appendTo("#headline-text");
+        $("<div class='col disclaimer' id='headline-disclaimer'>" + disclaimer + "</div>").appendTo("#headline-text");
+
         // console.log(data)
 
         var systemData = JSON.parse($(data).html()); 
