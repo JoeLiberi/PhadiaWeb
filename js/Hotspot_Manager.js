@@ -263,7 +263,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
             // build camera parameters
             var camPos = glm.vec3(
                 parseFloat(jsonFilePath.camPos[0]), 
-                parseFloat(jsonFilePath.camPos[2]), // HACK!!!!!
+                parseFloat(jsonFilePath.camPos[2]) * 0.5, // HACK!!!!!
                 parseFloat(jsonFilePath.camPos[1]) * -1.0);
             
             calcCamMatrix(camPos);
@@ -346,7 +346,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         var fovY = fovX / aspect;
 
         camPerspMat = glm.perspective(fovY, aspect, 0.1, 1000.0);
-        camViewMat = glm.lookAt(camPos, glm.vec3(0, 0, 0), glm.vec3(0, 1.0, 0));        
+        camViewMat = glm.lookAt(camPos, glm.vec3(0, 0, 0), glm.vec3(0, 1.0, 0));     
     }
 
     //------------------------------------------------------------------
@@ -922,7 +922,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     function setPos(relPos, hideId)
     {
         systemWasRotated = true;
-        console.log('relpos' + relPos)
+        // console.log('relpos' + relPos)
         relPos = 1.0 -  Math.max(Math.min(relPos / vidContSize[0], 1.0), 0.0);
         // relPos = 1.0 -  Math.min(relPos / vidContSize[0], 1.0);
         lastRelPos = 1.0 - relPos;
