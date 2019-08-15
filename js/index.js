@@ -131,7 +131,7 @@ $(document).ready(function()
     } else if (iOSSafari){
         hotspotSize = 0.038
     } else {
-        hotspotSize = 0.018
+        hotspotSize = 0.04
     }
 
     // callback function example to draw the contents
@@ -183,6 +183,7 @@ $(document).ready(function()
 
         images = "./assets/" + $(this).data('device-folder-id') + "/images"
         videos = "./assets/" + $(this).data('device-folder-id') + "/hotspots"
+        startX = $(this).data('start-x')
         title = $(this).data('device-title')
         disclaimer = $(this).data('disclaimer')
         sysSelect = $(this).data('device-file-select')
@@ -216,6 +217,7 @@ $(document).ready(function()
             hotspotSize,
             online,
             hotspotSelect,
+            startX
         );
 
 

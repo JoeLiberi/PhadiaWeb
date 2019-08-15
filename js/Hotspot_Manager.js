@@ -1,5 +1,5 @@
 
-function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, buttonCallbackFunc, playAllButId, ending, hotSpotRelSize, online, hotspotSelect)
+function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, buttonCallbackFunc, playAllButId, ending, hotSpotRelSize, online, hotspotSelect, deviceStartX)
 {
     var sysName = sysSelect;
     var sysHeadline = "";
@@ -353,8 +353,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
 
     function loadFrames()
     {
-       vidNrFrames = vidNrFrames / vidNrFramesDiv;
-
+       vidNrFrames = (vidNrFrames / vidNrFramesDiv);
        loadedImgs = Array(vidNrFrames);
        loadingOrder = Array(vidNrFrames);
        imgPaths = Array(vidNrFrames);
@@ -382,33 +381,49 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
             return array;
         }
         
-        // fill with sequential order
-        for (var i=0;i<vidNrFrames;i++){
-           loadingOrder[i] = i;
+        // We need to fill this array with indicies from the starting frame plus half and minus half of the total
+        // frames we want to load. If the number is ever zero then we need to wrap the array around
+        // var halfVidNrFrames = Math.floor(vidNrFrames/2);
+        var startInd = jsonObj.zeropos_ind;
+
+        // for (var i=startInd;i<halfVidNrFrames;i++){
+        //    loadingOrder[i] = i;
+        // }
+
+        for (var i=1;i<vidNrFrames;i++){
+            idx = startInd - i
+            if (idx < 0){
+                loadingOrder[i] = idx + 361
+            } else {
+                loadingOrder[i] = idx
+            }
         }
 
-        // cut in three slices
-        for (var i=0;i<3;i++){
-            loadingOrderSlices[i] = loadingOrder.slice(i * Math.round(vidNrFrames / 3), (i+1) * Math.round(vidNrFrames / 3));
-            // shuffle the array
-            loadingOrderSlices[i] = shuffle(loadingOrderSlices[i]);
-        }
+       //  // cut in three slices
+       //  for (var i=0;i<3;i++){
+       //      loadingOrderSlices[i] = loadingOrder.slice(i * Math.round(vidNrFrames / 3), (i+1) * Math.round(vidNrFrames / 3));
+       //      // shuffle the array
+       //      loadingOrderSlices[i] = shuffle(loadingOrderSlices[i]);
+       //  }
 
-        // intersect the three arrays with offsets of 0,1,2
-        var posInd = 0;
-        for (var i=0;i<vidNrFrames;i++){
-           var arrayInd = i%3;
-           loadingOrder[i] = loadingOrderSlices[arrayInd][posInd];
-           if (arrayInd == 2) {
-               posInd++;
-           }
-       }
+       //  // intersect the three arrays with offsets of 0,1,2
+       //  var posInd = 0;
+       //  for (var i=0;i<vidNrFrames;i++){
+       //     var arrayInd = i%3;
+       //     loadingOrder[i] = loadingOrderSlices[arrayInd][posInd];
+       //     if (arrayInd == 2) {
+       //         posInd++;
+       //     }
+       // }
 
        var location_size = resizeIndividualBackground()
 
        for (var i=0;i<vidNrFrames;i++){
+           // console.log(vidNrFrames)
+           // console.log(loadFrom)
            var ind = i;
            var imgInd = ((i * vidNrFramesDiv) + loadFrom) % vidNrSrc;
+           // console.log(imgInd)
            loadedImgs[ind] = new Image();
            imgPaths[ind] = imgPath+"/"+sysSelect+"_"+(Math.floor(imgInd/1000))+(Math.floor(imgInd/1000))+(Math.floor(imgInd/100))+(Math.floor(imgInd/10%10))+(imgInd %10)+"."+ending;
 
@@ -425,7 +440,6 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
             imgDivs[ind].id = "tf_"+ind;
             imgDivs[ind].className = "animDivs";
 
-
             imgDivs[ind].style.width = "100%";
             imgDivs[ind].style.height = "100%";
             imgDivs[ind].style.position = "absolute";
@@ -437,6 +451,8 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
 
             videoContainer.appendChild(imgDivs[ind]);
         }
+
+        console.log(loadingOrder)
 
         // resizeDivBackgrounds();
 
@@ -469,9 +485,11 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     
     function loadImgSequence(loadIncr)
     {
+        
         for (var i=0;i<nrParallelLoads;i++) {
             loadInd = loadingOrder[loadIncr];
             loadIncr++;
+            // console.log(loadIncr);
 
             if (loadIncr >= vidNrFrames){ // stop loading if we got everything
                 allImagesLoaded = true;
@@ -479,19 +497,23 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
             }
             
             if (i == nrParallelLoads-1) {
-                loadedImgs[loadInd].onload = function(){
-                    console.log("Image loaded");
+                loadedImgs[loadIncr].onload = function(){
                     appendNewDiv(this.src);
                     loadImgSequence(loadIncr);
                 }         
             } else {
-                loadedImgs[loadInd].onload = function(){
-                    appendNewDiv(this.src);
+                try {
+                    loadedImgs[loadIncr].onload = function(){
+                        appendNewDiv(this.src);
+                    }
+                } catch(error){
+                    console.log(error);
+                    console.log(loadInd)
                 }
             }
             
-            imgPreload[loadInd].src = imgPaths[loadInd];
-            loadedImgs[loadInd].src = imgPaths[loadInd];
+            imgPreload[loadIncr].src = imgPaths[loadIncr];
+            loadedImgs[loadIncr].src = imgPaths[loadIncr];
         }
     }
     function resizeIndividualBackground()
@@ -922,10 +944,11 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     function setPos(relPos, hideId)
     {
         systemWasRotated = true;
-        // console.log('relpos' + relPos)
+        console.log('relpos' + relPos)
         relPos = 1.0 -  Math.max(Math.min(relPos / vidContSize[0], 1.0), 0.0);
         // relPos = 1.0 -  Math.min(relPos / vidContSize[0], 1.0);
         lastRelPos = 1.0 - relPos;
+        // console.log('lastRelPos' + lastRelPos)
 
         calcHotSpotPos3D(lastRelPos, hideId);
 
@@ -956,7 +979,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     //------------------------------------------------------------------
     
     // Dragging
-    var startX = 450;
+    var startX = deviceStartX;
     var isDragging = false;
     var isPressed = false;
     var dragStartX = 0;
