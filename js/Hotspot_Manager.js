@@ -944,11 +944,11 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     function setPos(relPos, hideId)
     {
         systemWasRotated = true;
-        console.log('relpos' + relPos)
-        relPos = 1.0 -  Math.max(Math.min(relPos / vidContSize[0], 1.0), 0.0);
+        // console.log('relpos' + relPos)
+        relPos = 1.0 -  Math.max(Math.min(relPos / vidContSize[0], 0.92), 0.0);
         // relPos = 1.0 -  Math.min(relPos / vidContSize[0], 1.0);
         lastRelPos = 1.0 - relPos;
-        // console.log('lastRelPos' + lastRelPos)
+        console.log('lastRelPos' + lastRelPos)
 
         calcHotSpotPos3D(lastRelPos, hideId);
 
