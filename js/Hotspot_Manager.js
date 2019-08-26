@@ -885,7 +885,13 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     
     function playNextVideo(){
         actPlayingVideoId += 1;
-        videoSourceElem.setAttribute('src', videoPath+'/'+sysSelect+'/'+jsonObj.hotspots[actPlayingVideoId].video+'.mp4');        
+        console.log(actPlayingVideoId)
+
+        try {
+            videoSourceElem.setAttribute('src', videoPath +'/'+ jsonObj.hotspots[actPlayingVideoId].video+'.mp4'); 
+        } catch(err){
+            $('.closeButton').trigger('click');
+        }
 
         // overwrite end function
     //  $('video').on('ended', playNextVideo);
