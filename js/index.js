@@ -259,4 +259,21 @@ $(document).ready(function()
         
         })
     })
+
+    $('.closeButton').on('click', function(event){
+        $('html, body').css({
+            'background-image': 'url("./assets/BLUE_POLLEN.png")',
+        });
+        $('.splash-screen').attr("src", "./assets/BLUE_POLLEN.png");
+        var device = $(this).data('device')
+        $('#splash-content').show()
+        $('.splash-screen').trigger("click")
+        // $(".deviceTile").find("[data-device-data-id='"+ device +"']").trigger("click")
+        $("div[data-device-data-id='" + device +"']").trigger("click")
+    });
+
+    // Use the active data attribute to figure out what hotspot is active then trigger a click
+    $('#playHotspot').on('click', function(event){
+        $("div[active='1']").trigger("click")
+    });
 });

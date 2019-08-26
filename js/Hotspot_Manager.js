@@ -642,7 +642,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
                 hotspotDivs[i].style.top = hotSpotPosPix[1]+"px";
                 hotspotDivs[i].style.zIndex = 2;
                 hotspotDivs[i].onclick = hsClicked;
-
+                hotspotDivs[i].setAttribute('active', 0)
 
                 // calculate size
                 var hsNormPos = i / (nrHotspots-1);
@@ -680,6 +680,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
             //Set the size of the selected div to be larger than the rest
             hotspotDivs[biggestHsInd].style.width = (hotSpotSize * relSize * 1.8)+"px";
             hotspotDivs[biggestHsInd].style.height = (hotSpotSize * relSize * 1.8)+"px";
+            hotspotDivs[biggestHsInd].setAttribute('active', 1)
             // hotspotDivs[biggestHsInd].className += "hotspot-sonar";
             
             //console.log('size' + hotSpotSize * relSize)
@@ -1057,17 +1058,5 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         hsClicked(event)
             //Used to control clicking the "play hotspot" button near the top of the screen.
 
-    });     
-
-    $('.closeButton').on('click', function(event){
-        $('html, body').css({
-            'background-image': 'url("./assets/BLUE_POLLEN.png")',
-        });
-        $('.splash-screen').attr("src", "./assets/BLUE_POLLEN.png");
-        var device = $(this).data('device')
-        $('#splash-content').show()
-        $('.splash-screen').trigger("click")
-        // $(".deviceTile").find("[data-device-data-id='"+ device +"']").trigger("click")
-        $("div[data-device-data-id='" + device +"']").trigger("click")
     });
 }
