@@ -786,7 +786,6 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         $('.splash-screen').removeAttr('src')
         $('html, body').css({
             'background-image': 'none',
-            'background':" white"
         });
 
         // create ovelayFrame
@@ -832,21 +831,6 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
             // when the close button is clicked it needs to commit suicide otherwise we will have a Mr. Meeseeks situation on our hands
             $('.closeButtonCont').remove();
 
-             /*
-             $(overlayFrame).animate({
-                opacity: 0
-            }, {
-                duration: 1000,
-                complete: function() {                
-                    videoSourceElem.remove();
-                    hotSpotVideoElem.remove();
-                    closeButton.remove();
-                    overlayFrame.remove();
-                    //TODO hide both of these instead of removing.
-                }
-            });
-            */
-
             $(overlayFrame).hide()
                           
             videoSourceElem.remove();
@@ -855,7 +839,9 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         };
 
         closeButtonCont.appendChild(closeButton);        
-        overlayFrameObj.appendChild(closeButtonCont);        
+        overlayFrameObj.appendChild(closeButtonCont);
+
+        $('.closeButton').data('device', $('.hotspotCont').data('device'))
 
         $(overlayFrame).appendTo( $("body") );
 
@@ -1074,8 +1060,14 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     });     
 
     $('.closeButton').on('click', function(event){
+        $('html, body').css({
+            'background-image': 'url("./assets/BLUE_POLLEN.png")',
+        });
         $('.splash-screen').attr("src", "./assets/BLUE_POLLEN.png");
+        var device = $(this).data('device')
         $('#splash-content').show()
         $('.splash-screen').trigger("click")
+        // $(".deviceTile").find("[data-device-data-id='"+ device +"']").trigger("click")
+        $("div[data-device-data-id='" + device +"']").trigger("click")
     });
 }

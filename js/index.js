@@ -236,6 +236,9 @@ $(document).ready(function()
             $("#mySlider").remove();
             $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
         });
+
+        // Set a data attribute on all the hotspots so we can get back to the device page when the video closes
+        $('.hotspotCont').data('device', data)
     });
 
     /*
