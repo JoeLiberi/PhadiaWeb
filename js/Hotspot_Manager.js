@@ -768,9 +768,9 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         }
 
         //$('#overlay-details').hide();
-        $("#overlay-details").animate({
-            right: "-70%"
-        });
+        // $("#overlay-details").animate({
+        //     right: "-70%"
+        // });
         
         //for function in openVideo, the second bit is the function to call after a video is complete.  Set this function 
         //to reveal the outline of the product as a second overlay on the modal
@@ -781,6 +781,13 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
 
     function openVideo(butId, videoEndFunc){
         actPlayingVideoId = butId;
+
+        $('#splash-content').hide()
+        $('.splash-screen').removeAttr('src')
+        $('html, body').css({
+            'background-image': 'none',
+            'background':" white"
+        });
 
         // create ovelayFrame
         // overlayFrame = document.createElement('div');
@@ -1066,4 +1073,9 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
 
     });     
 
+    $('.closeButton').on('click', function(event){
+        $('.splash-screen').attr("src", "./assets/BLUE_POLLEN.png");
+        $('#splash-content').show()
+        $('.splash-screen').trigger("click")
+    });
 }
