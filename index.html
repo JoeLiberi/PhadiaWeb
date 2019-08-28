@@ -120,6 +120,7 @@
         #showMainMenuBtn, #showMainMenuBtnVideo { position: fixed; bottom:1%; left:1%; width:5%; z-index: 99;}
 
         button.closeButton {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Close_Button.svg"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; width:100%; background-color: transparent;}
+        button.mainMenucloseButton {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Close_Button.svg"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; width:100%; background-color: transparent;}
         button.mainMenuBtn {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Carousel.png"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; width:100%; background-color: transparent;}
         .noselect {
           -webkit-touch-callout: none;
@@ -530,9 +531,9 @@
             </div>
         </div>
         <div class="overlayFrame" id="overlay-frame" style="width:100%; height: 100%; left: 0%; top:0; position: absolute; border: 0;overflow: hidden;">
-<!--             <div class="closeButtonCont" id="videoCloseBtn" style="display: none;">
+            <div class="closeButtonCont" id="videoCloseBtn" style="display: none;">
                 <button class="closeButton" onClick="videoClose()"></button>
-            </div> -->
+            </div>
             <div class="overlay-details" id="overlay-details" style="width: 70%; height: 100%; right: -70%; top: 0px; position: absolute;background-color: rgba(255,255,255,0.9); ">
                 <!-- use this to show the product details after a video finished -->
                 <div style="margin-left: 20%;margin-top: 10%;margin-right:10%;">
@@ -613,7 +614,7 @@
                 </div>
                 <div id="mainMenuCont" class="row mainMenuCont h-100 menu" style="position: absolute; bottom:-1000px; left: 12.5vw;">
                     <div class="closeButtonCont" id="mainMenuCloseBtn" style="display: none;">
-                        <button class="closeButton" onClick="mainMenuClose()"></button>
+                        <button class="mainMenucloseButton" onClick="mainMenuClose()"></button>
                     </div>
                     <div class="col-md-8 col-xs-8" style="padding-right: 0px; margin-right: -2%;">
                         <div class='deviceTile col-xs-5 tile' data-device-id="1" data-device-data-id="#phadia200-data" data-device-file-select="Phadia200_360_Rotation" data-device-hotspot-select="Phadia200_HotSpot" data-device-folder-id="1" data-device-title="Phadia 200 System" data-disclaimer="Not Availible in the US" data-start-x="0">

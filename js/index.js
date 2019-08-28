@@ -49,7 +49,6 @@ function videoClose(){
 }
 
 function showMainMenu(){
-
     $('#thermoLogo').hide();
     $('#mainMenuCont').show();
     $('#showMainMenuBtn').hide();

@@ -836,11 +836,15 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
                           
             videoSourceElem.remove();
             hotSpotVideoElem.remove();
+
+            $('html, body').css({
+                'background-image': 'url("./assets/BLUE_POLLEN.png")',
+            });
         
         };
 
-        closeButtonCont.appendChild(closeButton);        
-        overlayFrameObj.appendChild(closeButtonCont);
+        // closeButtonCont.appendChild(closeButton);        
+        // overlayFrameObj.appendChild(closeButtonCont);
 
         $('.closeButton').data('device', $('.hotspotCont').data('device'))
 
