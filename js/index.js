@@ -193,6 +193,7 @@ $(document).ready(function()
         hotspotSelect = $(this).data('device-hotspot-select')
         data = $(this).data('device-data-id')
         online = false
+        $('#swipe-div').data('device-swipe-id', data)
 
         $("#headline").remove();
         $("#headline-disclaimer").remove();
@@ -317,9 +318,34 @@ $(document).ready(function()
             relY = lastYSwipe + (dragStartYSwipe - event.pageY);
         }
     })
-    .mouseup(function() {
+    .mouseup(function(event) {
         isDraggingSwipe = false;
-        console.log(relY);            
+        var deviceList = [
+            '#phadia200-data',
+            '#phadia250-data',
+            '#phadia1000-data'
+        ]
+        for (var i = 0; i < deviceList.length; i++) {
+            if ($(this).data("deviceSwipeId") == deviceList[i]){
+                var nextScreen;
+
+                if (relY > 0){
+                    if(i == 0){
+                        nextScreen = deviceList.length - 1;
+                    } else{
+                       nextScreen = i-1 
+                    }
+                } else {
+                    if(i == deviceList.length){
+                        nextScreen = 0
+                    } else {
+                        nextScreen = i+1
+                    }
+                }
+                // $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click")
+                break;
+            }
+        }        
     })
     .bind('touchend',function(e){
         isDraggingSwipe = false;
