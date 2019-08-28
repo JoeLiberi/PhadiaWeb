@@ -47,8 +47,16 @@
         div.infoBlock { height: 100%; padding-top: 30px; }
 
         div.sysName { font-family: Arial; font-face:bold; font-size:22px; color: gray; width: 50%; margin-left: auto; margin-right: auto; }
-        div.headline, div.spec-headline { font-family: Arial; font-size:4vh;
+        div.spec-headline { font-family: Arial; font-size:4vh;
            display: inline-block; padding-left: 40px; padding-right: 40px; }
+        div.headline{ 
+            font-family: Arial; 
+            font-size:3vh;
+            display: inline-block; 
+            padding-left: 40px; 
+            padding-right: 40px; 
+        }
+
         div.spec-headline { margin-bottom:10px; }
 
         div.headline {
@@ -469,6 +477,12 @@
         #playHotspot:hover{
             cursor: pointer;
         }
+
+        #swipe-line{
+            position: fixed;
+            top: 34%;
+            left: 48%;
+        }
         </style>
 </head>
 
@@ -482,6 +496,9 @@
         <!-- table with 2 columns and 3 rows -->
         <div id="layoutCont" class="container-fluid d-flex flex-column layoutCont" style="padding-left: 0px; padding-right: 0px; display: none;">
             <div class="d-flex" style="width: 100%; height: 100%;">
+                <div id="swipe-line">
+                    <img src="./assets/vline.png" style="height: 42vh;">
+                </div>
                 <div class="d-flex col-xs-6 vidContRow">
                     <div class="row" id="deviceTitle" style="text-align: center; margin-top: 5%; margin-bottom: -10%; height: 15%">
                         <div class="col title noselect" id="title"></div>
@@ -504,7 +521,7 @@
                     </div>
                 </div>
                 <div class="d-flex col-xs-6 infoBlock" style="text-align: center;">
-                    <div class="col" style="height: 25vh; margin-top: 15%;">
+                    <div class="col" style="height: 25vh; margin-top: 15%;margin-left: 5%;margin-right: 5%;">
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="hsNumberContRed noselect" id="hsNumberCont" style="display: none;">
