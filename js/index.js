@@ -28,14 +28,15 @@ function videoEnded(){
 }
 
 function mainMenuClose(){
-    $('#mainMenuCont').hide();
-    $('#thermoLogo').fadeIn("slow");
-    $('#showMainMenuBtn').fadeIn("slow")
-    $('#mainMenuCont').animate({bottom: '-1000px'}, 'slow', function() {})
+    $('#mainMenuCont').animate({bottom: '-1000px'}, 'slow', function() {
+        $('#mainMenuCont').hide()
+        $('#thermoLogo').fadeIn("slow");
+        $('#showMainMenuBtn').fadeIn("slow")
+    })
 }
 
 function phadiaPrimeClose(){
-    $('#phadiaPrime-content').hide();
+    $('#phadiaPrime-content').fadeOut(200);
     $('#splash-content').fadeIn(200);
 }
 
@@ -261,6 +262,9 @@ $(document).ready(function()
     })
 
     $('.closeButton').on('click', function(event){
+        $("#overlay-details").animate({
+            right: "-70%"
+        });
         $('html, body').css({
             'background-image': 'url("./assets/BLUE_POLLEN.png")',
         });
