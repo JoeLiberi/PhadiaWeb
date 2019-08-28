@@ -47,7 +47,7 @@
         div.infoBlock { height: 100%; padding-top: 30px; }
 
         div.sysName { font-family: Arial; font-face:bold; font-size:22px; color: gray; width: 50%; margin-left: auto; margin-right: auto; }
-        div.headline, div.spec-headline { font-family: Arial; font-size:2vh;
+        div.headline, div.spec-headline { font-family: Arial; font-size:4vh;
            display: inline-block; padding-left: 40px; padding-right: 40px; }
         div.spec-headline { margin-bottom:10px; }
 
@@ -56,7 +56,7 @@
         }
         div.spec-headline {
             color:#333;
-            margin-top:10%; /*TODO decide how that will look on mobile */
+            /*margin-top:10%;TODO decide how that will look on mobile */
         }
         div.nsNumberRed {
             color: rbg(220, 50, 0);
@@ -71,7 +71,7 @@
             font-size: 26px;
             line-height: 30px;
         }
-        div.hsNumberCont, div.hsNumberContRed { display: inline-block; border: solid 1px #333;-webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; margin-right: -23px;  white-space: nowrap; vertical-align: text-bottom; }
+        div.hsNumberCont, div.hsNumberContRed { display: inline-block; border: solid 1px #333;-webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; margin-right: -23px;  white-space: nowrap; vertical-align: text-bottom; position: relative;top: 22%; }
 
         div.hsNumberContRed {
             width: 35px; height: 35px;
@@ -90,9 +90,9 @@
         div.disclaimer {color:#fff;}
 
         div.spec-message {
-            color:#333;font-family: Arial; font-size:20px; margin-bottom:10px; margin-left: 52px;
+            color:#333;font-family: Arial; font-size:20px; margin-bottom:10px; margin-left: 52px; font-size: 3vh;
         }
-        ul.infoTexts { color: #333; font-family: Arial; padding-left: 0; margin-left:61px; }
+        ul.infoTexts { color: #333; font-family: Arial; padding-left: 0; margin-left:61px; font-size: 2vh;}
         div.hotspotCont { position: absolute; display: inline-block; background-position: center; background-repeat: no-repeat; background-size: contain; -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; }
         .hotspotContText { -webkit-border-radius: 60; -moz-border-radius: 60; border-radius: 60px; font-family: Arial; color: #ffffff;  background: #ff0000; padding: 0px;  border: solid #ffffff; text-decoration: none;  width: inherit;  height: inherit; }
         .hotspotContText:hover { background: #a10202; text-decoration: none; }
@@ -530,14 +530,14 @@
             </div>
         </div>
         <div class="overlayFrame" id="overlay-frame" style="width:100%; height: 100%; left: 0%; top:0; position: absolute; border: 0;overflow: hidden;">
-            <div class="closeButtonCont" id="videoCloseBtn" style="display: none;">
+<!--             <div class="closeButtonCont" id="videoCloseBtn" style="display: none;">
                 <button class="closeButton" onClick="videoClose()"></button>
-            </div>
+            </div> -->
             <div class="overlay-details" id="overlay-details" style="width: 70%; height: 100%; right: -70%; top: 0px; position: absolute;background-color: rgba(255,255,255,0.9); ">
                 <!-- use this to show the product details after a video finished -->
-                <div style="margin-left: 20%;margin-top: 10%;">
-                    <div >
-                        <div class="hsNumberCont noselect">
+                <div style="margin-left: 20%;margin-top: 10%;margin-right:10%;">
+                    <div class="row">
+                        <div class="hsNumberCont col noselect">
                              <div class="spec-hsNumber noselect" id="spec-hsNumber" ></div>
                         </div>
                         <div class="col spec-headline noselect" id="spec-headline"></div>
