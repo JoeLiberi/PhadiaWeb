@@ -273,4 +273,55 @@ $(document).ready(function()
     $('#playHotspot').on('click', function(event){
         $("div[active='1']").trigger("click")
     });
+
+    // Dragging stuff for the swipe line thing
+    var isDraggingSwipe = false;
+    var dragStartYSwipe = 0;
+    var lastYSwipe = 0;
+    var relYwipe = 0;
+    var relY = 0;
+
+    function disableSelect(event) {
+        event.preventDefault();
+    }
+
+    function startDrag(event) {
+        window.addEventListener('mouseup', onDragEnd);
+        window.addEventListener('selectstart', disableSelect);
+    }
+
+    function onDragEnd() {
+        window.removeEventListener('mouseup', onDragEnd);
+        window.removeEventListener('selectstart', disableSelect);
+    }
+
+    $("#swipe-div")
+    .mousedown(function (event) {
+        startDrag(event);
+        isDraggingSwipe = true;
+        dragStartYSwipe = event.pageY;
+    })
+    .bind('touchstart',function(e){
+        e.preventDefault();                
+        isDraggingSwipe = true;
+    })
+    .mousemove(function(event) {
+        if (isDraggingSwipe) {
+            relY = lastYSwipe + (dragStartYSwipe - event.pageY);
+        }
+    })
+    .bind('touchmove',function(e){
+        //e.preventDefault();
+        if (isDraggingSwipe) {
+            // console.log("I am being dragged!")
+            relY = lastYSwipe + (dragStartYSwipe - event.pageY);
+        }
+    })
+    .mouseup(function() {
+        isDraggingSwipe = false;
+        console.log(relY);            
+    })
+    .bind('touchend',function(e){
+        isDraggingSwipe = false;
+    });
 });

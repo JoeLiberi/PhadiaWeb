@@ -1003,11 +1003,24 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     var dragStartX = 0;
     var lastX = startX;
     var relX = startX;
-    
+    function disableSelect(event) {
+        event.preventDefault();
+    }
+
+    function startDrag(event) {
+        window.addEventListener('mouseup', onDragEnd);
+        window.addEventListener('selectstart', disableSelect);
+    }
+
+    function onDragEnd() {
+        window.removeEventListener('mouseup', onDragEnd);
+        window.removeEventListener('selectstart', disableSelect);
+    }
     
     $("#"+videoContainer.id)
 
     .mousedown(function (event) {
+        startDrag(event);
         isDragging = true;
         isPressed = true;
         dragStartX = event.pageX;

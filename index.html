@@ -18,9 +18,10 @@
     <script type="text/javascript" src="./js/glm-gl-matrix.min.js"></script>
     <script type="text/javascript" src="./js/Hotspot_Manager.js"></script>
     <script type="text/javascript" src="./js/jquery.mobile.custom.js"></script> 
+    <!-- <script type="text/javascript" src="./js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script> -->
     <script type="text/javascript" src="./js/index.js"></script>
 
-    <title>Thermo Fisher - Phadia</title>
+    <title>Thermo Fisher - Phadia Laboratory Systems</title>
     
     <style>
         /* For mobile phones: */
@@ -53,8 +54,6 @@
             font-family: Arial; 
             font-size:3vh;
             display: inline-block; 
-            padding-left: 40px; 
-            padding-right: 40px; 
         }
 
         div.spec-headline { margin-bottom:10px; }
@@ -302,7 +301,7 @@
         /*Wide mobile devices*/
         @media only screen and (max-width: 520px) {
             div.sysName { font-size: 16px; }
-            div.message { font-size: 16px; }
+            div.message { font-size: 1.5vh; }
             div.headline { font-size: 2vh; }
             div.infoBlock { min-height: 100px; }
             div.playHotspot { display: none; }
@@ -317,7 +316,7 @@
         /*Tall mobile devices*/
         @media only screen and (max-height: 625px) {
             div.sysName { font-size: 16px; }
-            div.message { font-size: 16px; }
+            div.message { font-size: 1.5vh; }
             div.headline { font-size: 2vh; }
             div.infoBlock { height: 50px; }
             div.playHotspot { display: none; }
@@ -478,10 +477,16 @@
             cursor: pointer;
         }
 
-        #swipe-line{
+        #swipe-div{
             position: fixed;
             top: 34%;
             left: 48%;
+            z-index: 1001;
+            width: 5%;
+        }
+        #swipe-line{
+            height: 42vh;
+            background-image: url('./assets/vline.svg');
         }
         </style>
 </head>
@@ -496,8 +501,8 @@
         <!-- table with 2 columns and 3 rows -->
         <div id="layoutCont" class="container-fluid d-flex flex-column layoutCont" style="padding-left: 0px; padding-right: 0px; display: none;">
             <div class="d-flex" style="width: 100%; height: 100%;">
-                <div id="swipe-line">
-                    <img src="./assets/vline.png" style="height: 42vh;">
+                <div id="swipe-div">
+                    <div id="swipe-line"></div>
                 </div>
                 <div class="d-flex col-xs-6 vidContRow">
                     <div class="row" id="deviceTitle" style="text-align: center; margin-top: 5%; margin-bottom: -10%; height: 15%">
@@ -534,7 +539,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="messagenoselect" id="message" style="color: white;font-size: 3vh;"></div>
+                            <div class="messagenoselect" id="message" style="color: white;font-size: 2.5vh;"></div>
                         </div>
                     </div>
                     <div class="row align-items-end">
