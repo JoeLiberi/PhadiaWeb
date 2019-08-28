@@ -49,10 +49,12 @@ function videoClose(){
 }
 
 function showMainMenu(){
+    $('#layoutCont').hide();
     $('#thermoLogo').hide();
     $('#mainMenuCont').show();
+    $('#splash-content').show();
     $('#showMainMenuBtn').hide();
-    $('.overlayFrame').show();
+    // $('.overlayFrame').show();
     $('#mainMenuCont').animate({bottom: '0px'}, 'slow', function() {
         $('#mainMenuCont').addClass('open');
     });
@@ -161,6 +163,7 @@ $(document).ready(function()
     to the screen.
     */
     $('.itemTile, .primeImgTile, .edgeTile').on('click', function(){
+        $('#overlay-frame').show()
         $('#overlay-frame').append("<Video id='tileVideo' controls autoplay onended='videoEnded()' onpause='videoPause()'><source src='"+ $(this).data('video-url') +"'></Video>")
     });
     
@@ -176,11 +179,11 @@ $(document).ready(function()
     static files and calculate the hotspots.
     */
     $('.deviceTile').on('click', function(){
-        $('.overlayFrame').hide();
         $('#mainMenuCont').animate({bottom: '-1000px'}, 'fast', function() {
             $('#mainMenuCont').removeClass('open'); 
         });
-
+        $('#splash-content').fadeOut(200);
+        $('#layoutCont').fadeIn(200);
         images = "./assets/" + $(this).data('device-folder-id') + "/images"
         videos = "./assets/" + $(this).data('device-folder-id') + "/hotspots"
         startX = $(this).data('start-x')
@@ -260,19 +263,10 @@ $(document).ready(function()
         })
     })
 
-    $('.closeButton').on('click', function(event){
-        $("#overlay-details").animate({
-            right: "-70%"
-        });
-        $('html, body').css({
-            'background-image': 'url("./assets/BLUE_POLLEN.png")',
-        });
-        $('.splash-screen').attr("src", "./assets/BLUE_POLLEN.png");
-        var device = $(this).data('device')
-        $('#splash-content').show()
-        $('.splash-screen').trigger("click")
-        // $(".deviceTile").find("[data-device-data-id='"+ device +"']").trigger("click")
-        $("div[data-device-data-id='" + device +"']").trigger("click")
+    $('#videoCloseBtn').on('click', function(event){
+        $('video').remove();
+        $('#videoCloseBtn').hide();
+        $('#overlay-frame').hide();
     });
 
     // Use the active data attribute to figure out what hotspot is active then trigger a click

@@ -783,11 +783,11 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     function openVideo(butId, videoEndFunc){
         actPlayingVideoId = butId;
 
-        $('#splash-content').hide()
-        $('.splash-screen').removeAttr('src')
-        $('html, body').css({
-            'background-image': 'none',
-        });
+        // $('#splash-content').hide()
+        // $('.splash-screen').removeAttr('src')
+        // $('html, body').css({
+        //     'background-image': 'none',
+        // });
 
         // create ovelayFrame
         // overlayFrame = document.createElement('div');
@@ -800,6 +800,8 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         
         overlayFrame = $('#overlay-frame')
         overlayFrameObj = document.getElementById("overlay-frame");
+        $('#phadiaPrime-content').hide()
+        $('#splash-content').hide()
         overlayFrame.show();
 
         hotSpotVideoElem = document.createElement('video');
@@ -840,6 +842,18 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
             $('html, body').css({
                 'background-image': 'url("./assets/BLUE_POLLEN.png")',
             });
+            $("#overlay-details").animate({
+                right: "-70%"
+            });
+            $('html, body').css({
+                'background-image': 'url("./assets/BLUE_POLLEN.png")',
+            });
+            $('.splash-screen').attr("src", "./assets/BLUE_POLLEN.png");
+            var device = $(this).data('device')
+            $('#splash-content').show()
+            $('.splash-screen').trigger("click")
+            // $(".deviceTile").find("[data-device-data-id='"+ device +"']").trigger("click")
+            $("div[data-device-data-id='" + device +"']").trigger("click")
         
         };
 
