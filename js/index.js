@@ -274,9 +274,18 @@ $(document).ready(function()
     });
 
     $('#videoCloseBtn').on('click', function(event){
-        $('video').remove();
-        $('#videoCloseBtn').hide();
-        $('#overlay-frame').hide();
+        $('#overlay-frame').animate({
+            'opacity': 0
+        }, {
+            duration: 1500,
+            complete: function(){
+                $("#overlay-details").animate({'right': "-70%"}, "slow", function(){
+                    $('video').remove();
+                    $('#videoCloseBtn').hide();
+                    $('#overlay-frame').hide();
+                });
+            }
+        })
     });
 
     // Use the active data attribute to figure out what hotspot is active then trigger a click
@@ -318,8 +327,10 @@ $(document).ready(function()
             $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
 
             $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click");
-            $('#layoutCont').css({'margin-top': '100%'});
-            $('#layoutCont').animate({'margin-top': '0%'}, "slow", function(){});
+            setTimeout(function(){
+                $('#layoutCont').css({'margin-top': '100%'});
+                $('#layoutCont').animate({'margin-top': '0%'}, "slow", function(){});
+                }, 1000)
         });
     }
 
@@ -334,8 +345,10 @@ $(document).ready(function()
             $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
             $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click")
 
-            $('#layoutCont').css({'margin-top': '-100%'});
-            $('#layoutCont').animate({'margin-top': '0%'}, "slow", function(){});
+            setTimeout(function(){
+                $('#layoutCont').css({'margin-top': '-100%'});
+                $('#layoutCont').animate({'margin-top': '0%'}, "slow", function(){});
+                }, 1000)
         });
     }
 

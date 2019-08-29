@@ -48,7 +48,7 @@
         div.infoBlock { height: 100%; padding-top: 30px; }
 
         div.sysName { font-family: Arial; font-face:bold; font-size:22px; color: gray; width: 50%; margin-left: auto; margin-right: auto; }
-        div.spec-headline { font-family: Arial; font-size:4vh;
+        div.spec-headline { font-family: Arial; font-size:3.5vh;
            display: inline-block; padding-left: 40px; padding-right: 40px; }
         div.headline{ 
             font-family: Arial; 
@@ -97,7 +97,7 @@
         div.disclaimer {color:#fff;}
 
         div.spec-message {
-            color:#333;font-family: Arial; font-size:20px; margin-bottom:10px; margin-left: 52px; font-size: 3vh;
+            color:#333;font-family: Arial; font-size:20px; margin-bottom:10px; margin-left: 5%; font-size: 2.25vh;
         }
         ul.infoTexts { color: #333; font-family: Arial; padding-left: 0; margin-left:61px; font-size: 2vh;}
         div.hotspotCont { position: absolute; display: inline-block; background-position: center; background-repeat: no-repeat; background-size: contain; -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; }
@@ -563,13 +563,17 @@
                 <!-- use this to show the product details after a video finished -->
                 <div style="margin-left: 20%;margin-top: 10%;margin-right:10%;">
                     <div class="row">
-                        <div class="hsNumberCont col noselect">
-                             <div class="spec-hsNumber noselect" id="spec-hsNumber" ></div>
+                        <div class="col-sm-1" style="margin-right: -7%;margin-top: 1%;">
+                            <div class="hsNumberCont noselect">
+                                 <div class="spec-hsNumber noselect" id="spec-hsNumber" ></div>
+                            </div>
                         </div>
-                        <div class="col spec-headline noselect" id="spec-headline"></div>
+                        <div class="col-sm-8" style="width: 90%;">
+                            <div class="spec-headline noselect" id="spec-headline"></div>
+                        </div>
                     </div>
                     <div class="spec-message row noselect" id="spec-message"></div>
-                    <ul class="infoTexts noselect" id="infoTexts" />           
+                    <ul class="infoTexts row noselect" id="infoTexts" />           
                     </ul>
                 </div>
             </div>

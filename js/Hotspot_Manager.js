@@ -769,9 +769,6 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         }
 
         //$('#overlay-details').hide();
-        // $("#overlay-details").animate({
-        //     right: "-70%"
-        // });
         
         //for function in openVideo, the second bit is the function to call after a video is complete.  Set this function 
         //to reveal the outline of the product as a second overlay on the modal
