@@ -138,7 +138,8 @@ $(document).ready(function()
 
     // callback function example to draw the contents
     function hotSpotClicked(headline, valuemessage, infoTexts, id, sysName, hideId)
-    {               
+    {
+        $("#hsNumberCont").show();               
         $("#sysName").text( sysName );
 
         $("#hsNumber").text( id );
@@ -197,12 +198,16 @@ $(document).ready(function()
 
         $("#headline").remove();
         $("#headline-disclaimer").remove();
+        // $("#hsNumberCont").show();
         $("<div class='col headline noselect' id='headline'>" + title + "</div>").appendTo("#headline-text");
         $("<div class='col disclaimer' id='headline-disclaimer'>" + disclaimer + "</div>").appendTo("#headline-text");
 
         // console.log(data)
+        var systemData = JSON.parse($(data).html());
 
-        var systemData = JSON.parse($(data).html()); 
+        $('#message').text(systemData.text)
+        $("#message").show();
+
         var hsMan = new Hotspot_Manager(
             systemData,
             //"./SystemsData.json", // url to json database with hotspot info
@@ -233,16 +238,10 @@ $(document).ready(function()
             $("<div class='col title-disclaimer' id='disclaimer'><h3>" + disclaimer + "</h3></div>").appendTo("#deviceTitle");
         });
 
-        $('.mainMenuBtn').on('click', function(){
-            $("#title").remove();
-            $("#disclaimer").remove();
-            $("#videoContainer").remove();
-            $("#mySlider").remove();
-            $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
-        });
-
         // Set a data attribute on all the hotspots so we can get back to the device page when the video closes
         $('.hotspotCont').data('device', data)
+        // $("#hsNumberCont").show();
+        
     });
 
     /*
@@ -264,6 +263,16 @@ $(document).ready(function()
         })
     })
 
+    $('.mainMenuBtn').on('click', function(){
+        $("#title").remove();
+        $("#disclaimer").remove();
+        $("#videoContainer").remove();
+        $("#mySlider").remove();
+        $("#hsNumberCont").hide();
+        $("#message").hide();
+        $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
+    });
+
     $('#videoCloseBtn').on('click', function(event){
         $('video').remove();
         $('#videoCloseBtn').hide();
@@ -281,6 +290,7 @@ $(document).ready(function()
     var lastYSwipe = 0;
     var relYwipe = 0;
     var relY = 0;
+    var nextScreen;
 
     function disableSelect(event) {
         event.preventDefault();
@@ -294,6 +304,46 @@ $(document).ready(function()
     function onDragEnd() {
         window.removeEventListener('mouseup', onDragEnd);
         window.removeEventListener('selectstart', disableSelect);
+    }
+
+    function swipeUp(deviceList, nextScreen){
+        $('#layoutCont').slideUp("slow", function(){
+            $("#title").remove();
+            $("#disclaimer").remove();
+            $("#videoContainer").remove();
+            $("#mySlider").remove();
+            $("#hsNumberCont").hide();
+            // $("#message").hide();
+            $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
+            $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click")
+        });
+
+
+        // $('#contentData').animate({top: '-1000px'}, 'slow', function() {
+        //     $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click")
+        // });
+    }
+
+    function swipeDown(deviceList, nextScreen){
+        // $("#title").remove();
+        // $("#disclaimer").remove();
+        // $("#videoContainer").remove();
+        // $("#mySlider").remove();
+        // $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
+
+        // $('#contentData').animate({bottom: '-1000px'}, 'slow', function() {
+        //     $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click")
+        // });
+        $('#layoutCont').slideDown("slow", function(){
+            $("#title").remove();
+            $("#disclaimer").remove();
+            $("#videoContainer").remove();
+            $("#mySlider").remove();
+            $("#hsNumberCont").hide();
+            // $("#message").hide();
+            $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
+            $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click")
+        });
     }
 
     $("#swipe-div")
@@ -327,23 +377,29 @@ $(document).ready(function()
         ]
         for (var i = 0; i < deviceList.length; i++) {
             if ($(this).data("deviceSwipeId") == deviceList[i]){
-                var nextScreen;
-
-                if (relY > 0){
+                if (relY < 0){
                     if(i == 0){
                         nextScreen = deviceList.length - 1;
                     } else{
                        nextScreen = i-1 
                     }
+
+                    swipeDown(deviceList, nextScreen);
+                    break;
                 } else {
                     if(i == deviceList.length){
                         nextScreen = 0
                     } else {
                         nextScreen = i+1
                     }
+
+                    swipeUp(deviceList, nextScreen);
+                    break;
                 }
+                // console.log(deviceList[nextScreen]);
+                // $('.mainMenuBtn').trigger("click")
                 // $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click")
-                break;
+                // break;
             }
         }        
     })
