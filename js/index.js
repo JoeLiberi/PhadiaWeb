@@ -307,7 +307,8 @@ $(document).ready(function()
     }
 
     function swipeUp(deviceList, nextScreen){
-        $('#layoutCont').slideUp("slow", function(){
+        console.log("swiped up");
+        $('#layoutCont').animate({'margin-top': '-100%'}, "slow", function(){
             $("#title").remove();
             $("#disclaimer").remove();
             $("#videoContainer").remove();
@@ -315,26 +316,15 @@ $(document).ready(function()
             $("#hsNumberCont").hide();
             // $("#message").hide();
             $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
-            $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click")
+
+            $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click");
+            $('#layoutCont').css({'margin-top': '100%'});
+            $('#layoutCont').animate({'margin-top': '0%'}, "slow", function(){});
         });
-
-
-        // $('#contentData').animate({top: '-1000px'}, 'slow', function() {
-        //     $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click")
-        // });
     }
 
     function swipeDown(deviceList, nextScreen){
-        // $("#title").remove();
-        // $("#disclaimer").remove();
-        // $("#videoContainer").remove();
-        // $("#mySlider").remove();
-        // $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
-
-        // $('#contentData').animate({bottom: '-1000px'}, 'slow', function() {
-        //     $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click")
-        // });
-        $('#layoutCont').slideDown("slow", function(){
+        $('#layoutCont').animate({'margin-top': '100%'}, "slow", function(){
             $("#title").remove();
             $("#disclaimer").remove();
             $("#videoContainer").remove();
@@ -343,6 +333,9 @@ $(document).ready(function()
             // $("#message").hide();
             $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
             $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click")
+
+            $('#layoutCont').css({'margin-top': '-100%'});
+            $('#layoutCont').animate({'margin-top': '0%'}, "slow", function(){});
         });
     }
 
@@ -387,7 +380,7 @@ $(document).ready(function()
                     swipeDown(deviceList, nextScreen);
                     break;
                 } else {
-                    if(i == deviceList.length){
+                    if(i == deviceList.length - 1){
                         nextScreen = 0
                     } else {
                         nextScreen = i+1
