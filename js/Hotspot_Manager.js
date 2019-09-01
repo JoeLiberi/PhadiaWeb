@@ -753,6 +753,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     function hsClicked(event){
         // get the number of the button from its id
         // clearTimers();
+        $("#swipe-div").hide();
         var butId = event.target.id.split("_");
         butId = parseInt(butId[1]);
 

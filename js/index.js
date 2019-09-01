@@ -274,6 +274,7 @@ $(document).ready(function()
     });
 
     $('#videoCloseBtn').on('click', function(event){
+        $('#swipe-div').show();
         $('#overlay-frame').animate({
             'opacity': 0
         }, {
