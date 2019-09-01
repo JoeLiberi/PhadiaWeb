@@ -1033,6 +1033,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         if (isDragging) {
             relX = Math.max( lastX + (dragStartX - event.pageX), 0.0 );
             // relX = lastX + (dragStartX - event.pageX)
+            $('#playHotspot').fadeIn();
             setPos(relX);
         }
     })
@@ -1042,6 +1043,7 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
             var actPos = e.originalEvent.touches[0].pageX;
             relX = Math.max( lastX + (dragStartX - actPos), 0.0 );
             // relX = lastX + (dragStartX - actPos)
+            $('#playHotspot').fadeIn();
             setPos(relX);
         }
     })
