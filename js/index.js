@@ -258,9 +258,10 @@ $(document).ready(function()
         $('#videoContainer').on('touchstart touchmove mousedown', function(){
             // set the title and the disclaimer
             $("#title").remove();
+            $("#headline-disclaimer").remove();
             $("#disclaimer").remove();
-            $("<div class='col title noselect' id='title'><h1>" + title + "</h1></div>").appendTo("#deviceTitle");
-            $("<div class='col title-disclaimer' id='disclaimer'><h3>" + disclaimer + "</h3></div>").appendTo("#deviceTitle");
+            $("<div class='col title noselect' id='title'><h1>" + title + "</h1></div>").appendTo("#deviceTitle").fadeIn(1000);
+            $("<div class='col title-disclaimer' id='disclaimer'><h3>" + disclaimer + "</h3></div>").appendTo("#deviceTitle").fadeIn(1000);
         });
 
         // Set a data attribute on all the hotspots so we can get back to the device page when the video closes
