@@ -23,8 +23,16 @@ function checkHotSpotSizeMobile(mediaQuery) {
 }
 
 function videoEnded(){
-    $('video').remove();
-    $('#videoCloseBtn').hide();
+    $('#overlay-frame').animate({
+        'opacity': 0
+    }, {
+        duration: 1500,
+        complete: function(){
+            $('video').remove();
+            $('#videoCloseBtn').hide();
+            $('#overlay-frame').hide();
+        }
+    })
 }
 
 function mainMenuClose(){
@@ -164,8 +172,9 @@ $(document).ready(function()
     to the screen.
     */
     $('.itemTile, .primeImgTile, .edgeTile').on('click', function(){
-        $('#overlay-frame').show()
-        $('#overlay-frame').append("<Video id='tileVideo' controls autoplay onended='videoEnded()' onpause='videoPause()'><source src='"+ $(this).data('video-url') +"'></Video>")
+        $('#overlay-frame').css({'opacity': 1});
+        $('#overlay-frame').show();
+        $('#overlay-frame').append("<Video id='tileVideo' controls autoplay onended='videoPause()' onpause='videoPause()'><source src='"+ $(this).data('video-url') +"'></Video>")
     });
     
     // Phadia prime close button
