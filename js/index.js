@@ -421,4 +421,14 @@ $(document).ready(function()
     .bind('touchend',function(e){
         isDraggingSwipe = false;
     });
+
+    $('#additionalResourceBtn').on("click", function(){
+        $('#layoutCont').fadeOut();
+        $('#addtionalResources-content').fadeIn();
+    });
+
+    $('#additionalResourcesCloseBtn').on("click", function(){
+        $('#addtionalResources-content').fadeOut();
+        $('#layoutCont').fadeIn();
+    });
 });

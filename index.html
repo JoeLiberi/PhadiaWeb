@@ -487,6 +487,19 @@
             height: 42vh;
             background-image: url('./assets/vline.svg');
         }
+
+        #additionalResourceBtn:hover{
+            cursor: pointer;
+        }
+
+        .centered {
+           text-align: center;
+        }
+
+        .centered > div {
+           float: none;
+           display: inline-block;
+        }
         </style>
 </head>
 
@@ -547,8 +560,8 @@
                         </div>
                     </div>
                     <div class="row" style="position: absolute; bottom: 5%; width: 100%;">
-                        <div class="col">
-                            <a style="color:#fff; font-size: 3vh;">Additional Resources</a>
+                        <div class="col" id="additionalResourceBtn">
+                            <p style="color:#fff; font-size: 3vh;">Additional Resources</p>
                         </div>
                     </div>
                 </div>
@@ -626,6 +639,24 @@
                 </div>
                 <div class='primeItemTile col-xs-3'>
                     <img src="./assets/PhadiaPrime/pp_button-13.png" class="img-responsive center-block primeImgTile"  data-video-url="./assets/PhadiaPrime/Videos/PhadiaPrime_StockManager.mp4" data-video-type="video/mp4"/>
+                </div>
+            </div>
+        </div>
+        <div id="addtionalResources-content" class="container-fluid" style="display: none;">
+            <div class="closeButtonCont" style="display: block;">
+                <button class="closeButton" id="additionalResourcesCloseBtn"></button>
+            </div>
+            <div class="row">
+                <div class="col" style="height: 10vh;">
+                    <h2 style="color: white; text-align: center; margin-top: 2%;">Additional Resources</h2>
+                </div>
+            </div>
+            <div class="row centered">
+                <div id="eliaTileAdditional" class="itemTile sideTile col-xs-3 tile" data-video-url="assets/EliA/Phadia_ELIA.mp4" data-video-type="video/mp4" style="background: rgb(0, 0, 0); margin: 2%;">
+                    <img src="./assets/EliA/carousel.png" class="img-responsive center-block"/>
+                </div>
+                <div id="immunocapTileAdditional" class="itemTile sideTile col-xs-3 tile" data-video-url="assets/ImmunoCap/Phadia_ImmunoCAP.mp4" data-video-type="video/mp4" style="background: rgb(0, 0, 0); margin: 2%;">
+                    <img src="./assets/ImmunoCap/carousel.png" class="img-responsive center-block"/>
                 </div>
             </div>
         </div>
