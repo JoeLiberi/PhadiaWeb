@@ -147,40 +147,16 @@ $(document).ready(function()
     // callback function example to draw the contents
     function hotSpotClicked(headline, valuemessage, infoTexts, id, sysName, hideId)
     {               
-        // $("#sysName").text( sysName ).fadeIn(1000);
         if (id != $("#hsNumber").text()){
-            $("#sysName").fadeOut(function(){
-                $(this).text( sysName ).fadeIn();
-            })
-
-            // $("#hsNumber").text( id ).fadeIn(1000);
-            $("#hsNumber").fadeOut(function(){
-                $(this).text( id ).fadeIn();
-            })
-            $("#hsNumberCont").fadeOut(function(){
+            $('#infoHeaderText').fadeOut(function(){
+                $("#hsNumberCont").show();
+                $('#sysName').text( sysName );
+                $('#hsNumber').text(id);
+                $('#headline').text(headline);
+                $('#message').text(valuemessage);
                 $(this).fadeIn();
             });
-            
-            //$("#hsNumber").css({ opacity: 1.0 });
-            //$("#hsNumberCont").css({ opacity: 1.0 });
-            // $("#headline").text( headline ).fadeIn(1000);
-            $("#headline").fadeOut(function(){
-                $(this).text( headline ).fadeIn();
-            })
-            
-            // $("#message").text( valuemessage ).fadeIn(1000);
-            $("#message").fadeOut(function(){
-                $(this).text( valuemessage ).fadeIn();
-            })
-
         }
-        // if (hideId == true){
-        //     $('#hsNumberCont').hide();
-        //     $('#headline').text('CASCADION SM CLINICAL ANALYSER');
-        //     $('#message').text('Breaking the barrier between LC-MS/MS and the clinical lab')
-        // } else {
-        //     $('#hsNumberCont').show();
-        // }
     }
 
     /*
