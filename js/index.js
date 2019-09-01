@@ -180,12 +180,14 @@ $(document).ready(function()
     Here is where we are going to initialize the hotspot_manager and load all of the 
     static files and calculate the hotspots.
     */
-    $('.deviceTile').on('click', function(){
+    $('.deviceTile').on('click', function(event, swiped=false){
         $('#mainMenuCont').animate({bottom: '-1000px'}, 'fast', function() {
             $('#mainMenuCont').removeClass('open'); 
         });
         $('#splash-content').fadeOut(200);
-        $('#layoutCont').fadeIn(200);
+        if (!swiped){
+            $('#contentData').css({'margin-top': '-100%'});
+        }
         images = "./assets/" + $(this).data('device-folder-id') + "/images"
         videos = "./assets/" + $(this).data('device-folder-id') + "/hotspots"
         startX = $(this).data('start-x')
@@ -196,7 +198,7 @@ $(document).ready(function()
         data = $(this).data('device-data-id')
         online = false
         $('#swipe-div').data('device-swipe-id', data)
-
+        $('#layoutCont').show();
         $("#headline").remove();
         $("#headline-disclaimer").remove();
         // $("#hsNumberCont").show();
@@ -229,8 +231,11 @@ $(document).ready(function()
             hotspotSelect,
             startX
         );
-
-
+        if (!swiped){
+            $('#contentData').animate({'margin-top': '0%'}, 'slow', function() {
+                //nothing
+            });
+        }
         $('#videoContainer').on('touchstart touchmove mousedown', function(){
             // set the title and the disclaimer
             $("#title").remove();
@@ -328,8 +333,7 @@ $(document).ready(function()
             $("#hsNumberCont").hide();
             // $("#message").hide();
             $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
-
-            $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click");
+            $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click", [true]);
             setTimeout(function(){
                 $('#layoutCont').css({'margin-top': '100%'});
                 $('#layoutCont').animate({'margin-top': '0%'}, "slow", function(){});
@@ -346,7 +350,7 @@ $(document).ready(function()
             $("#hsNumberCont").hide();
             // $("#message").hide();
             $("<img id='mySlider' width='100%' height='100%' class='mx-auto d-block' />").appendTo("#videContBlock")
-            $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click")
+            $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click", [true])
 
             setTimeout(function(){
                 $('#layoutCont').css({'margin-top': '-100%'});
