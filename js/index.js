@@ -265,7 +265,7 @@ $(document).ready(function()
         
         $('#mainMenuCloseBtn').show();
         // open it
-        $('#mainMenuCont').animate({bottom: '0px'}, 'slow', function() {
+        $('#mainMenuCont').animate({bottom: '0px'}, 1250, function() {
         
         })
     })
