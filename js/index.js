@@ -37,6 +37,7 @@ function videoEnded(){
 
 function mainMenuClose(){
     $('#mainMenuCont').animate({bottom: '-1000px'}, 'slow', function() {
+        $('.splash-screen').attr({'src': './assets/Blue_Pollen_White_Splash.png'})
         $('#mainMenuCont').hide()
         $('#thermoLogo').fadeIn("slow");
         $('#showMainMenuBtn').fadeIn("slow")
@@ -258,6 +259,7 @@ $(document).ready(function()
     $('.splash-screen').on('click',function(){
         //alert('clicked')
         // hide the splash screen
+        $('.splash-screen').attr({'src': './assets/BLUE_POLLEN.png'})
         $('#thermoLogo').hide();
         $('#mainMenuCont').show();
 
