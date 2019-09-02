@@ -36,8 +36,9 @@ function videoEnded(){
 }
 
 function mainMenuClose(){
+    $('.splash-screen').attr({'src': './assets/Blue_Pollen_White_Splash.png'})
     $('#mainMenuCont').animate({bottom: '-1000px'}, 'slow', function() {
-        $('.splash-screen').attr({'src': './assets/Blue_Pollen_White_Splash.png'})
+        // $('.splash-screen').attr({'src': './assets/Blue_Pollen_White_Splash.png'})
         $('#mainMenuCont').hide()
         $('#thermoLogo').fadeIn("slow");
         $('#showMainMenuBtn').fadeIn("slow")
@@ -273,6 +274,10 @@ $(document).ready(function()
     })
 
     $('.mainMenuBtn').on('click', function(){
+        $('.splash-screen:not([src^="./assets/BLUE_POLLEN.png"])').each(function(i){
+          this.src = "./assets/BLUE_POLLEN.png";
+        });
+        $('#mainMenuCloseBtn').show();
         $("#title").remove();
         $("#disclaimer").remove();
         $("#videoContainer").remove();
