@@ -293,12 +293,12 @@ $(document).ready(function()
 
     $('#videoCloseBtn').on('click', function(event){
         $('#swipe-div').show();
-        $('#overlay-frame').animate({
-            'opacity': 0
+        $('#overlay-details').animate({
+            'right': "-70%"
         }, {
             duration: 1500,
             complete: function(){
-                $("#overlay-details").animate({'right': "-70%"}, "slow", function(){
+                $("#overlay-frame").animate({'opacity': 0}, "slow", function(){
                     $('video').remove();
                     $('#videoCloseBtn').hide();
                     $('#overlay-frame').hide();
