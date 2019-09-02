@@ -183,13 +183,10 @@ $(document).ready(function()
     static files and calculate the hotspots.
     */
     $('.deviceTile').on('click', function(event, swiped=false){
-        $('#mainMenuCont').animate({bottom: '-1000px'}, 'fast', function() {
-            $('#mainMenuCont').removeClass('open'); 
-        });
-        $('#splash-content').fadeOut(200);
         if (!swiped){
             $('#contentData').css({'margin-top': '-100%'});
         }
+
         images = "./assets/" + $(this).data('device-folder-id') + "/images"
         videos = "./assets/" + $(this).data('device-folder-id') + "/hotspots"
         startX = $(this).data('start-x')
@@ -198,59 +195,63 @@ $(document).ready(function()
         sysSelect = $(this).data('device-file-select')
         hotspotSelect = $(this).data('device-hotspot-select')
         data = $(this).data('device-data-id')
-        online = false
-        $('#swipe-div').data('device-swipe-id', data)
-        $('#layoutCont').show();
-        $("#headline").remove();
-        $("#headline-disclaimer").remove();
-        // $("#hsNumberCont").show();
-        $("<div class='col headline noselect' id='headline'>" + title + "</div>").appendTo("#headline-text");
-        $("<div class='col disclaimer' id='headline-disclaimer'>" + disclaimer + "</div>").appendTo("#headline-text");
 
-        // console.log(data)
-        var systemData = JSON.parse($(data).html());
-
-        $('#message').text(systemData.text)
-        $("#message").show();
-
-        var hsMan = new Hotspot_Manager(
-            systemData,
-            //"./SystemsData.json", // url to json database with hotspot info
-            sysSelect,                                                    // the actual system corresponding to the actual video
-            "mySlider",                                                     // the id of the video tag
-            //"http://silicon-int.com/thermo/web/cascadion/pics",         
-            images,
-            // "./pics",      
-            //"http://silicon-int.com/thermo/web/cascadion/videos",  
-            videos,                             // the url with the  hotspot videos
-            hotSpotClicked,                                                 // the callback function which is called, if a hotspot has been clicked
-           "playAllBut",                                                    // id of the play-all button
-            "png",
-            //Size of the hotspots
-            // hotspotSize.size
-            hotspotSize,
-            online,
-            hotspotSelect,
-            startX
-        );
-        if (!swiped){
-            $('#contentData').animate({'margin-top': '0%'}, 'slow', function() {
-                //nothing
-            });
-        }
-        $('#videoContainer').on('touchstart touchmove mousedown', function(){
-            // set the title and the disclaimer
-            $("#title").remove();
+        $('#mainMenuCont').animate({bottom: '-1000px'}, 1250, function() {
+            $('#mainMenuCont').removeClass('open');
+            $('#splash-content').fadeOut(200); 
+            online = false
+            $('#swipe-div').data('device-swipe-id', data)
+            $('#layoutCont').show();
+            $("#headline").remove();
             $("#headline-disclaimer").remove();
-            $("#disclaimer").remove();
-            $("<div class='col title noselect' id='title'><h1>" + title + "</h1></div>").appendTo("#deviceTitle").fadeIn(1000);
-            $("<div class='col title-disclaimer' id='disclaimer'><h3>" + disclaimer + "</h3></div>").appendTo("#deviceTitle").fadeIn(1000);
-        });
+            // $("#hsNumberCont").show();
+            $("<div class='col headline noselect' id='headline'>" + title + "</div>").appendTo("#headline-text");
+            $("<div class='col disclaimer' id='headline-disclaimer'>" + disclaimer + "</div>").appendTo("#headline-text");
 
-        // Set a data attribute on all the hotspots so we can get back to the device page when the video closes
-        $('.hotspotCont').data('device', data)
-        // $("#hsNumberCont").show();
-        
+            // console.log(data)
+            var systemData = JSON.parse($(data).html());
+
+            $('#message').text(systemData.text)
+            $("#message").show();
+
+            var hsMan = new Hotspot_Manager(
+                systemData,
+                //"./SystemsData.json", // url to json database with hotspot info
+                sysSelect,                                                    // the actual system corresponding to the actual video
+                "mySlider",                                                     // the id of the video tag
+                //"http://silicon-int.com/thermo/web/cascadion/pics",         
+                images,
+                // "./pics",      
+                //"http://silicon-int.com/thermo/web/cascadion/videos",  
+                videos,                             // the url with the  hotspot videos
+                hotSpotClicked,                                                 // the callback function which is called, if a hotspot has been clicked
+               "playAllBut",                                                    // id of the play-all button
+                "png",
+                //Size of the hotspots
+                // hotspotSize.size
+                hotspotSize,
+                online,
+                hotspotSelect,
+                startX
+            );
+            if (!swiped){
+                $('#contentData').animate({'margin-top': '0%'}, 'slow', function() {
+                    //nothing
+                });
+            }
+            $('#videoContainer').on('touchstart touchmove mousedown', function(){
+                // set the title and the disclaimer
+                $("#title").remove();
+                $("#headline-disclaimer").remove();
+                $("#disclaimer").remove();
+                $("<div class='col title noselect' id='title'><h1>" + title + "</h1></div>").appendTo("#deviceTitle").fadeIn(1000);
+                $("<div class='col title-disclaimer' id='disclaimer'><h3>" + disclaimer + "</h3></div>").appendTo("#deviceTitle").fadeIn(1000);
+            });
+
+            // Set a data attribute on all the hotspots so we can get back to the device page when the video closes
+            $('.hotspotCont').data('device', data)
+            // $("#hsNumberCont").show();
+        });
     });
 
     /*
@@ -266,7 +267,10 @@ $(document).ready(function()
 
         $('#showMainMenuBtn').hide();
         
+        // $('#mainMenuCloseBtn').show();
+        $('#mainMenuCloseBtn').css({'margin-top': '-100%'});
         $('#mainMenuCloseBtn').show();
+        $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 'fast');
         // open it
         $('#mainMenuCont').animate({bottom: '0px'}, 1250, function() {
         
