@@ -344,6 +344,17 @@
          margin-bottom: -10%;
          height: 15%;
         }
+
+        @media only screen and (width: 1440px) {
+            .deviceTile img {
+                margin-top: 10%;
+            }
+
+            .systems-logo {
+                width: 140vh;
+            }
+        }
+
         /*Ipads*/
         @media only screen 
         and (min-device-width : 768px) 
@@ -371,7 +382,8 @@
                 position: fixed;
                 top:2%;
                 left:1%;
-                width:7%;
+                width: 70px;
+                height: 70px;
                 z-index: 99;
             }
             #showMainMenuBtn,
@@ -379,7 +391,8 @@
                  position: fixed;
                  bottom:1%;
                  left:1%;
-                 width:7%;
+                 width: 70px;
+                 height: 70px;
                  z-index: 99;
             }
             #title > h1:nth-child(1) {
@@ -425,12 +438,6 @@
                 width: 100vh;
             }
 
-        }
-
-        @media only screen and (max-width: 1440px) {
-            .deviceTile img {
-                margin-top: 10%;
-            }
         }
 
         @media only screen and (min-width: 768px) {
