@@ -350,6 +350,7 @@ $(document).ready(function()
     function swipeUp(deviceList, nextScreen){
         console.log("swiped up");
         $('#layoutCont').animate({'margin-top': '-100%'}, "slow", function(){
+            $("#playHotspot").hide();
             $("#title").remove();
             $("#disclaimer").remove();
             $("#videoContainer").remove();
@@ -367,6 +368,7 @@ $(document).ready(function()
 
     function swipeDown(deviceList, nextScreen){
         $('#layoutCont').animate({'margin-top': '100%'}, "slow", function(){
+            $("#playHotspot").hide();
             $("#title").remove();
             $("#disclaimer").remove();
             $("#videoContainer").remove();
