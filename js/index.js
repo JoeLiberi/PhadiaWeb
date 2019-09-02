@@ -65,9 +65,17 @@ function showMainMenu(){
     $('#splash-content').show();
     $('#showMainMenuBtn').hide();
     // $('.overlayFrame').show();
-    $('#mainMenuCont').animate({bottom: '0px'}, 'slow', function() {
-        $('#mainMenuCont').addClass('open');
-    });
+
+    var ipad = window.matchMedia("(max-width: 1024px)")
+    if (ipad.matches){
+        $('#mainMenuCont').animate({bottom: '16%'}, 1250, function() {
+            $('#mainMenuCont').addClass('open');
+        });
+    } else {
+        $('#mainMenuCont').animate({bottom: '0px'}, 'slow', function() {
+            $('#mainMenuCont').addClass('open');
+        });
+    }
 }
 
 $(document).ready(function()
@@ -272,9 +280,13 @@ $(document).ready(function()
         $('#mainMenuCloseBtn').show();
         $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 'fast');
         // open it
-        $('#mainMenuCont').animate({bottom: '0px'}, 1250, function() {
+        var ipad = window.matchMedia("(max-width: 1024px)")
+        if (ipad.matches){
+            $('#mainMenuCont').animate({bottom: '16%'}, 1250)
+        } else {
+            $('#mainMenuCont').animate({bottom: '0px'}, 1250)
+        }
         
-        })
     })
 
     $('.mainMenuBtn').on('click', function(){
