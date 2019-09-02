@@ -338,6 +338,12 @@
             }  
         }
 
+        #deviceTitle {
+         text-align: center;
+         margin-top: 5%;
+         margin-bottom: -10%;
+         height: 15%;
+        }
         /*Ipads*/
         @media only screen and (width: 1024px) and (height: 768px) {
             #playAllBut {bottom: 10%; right: 20%;}
@@ -377,8 +383,30 @@
                  width:7%;
                  z-index: 99;
             }
-
-
+            #title > h1:nth-child(1) {
+                font-size: 4vh;
+            }
+            #headline {
+                font-size: 2.5vh;
+            }
+            #message {
+                color: white;
+                font-size: 2vh;
+            }
+            #playAllBut {
+                position: absolute;
+                bottom: 3%;
+                width: 100%;
+            }
+            #playAllBut > div:nth-child(1) {
+                margin-left: 35%;
+            }
+            #deviceTitle {
+             text-align: center;
+             margin-top: 18%;
+             margin-bottom: -24%;
+             height: 15%
+            }
         }
 
         @media only screen and (max-width: 1440px) {
@@ -583,7 +611,7 @@
                     <div id="swipe-line"></div>
                 </div>
                 <div class="d-flex col-xs-6 vidContRow">
-                    <div class="row" id="deviceTitle" style="text-align: center; margin-top: 5%; margin-bottom: -10%; height: 15%">
+                    <div class="row" id="deviceTitle">
                         <div class="col title noselect" id="title"></div>
                         <div class="col title-disclaimer" id="disclaimer"></div>
                     </div>
