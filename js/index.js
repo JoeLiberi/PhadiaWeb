@@ -46,8 +46,22 @@ function mainMenuClose(){
 }
 
 function phadiaPrimeClose(){
-    $('#phadiaPrime-content').fadeOut(200);
-    $('#splash-content').fadeIn(200);
+    // $('#phadiaPrime-content').fadeOut(200);
+    // $('#splash-content').fadeIn(200);
+    var ipad = window.matchMedia("(max-width: 1024px)")
+    var bottomPercent;
+    if (ipad.matches){
+        bottomPercent = '16%'
+    } else {
+        bottomPercent = '5%'
+    }
+    $('#phadiaPrime-content').animate({'margin-top': '100%'}, 1250, function(){
+        $('#phadiaPrime-content').hide();
+        $('#splash-content').fadeIn(200);
+        $('#mainMenuCont').animate({bottom: bottomPercent}, 'slow', function() {
+            $('#mainMenuCont').addClass('open');
+        });
+    });
 }
 
 function videoPause(){
@@ -181,8 +195,19 @@ $(document).ready(function()
     
     // Phadia prime close button
     $('#phadiaprimeTile').on('click', function(){
-        $('#splash-content').hide();
-        $('#phadiaPrime-content').fadeIn(200);
+        //$('#phadiaPrime-content').show();
+        $('#mainMenuCont').animate({bottom: '-1000px'}, 1250, function() {
+            $('#splash-content').hide();
+            $('#phadiaPrime-content').css({
+                'margin-top': '100%',
+                'opacity': '0.5'
+            });
+            $('#phadiaPrime-content').show();
+            $('#phadiaPrime-content').animate({
+                'margin-top': '0%',
+                'opacity': '1'
+            }, 1250);
+        });
     });
 
     /*
