@@ -72,7 +72,7 @@ function showMainMenu(){
             $('#mainMenuCont').addClass('open');
         });
     } else {
-        $('#mainMenuCont').animate({bottom: '0px'}, 'slow', function() {
+        $('#mainMenuCont').animate({bottom: '5%'}, 'slow', function() {
             $('#mainMenuCont').addClass('open');
         });
     }
@@ -284,7 +284,7 @@ $(document).ready(function()
         if (ipad.matches){
             $('#mainMenuCont').animate({bottom: '16%'}, 1250)
         } else {
-            $('#mainMenuCont').animate({bottom: '0px'}, 1250)
+            $('#mainMenuCont').animate({bottom: '5%'}, 1250)
         }
         
     })
