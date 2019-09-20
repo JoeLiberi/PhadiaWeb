@@ -43,6 +43,31 @@ function mainMenuClose(){
         $('#thermoLogo').fadeIn("slow");
         $('#showMainMenuBtn').fadeIn("slow")
     })
+
+    $('.splash-screen').on('click',function(){
+        //alert('clicked')
+        // hide the splash screen
+        $('.splash-screen').attr({'src': './assets/BLUE_POLLEN.png'})
+        $('#thermoLogo').hide();
+        $('#mainMenuCont').show();
+
+        $('#showMainMenuBtn').hide();
+        
+        // $('#mainMenuCloseBtn').show();
+        $('#mainMenuCloseBtn').css({'margin-top': '-100%'});
+        $('#mainMenuCloseBtn').show();
+        $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 'fast', function(){
+            $('.splash-screen').unbind( "click" );
+        });
+        // open it
+        var ipad = window.matchMedia("(max-width: 1024px)")
+        if (ipad.matches){
+            $('#mainMenuCont').animate({bottom: '16%'}, 1550)
+        } else {
+            $('#mainMenuCont').animate({bottom: '5%'}, 1550)
+        }
+        
+    })
 }
 
 function phadiaPrimeClose(){
@@ -303,7 +328,9 @@ $(document).ready(function()
         // $('#mainMenuCloseBtn').show();
         $('#mainMenuCloseBtn').css({'margin-top': '-100%'});
         $('#mainMenuCloseBtn').show();
-        $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 'fast');
+        $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 'fast', function(){
+            $('.splash-screen').unbind( "click" );
+        });
         // open it
         var ipad = window.matchMedia("(max-width: 1024px)")
         if (ipad.matches){
