@@ -93,6 +93,10 @@ function videoPause(){
     $('#videoCloseBtn').show();
 }
 
+function primeVideoEnd(){
+    videoEnded();
+}
+
 function videoClose(){
     videoEnded();
 }
@@ -212,11 +216,19 @@ $(document).ready(function()
     Item tile and phadia prime tile functionality. When one is clicked we add a html5 video 
     to the screen.
     */
-    $('.itemTile, .primeImgTile, .edgeTile').on('click', function(){
+    $('.itemTile, .edgeTile').on('click', function(){
         $('#overlay-frame').css({'opacity': 1});
         $('#overlay-frame').show();
         $('#overlay-frame').append("<Video id='tileVideo' controls autoplay onended='videoPause()' onpause='videoPause()'><source src='"+ $(this).data('video-url') +"'></Video>")
     });
+
+    // Phadia prime tile should close its self when the video ends
+    $('.primeImgTile').on('click', function(){
+        $('#overlay-frame').css({'opacity': 1});
+        $('#overlay-frame').show();
+        $('#overlay-frame').append("<Video id='tileVideo' controls autoplay onended='primeVideoEnd()' onpause='videoPause()'><source src='"+ $(this).data('video-url') +"'></Video>")
+    });
+
     
     // Phadia prime close button
     $('#phadiaprimeTile').on('click', function(){
