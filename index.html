@@ -619,6 +619,33 @@
          opacity: 0.6;
         }
 
+        .vertical-center {
+            display: table-cell;
+            float: none;
+            vertical-align: middle;
+        }
+
+        .tile-wrapper {
+            display: table;
+        }
+
+        #eliaTileAdditional {
+            background: rgb(0, 0, 0);
+            margin: 2%;
+            width: 45vh;
+            height: 25vh;
+            display: table-row
+        }
+
+        #immunocapTileAdditional {
+            background: rgb(0, 0, 0);
+            margin: 2%;
+            width: 45vh;
+            height: 25vh;
+            display: table-row
+        }
+
+
         </style>
 </head>
 
@@ -771,11 +798,19 @@
                 </div>
             </div>
             <div class="row centered">
-                <div id="eliaTileAdditional" class="itemTile sideTile col-xs-3 tile" data-video-url="assets/EliA/Phadia_ELIA.mp4" data-video-type="video/mp4" style="background: rgb(0, 0, 0); margin: 2%;">
-                    <img src="./assets/EliA/carousel.png" class="img-responsive center-block"/>
+                <div class="tile-wrapper" style="margin-left: 2.5%;">
+                    <div id="eliaTileAdditional" class="itemTile sideTile col-xs-3 tile" data-video-url="assets/EliA/Phadia_ELIA.mp4" data-video-type="video/mp4" style="background: rgb(0, 0, 0); margin: 2%;">
+                        <div class="vertical-center col">
+                            <img src="./assets/EliA/carousel.png" class="img-responsive"/>
+                        </div>
+                    </div>
                 </div>
-                <div id="immunocapTileAdditional" class="itemTile sideTile col-xs-3 tile" data-video-url="assets/ImmunoCap/Phadia_ImmunoCAP.mp4" data-video-type="video/mp4" style="background: rgb(0, 0, 0); margin: 2%;">
-                    <img src="./assets/ImmunoCap/carousel.png" class="img-responsive center-block"/>
+                <div class="tile-wrapper" style="margin-left: 2.5%;">
+                    <div id="immunocapTileAdditional" class="itemTile sideTile col-xs-3 tile" data-video-url="assets/ImmunoCap/Phadia_ImmunoCAP.mp4" data-video-type="video/mp4" style="background: rgb(0, 0, 0); margin: 2%;">
+                        <div class="vertical-center col">
+                            <img src="./assets/ImmunoCap/carousel.png" class="img-responsive"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
