@@ -55,7 +55,7 @@ function phadiaPrimeClose(){
     } else {
         bottomPercent = '5%'
     }
-    $('#phadiaPrime-content').animate({'margin-top': '100%'}, 1250, function(){
+    $('#phadiaPrime-content').animate({'margin-top': '100%'}, 1550, function(){
         $('#phadiaPrime-content').hide();
         $('#splash-content').fadeIn(200);
         $('#mainMenuCont').animate({bottom: bottomPercent}, 'slow', function() {
@@ -82,7 +82,7 @@ function showMainMenu(){
 
     var ipad = window.matchMedia("(max-width: 1024px)")
     if (ipad.matches){
-        $('#mainMenuCont').animate({bottom: '16%'}, 1250, function() {
+        $('#mainMenuCont').animate({bottom: '16%'}, 1550, function() {
             $('#mainMenuCont').addClass('open');
         });
     } else {
@@ -196,7 +196,7 @@ $(document).ready(function()
     // Phadia prime close button
     $('#phadiaprimeTile').on('click', function(){
         //$('#phadiaPrime-content').show();
-        $('#mainMenuCont').animate({bottom: '-1000px'}, 1250, function() {
+        $('#mainMenuCont').animate({bottom: '-1000px'}, 1550, function() {
             $('#splash-content').hide();
             $('#phadiaPrime-content').css({
                 'margin-top': '100%',
@@ -206,7 +206,7 @@ $(document).ready(function()
             $('#phadiaPrime-content').animate({
                 'margin-top': '0%',
                 'opacity': '1'
-            }, 1250);
+            }, 1550);
         });
     });
 
@@ -229,7 +229,7 @@ $(document).ready(function()
         hotspotSelect = $(this).data('device-hotspot-select')
         data = $(this).data('device-data-id')
 
-        $('#mainMenuCont').animate({bottom: '-1000px'}, 1250, function() {
+        $('#mainMenuCont').animate({bottom: '-1000px'}, 1550, function() {
             $('#mainMenuCont').removeClass('open');
             $('#splash-content').fadeOut(200); 
             online = false
@@ -268,7 +268,7 @@ $(document).ready(function()
                 startX
             );
             if (!swiped){
-                $('#contentData').animate({'margin-top': '0%'}, 'slow', function() {
+                $('#contentData').animate({'margin-top': '0%'}, 1550, function() {
                     //nothing
                 });
             }
@@ -307,9 +307,9 @@ $(document).ready(function()
         // open it
         var ipad = window.matchMedia("(max-width: 1024px)")
         if (ipad.matches){
-            $('#mainMenuCont').animate({bottom: '16%'}, 1250)
+            $('#mainMenuCont').animate({bottom: '16%'}, 1550)
         } else {
-            $('#mainMenuCont').animate({bottom: '5%'}, 1250)
+            $('#mainMenuCont').animate({bottom: '5%'}, 1550)
         }
         
     })
@@ -374,7 +374,7 @@ $(document).ready(function()
 
     function swipeUp(deviceList, nextScreen){
         console.log("swiped up");
-        $('#layoutCont').animate({'margin-top': '-100%'}, "slow", function(){
+        $('#layoutCont').animate({'margin-top': '-100%'}, 1550, function(){
             $("#playHotspot").hide();
             $("#title").remove();
             $("#disclaimer").remove();
@@ -386,13 +386,13 @@ $(document).ready(function()
             $('div').find("[data-device-data-id='"+ deviceList[nextScreen] +"']").trigger("click", [true]);
             setTimeout(function(){
                 $('#layoutCont').css({'margin-top': '100%'});
-                $('#layoutCont').animate({'margin-top': '0%'}, "slow", function(){});
+                $('#layoutCont').animate({'margin-top': '0%'}, 1550, function(){});
                 }, 1000)
         });
     }
 
     function swipeDown(deviceList, nextScreen){
-        $('#layoutCont').animate({'margin-top': '100%'}, "slow", function(){
+        $('#layoutCont').animate({'margin-top': '100%'}, 1550, function(){
             $("#playHotspot").hide();
             $("#title").remove();
             $("#disclaimer").remove();
@@ -405,7 +405,7 @@ $(document).ready(function()
 
             setTimeout(function(){
                 $('#layoutCont').css({'margin-top': '-100%'});
-                $('#layoutCont').animate({'margin-top': '0%'}, "slow", function(){});
+                $('#layoutCont').animate({'margin-top': '0%'}, 1550, function(){});
                 }, 1000)
         });
     }
