@@ -115,7 +115,7 @@ function showMainMenu(){
             $('#mainMenuCont').addClass('open');
         });
     } else {
-        $('#mainMenuCont').animate({bottom: '5%'}, 'slow', function() {
+        $('#mainMenuCont').animate({bottom: '5%'}, 1550, function() {
             $('#mainMenuCont').addClass('open');
         });
     }
