@@ -709,6 +709,122 @@
             background-position: center; 
         }
 
+        #headline-disclaimer {
+            font-size: 22px;
+            margin-bottom: 13px;
+        }
+
+
+        /* Element | file:///D:/Coding/Javacript/PhadiaWeb/index.html */
+
+        #headline-disclaimer {
+          font-size: 22px;
+          margin-bottom: 13px;
+        }
+
+        /* Element | file:///D:/Coding/Javacript/PhadiaWeb/index.html */
+
+        #additionalResourceBtn > p:nth-child(1) {
+          font-weight: lighter;
+        }
+
+        /* Element | file:///D:/Coding/Javacript/PhadiaWeb/index.html */
+
+        #headline-text {
+          margin-bottom: 4%;
+          width: 78%;
+        }
+
+        /* Element | file:///D:/Coding/Javacript/PhadiaWeb/index.html */
+
+        #message {
+          width: 70%;
+          margin-left: 10vw;
+          font-size: 2.75vh;
+        }
+
+        .scientific-logo {
+            position: absolute;
+            margin: auto;
+            width: 39%;
+            display: block;
+            top: 39%;
+            left: 31%;
+        }
+
+
+        /* Inline #2 | file:///D:/Coding/Javacript/PhadiaWeb/index.html */
+
+        #phadiaLogo {
+          /* margin-top: 2%; */
+          margin-top: 7%;
+        }
+
+        #mainMenuCont {
+          /* width: 75vw; */
+          width: 68vw;
+          height: 63vh;
+          left: 18.5vw;
+        }
+
+        div.deviceTile {
+          /* height: 32vh; */
+          /* width: 22vw; */
+          height: 28vh;
+          width: 20vw;
+        }
+
+        div.sideTile {
+          /* height: 21.3vh; */
+          height: 18.6vh;
+        }
+
+        #playHotspot {
+            width: 23%;
+            margin-top: 20%;
+        }
+
+        div.headline { 
+            font-family: Arial; 
+            font-size: 3vh;
+            display: inline-block; 
+        }
+
+
+        #deviceTitle {
+            text-align: center;
+            margin-top: 10vh;
+            margin-bottom: -11vh;
+            height: 15%;
+        }
+
+        #infoHeaderText {
+            height: 25vh;
+            margin-top: 10vh;
+            margin-left: -5%;
+            margin-right: 6%;
+            display: block;
+        }
+
+        #eliaTileAdditional {
+            background-image: url('./assets/EliA/carousel.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center; 
+            background-color: rgb(0, 0, 0); 
+            margin: 2%;
+        }
+
+        #immunocapTileAdditional {
+            background-image: url('./assets/ImmunoCap/carousel.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            background-color: rgb(0, 0, 0); 
+            margin: 2%;
+        }
+
+
         </style>
 </head>
 
@@ -747,7 +863,7 @@
                     </div>
                 </div>
                 <div class="d-flex col-xs-6 infoBlock" style="text-align: center;">
-                    <div id="infoHeaderText" class="col" style="height: 25vh; margin-top: 15%;margin-left: 5%;margin-right: 5%;">
+                    <div id="infoHeaderText" class="col">
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="hsNumberContRed noselect" id="hsNumberCont" style="display: none;">
@@ -862,16 +978,16 @@
             </div>
             <div class="row centered">
                 <div class="tile-wrapper" style="margin-left: 2.5%;">
-                    <div id="eliaTileAdditional" class="itemTile sideTile col-xs-3 tile" data-video-url="assets/EliA/Phadia_ELIA.mp4" data-video-type="video/mp4" style="background: rgb(0, 0, 0); margin: 2%;">
+                    <div id="eliaTileAdditional" class="itemTile sideTile col-xs-3 tile" data-video-url="assets/EliA/Phadia_ELIA.mp4" data-video-type="video/mp4">
                         <div class="vertical-center col">
-                            <img src="./assets/EliA/carousel.png" class="img-responsive"/>
+                            <div class="eila-additional"></div>
                         </div>
                     </div>
                 </div>
                 <div class="tile-wrapper" style="margin-left: 2.5%;">
-                    <div id="immunocapTileAdditional" class="itemTile sideTile col-xs-3 tile" data-video-url="assets/ImmunoCap/Phadia_ImmunoCAP.mp4" data-video-type="video/mp4" style="background: rgb(0, 0, 0); margin: 2%;">
+                    <div id="immunocapTileAdditional" class="itemTile sideTile col-xs-3 tile" data-video-url="assets/ImmunoCap/Phadia_ImmunoCAP.mp4" data-video-type="video/mp4">
                         <div class="vertical-center col">
-                            <img src="./assets/ImmunoCap/carousel.png" class="img-responsive"/>
+                            <div class="immunocap-additional"></div>
                         </div>
                     </div>
                 </div>
@@ -889,7 +1005,7 @@
             <div id="showMainMenuBtn">
                 <button class="mainMenuBtn btnSonar" onClick="showMainMenu()"></button>
             </div>
-            <div id="mainMenuCont" class="row mainMenuCont h-100 menu" style="position: absolute; bottom:-1000px; left: 12.5vw;">
+            <div id="mainMenuCont" class="row mainMenuCont h-100 menu" style="bottom:-1000px;">
                 <div class="closeButtonCont" id="mainMenuCloseBtn" style="display: none;">
                     <button class="mainMenucloseButton btnSonar closeBtn" onClick="mainMenuClose()"></button>
                 </div>
@@ -929,7 +1045,7 @@
         "hotspots": [{
                 "video": "Phadia200_HotSpot_01",
                 "visible": true,
-                "position": [-0.27, -0.26, 0.38],
+                "position": [-0.27, -0.04, 0.38],
                 "headline": "Reagent Carousel",
                 "text": "All reagents and samples are placed in one carousel with automatic barcode scanning for more convenience and reagent control",
                 "valuemessage": "All reagents and samples are placed in one varousel with automatic barcode scanning for more convenience and reagent control",
@@ -983,7 +1099,7 @@
             {
                 "video": "Phadia200_HotSpot_05",
                 "visible": true,
-                "position": [0.03, 0.26, 0.90],
+                "position": [0.25, 0.26, 0.90],
                 "headline": "Automated ImmunoCAP™ and EliA™ Test Well Carrier Identification and Dispensing",
                 "text": "Reduces hands-on time, minimizes errors and provides full traceability for every test",
                 "valuemessage": "Reduces hands-on time, minimizes errors and provides full traceability for every test",
@@ -996,7 +1112,7 @@
             {
                 "video": "Phadia200_HotSpot_06",
                 "visible": true,
-                "position": [0.46, -0.03, 0.6225],
+                "position": [0.64, -0.03, 0.6225],
                 "headline": "Test Carrier Loading and Reflex Testing",
                 "text": "ImmunoCAP™ and EliA™ removable test carrier trays hold up to 96 varriers in one tray and are automatically scanned for full traceability",
                 "valuemessage": "ImmunoCAP™ and EliA™ removable test carrier trays hold up to 96 varriers in one tray and are automatically scanned for full traceability",
@@ -1030,7 +1146,7 @@
                 "text": "Automated reflex testing reduces unnecessary tests and hands-on time by enabling automatic follow up testing according to the laboratory's routines.",
                 "valuemessage": "Automated reflex testing reduces unnecessary tests and hands-on time by enabling automatic follow up testing according to the laboratory's routines.",
                 "infotext": [
-                    "Automated reflex testing for both ImmunoCAP(tmp char) and EliA™ assays if the first test result is positive",
+                    "Automated reflex testing for both ImmunoCAP™ and EliA™ assays if the first test result is positive",
                     "ImmunoCAP™ mixes can be followed up by testing with ImmunoCAP™ whole allergens",
                     "ImmunoCAP™ whole allergens can be followed up by testing with ImmunoCAP™ allergen components"
                 ]
