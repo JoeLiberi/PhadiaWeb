@@ -125,9 +125,23 @@
 
         #showMainMenuBtn, #showMainMenuBtnVideo { position: fixed; bottom:1%; left:1%; width:5%; z-index: 99;}
 
-        button.closeButton {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Close_Button.svg"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent;}
-        button.mainMenucloseButton {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Close_Button.svg"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent;}
-        button.mainMenuBtn {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Carousel.png"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent;}
+        button.closeButton {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Close_Button.svg"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent; width: 100%;}
+        button.mainMenucloseButton {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Close_Button.svg"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent; width: 100%;}
+        button.mainMenuBtn {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Carousel.png"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent; width: 100%;}
+
+        /*div.topRow {padding-top: 20px;}*/
+        @media only screen and (max-width: 1440px) {
+            button.closeButton{
+                width: 70px;
+            }
+            button.mainMenucloseButton{
+                width: 70px;
+            }
+            button.mainMenuBtn{
+                width: 70px;
+            }
+        }
+
         .noselect {
           -webkit-touch-callout: none;
             -webkit-user-select: none;
