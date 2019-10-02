@@ -39,11 +39,18 @@ function mainMenuClose(){
     $('.splash-screen').attr({'src': './assets/Blue_Pollen_White_Splash.png'})
     $('#mainMenuCont').animate({bottom: '-1000px'}, 'slow', function() {
         // $('.splash-screen').attr({'src': './assets/Blue_Pollen_White_Splash.png'})
-        $('#mainMenuCont').hide()
-        $('#thermoLogo').fadeIn("slow");
-        $('#showMainMenuBtn').fadeIn("slow")
     })
 
+    $('#mainMenuCloseBtn').animate({'margin-top': '-100%'}, 1550, function(){
+        $('#mainMenuCloseBtn').hide();
+        $('#mainMenuCont').hide()
+        $('#thermoLogo').fadeIn("slow");
+        // $('#showMainMenuBtn').fadeIn("slow")
+        $('#showMainMenuBtn').show(function(){
+            $('#showMainMenuBtn').animate({'margin-bottom': '0%'}, 1550);
+        });
+    });
+    
     $('.splash-screen').on('click',function(){
         //alert('clicked')
         // hide the splash screen
@@ -51,12 +58,15 @@ function mainMenuClose(){
         $('#thermoLogo').hide();
         $('#mainMenuCont').show();
 
-        $('#showMainMenuBtn').hide();
+        
+        $('#showMainMenuBtn').animate({'margin-bottom': '-100%'}, 1550, function(){
+            $('#showMainMenuBtn').hide();
+        });
         
         // $('#mainMenuCloseBtn').show();
         $('#mainMenuCloseBtn').css({'margin-top': '-100%'});
         $('#mainMenuCloseBtn').show();
-        $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 'fast', function(){
+        $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 1550, function(){
             $('.splash-screen').unbind( "click" );
         });
         // open it
@@ -67,7 +77,7 @@ function mainMenuClose(){
             $('#mainMenuCont').animate({bottom: '5%'}, 1550)
         }
         
-    })
+    });
 }
 
 function phadiaPrimeClose(){
@@ -80,10 +90,17 @@ function phadiaPrimeClose(){
     } else {
         bottomPercent = '5%'
     }
+
+    $('#phadiaPrimeClose').animate({'margin-top': '-100%'}, 1550, function(){
+        $('#phadiaPrimeClose').hide();
+    });
     $('#phadiaPrime-content').animate({'margin-top': '100%'}, 1550, function(){
         $('#phadiaPrime-content').hide();
         $('#splash-content').fadeIn(200);
-        $('#mainMenuCont').animate({bottom: bottomPercent}, 'slow', function() {
+        $('#mainMenuCloseBtn').show(function(){
+            $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 1550);
+        });
+        $('#mainMenuCont').animate({bottom: bottomPercent}, 1550, function() {
             $('#mainMenuCont').addClass('open');
         });
     });
@@ -102,28 +119,33 @@ function videoClose(){
 }
 
 function showMainMenu(){
-    $('#layoutCont').hide();
-    $('#thermoLogo').hide();
-    $('#mainMenuCont').show();
-    $('#splash-content').show();
-    $('#showMainMenuBtn').hide();
-    // $('.overlayFrame').show();
-
-    var ipad = window.matchMedia("(max-width: 1024px)")
-    if (ipad.matches){
-        $('#mainMenuCont').animate({bottom: '16%'}, 1550, function() {
-            $('#mainMenuCont').addClass('open');
+    $('#contentData').hide();
+    $('#showMainMenuBtnVideo').animate({bottom: '-1000px'}, 1550, function(){
+        $('#layoutCont').hide();
+        $('#thermoLogo').hide();
+        $('#mainMenuCont').show();
+        $('#splash-content').show();
+        $('#showMainMenuBtn').hide();
+        // $('.overlayFrame').show();
+        $('#mainMenuCloseBtn').show(function(){
+            $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 1550);
         });
-    } else {
-        $('#mainMenuCont').animate({bottom: '5%'}, 1550, function() {
-            $('#mainMenuCont').addClass('open');
-        });
-    }
+        
+        var ipad = window.matchMedia("(max-width: 1024px)")
+        if (ipad.matches){
+            $('#mainMenuCont').animate({bottom: '16%'}, 1550, function() {
+                $('#mainMenuCont').addClass('open');
+            });
+        } else {
+            $('#mainMenuCont').animate({bottom: '5%'}, 1550, function() {
+                $('#mainMenuCont').addClass('open');
+            });
+        }
+    });
 }
 
 $(document).ready(function()
 {
-
     var content = document.getElementById('layoutCont');
     content.addEventListener('touchstart', function(event) {
         this.allowUp = (this.scrollTop > 0);
@@ -232,14 +254,16 @@ $(document).ready(function()
     
     // Phadia prime close button
     $('#phadiaprimeTile').on('click', function(){
-        //$('#phadiaPrime-content').show();
+        $('#mainMenuCloseBtn').animate({'margin-top': '-1000px'}, 1550);
         $('#mainMenuCont').animate({bottom: '-1000px'}, 1550, function() {
             $('#splash-content').hide();
             $('#phadiaPrime-content').css({
                 'margin-top': '100%',
                 'opacity': '0.5'
             });
+            $('#phadiaPrimeClose').show();
             $('#phadiaPrime-content').show();
+            $('#phadiaPrimeClose').animate({'margin-top': '0%'}, 1550)
             $('#phadiaPrime-content').animate({
                 'margin-top': '0%',
                 'opacity': '1'
@@ -265,13 +289,16 @@ $(document).ready(function()
         sysSelect = $(this).data('device-file-select')
         hotspotSelect = $(this).data('device-hotspot-select')
         data = $(this).data('device-data-id')
-
+        $('#mainMenuCloseBtn').animate({'margin-top': '-100%'}, 1550, function(){
+            $('#mainMenuCloseBtn').hide();
+        });
         $('#mainMenuCont').animate({bottom: '-1000px'}, 1550, function() {
             $('#mainMenuCont').removeClass('open');
             $('#splash-content').fadeOut(200); 
             online = false
             $('#swipe-div').data('device-swipe-id', data)
             $('#layoutCont').show();
+            $('#contentData').show();
             $("#headline").remove();
             $("#headline-disclaimer").remove();
             // $("#hsNumberCont").show();
@@ -321,6 +348,7 @@ $(document).ready(function()
             // Set a data attribute on all the hotspots so we can get back to the device page when the video closes
             $('.hotspotCont').data('device', data)
             // $("#hsNumberCont").show();
+            $('#showMainMenuBtnVideo').animate({bottom: '1%'}, 1550);
         });
     });
 
@@ -335,12 +363,15 @@ $(document).ready(function()
         $('#thermoLogo').hide();
         $('#mainMenuCont').show();
 
-        $('#showMainMenuBtn').hide();
+        
+        $('#showMainMenuBtn').animate({'margin-bottom': '-100%'}, 1550, function(){
+            $('#showMainMenuBtn').hide();
+        });
         
         // $('#mainMenuCloseBtn').show();
         $('#mainMenuCloseBtn').css({'margin-top': '-100%'});
         $('#mainMenuCloseBtn').show();
-        $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 'fast', function(){
+        $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 1550, function(){
             $('.splash-screen').unbind( "click" );
         });
         // open it

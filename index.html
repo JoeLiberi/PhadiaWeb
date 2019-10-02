@@ -854,9 +854,6 @@
                             <img src="./assets/buttons/playall.png">
                         </div>
                     </div>
-                    <div id="showMainMenuBtnVideo">
-                        <button class="mainMenuBtn btnSonar" onClick="showMainMenu()"></button>
-                    </div>
                 </div>
                 <div class="d-flex col-xs-6 infoBlock" style="text-align: center;">
                     <div id="infoHeaderText" class="col">
@@ -887,6 +884,9 @@
                     </div>
                 </div>
             </div>
+            <div id="showMainMenuBtnVideo" style="bottom: -1000px;">
+                <button class="mainMenuBtn btnSonar" onClick="showMainMenu()"></button>
+            </div>
         </div>
         <div class="overlayFrame" id="overlay-frame" style="width:100%; height: 100%; left: 0%; top:0; position: absolute; border: 0;overflow: hidden; display: none;">
             <div class="closeButtonCont" id="videoCloseBtn" style="display: none;">
@@ -912,10 +912,10 @@
             </div>
         </div>
         <img src="./assets/Blue_Pollen_White_Splash.png" class="splash-screen landscape-screen background-screen">
+        <div class="closeButtonCont" id="phadiaPrimeClose" style="display: none; margin-top: -100%;">
+            <button class="closeButton btnSonar closeBtn" onClick="phadiaPrimeClose()"></button>
+        </div>
         <div id="phadiaPrime-content" class="container-fluid" style="display: none;">
-            <div class="closeButtonCont" id="phadiaPrimeClose" style="display: block;">
-                <button class="closeButton btnSonar closeBtn" onClick="phadiaPrimeClose()"></button>
-            </div>
             <div class="row">
                 <div class="col" style="height: 10vh;">
                     <h2 style="color: white; text-align: center; margin-top: 2%;">Thermo Scientific Phadia Prime Software</h2>
