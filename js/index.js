@@ -51,7 +51,7 @@ function mainMenuClose(){
         });
     });
     
-    $('.splash-screen').on('click',function(){
+    $('.splash-screen, .mainMenuBtnSplash').on('click',function(){
         //alert('clicked')
         // hide the splash screen
         $('.splash-screen').attr({'src': './assets/BLUE_POLLEN.png'})
@@ -356,7 +356,7 @@ $(document).ready(function()
     When the splash screen is clicked we show the main menu
     */
 
-    $('.splash-screen').on('click',function(){
+    $('.splash-screen, mainMenuBtnSplash').on('click',function(){
         //alert('clicked')
         // hide the splash screen
         $('.splash-screen').attr({'src': './assets/BLUE_POLLEN.png'})

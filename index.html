@@ -128,6 +128,7 @@
         button.closeButton {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Close_Button.svg"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent; width: 100%;}
         button.mainMenucloseButton {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Close_Button.svg"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent; width: 100%;}
         button.mainMenuBtn {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Carousel.png"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent; width: 100%;}
+        button.mainMenuBtnSplash {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Carousel.png"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent; width: 100%;}
 
         /*div.topRow {padding-top: 20px;}*/
         @media only screen and (max-width: 1440px) {
@@ -138,6 +139,10 @@
                 width: 70px;
             }
             button.mainMenuBtn{
+                width: 70px;
+            }
+
+            button.mainMenuBtnSplash{
                 width: 70px;
             }
         }
@@ -1013,7 +1018,7 @@
                 </div>
             </div>
             <div id="showMainMenuBtn">
-                <button class="mainMenuBtn btnSonar" onClick="showMainMenu()"></button>
+                <button class="mainMenuBtnSplash btnSonar"></button>
             </div>
             <div id="mainMenuCont" class="row mainMenuCont h-100 menu" style="bottom:-1000px;">
                 <div class="closeButtonCont" id="mainMenuCloseBtn" style="display: none;">
