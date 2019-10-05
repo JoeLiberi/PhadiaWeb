@@ -96,7 +96,9 @@ function phadiaPrimeClose(){
     });
     $('#phadiaPrime-content').animate({'margin-top': '100%'}, 1550, function(){
         $('#phadiaPrime-content').hide();
-        $('#splash-content').fadeIn(200);
+        $('#splash-content').show();
+        $('#phadiaLogo').fadeIn(750);
+
         $('#mainMenuCloseBtn').show(function(){
             $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 1550);
         });
@@ -127,6 +129,7 @@ function showMainMenu(){
         $('#splash-content').show();
         $('#showMainMenuBtn').hide();
         // $('.overlayFrame').show();
+        $('#phadiaLogo').fadeIn(750);
         $('#mainMenuCloseBtn').show(function(){
             $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 1550);
         });
@@ -255,6 +258,9 @@ $(document).ready(function()
     // Phadia prime close button
     $('#phadiaprimeTile').on('click', function(){
         $('#mainMenuCloseBtn').animate({'margin-top': '-1000px'}, 1550);
+        $('#phadiaLogo').fadeOut(500, function(){
+            $('#splash-content').fadeOut(); 
+        });
         $('#mainMenuCont').animate({bottom: '-1000px'}, 1550, function() {
             $('#splash-content').hide();
             $('#phadiaPrime-content').css({
@@ -292,9 +298,11 @@ $(document).ready(function()
         $('#mainMenuCloseBtn').animate({'margin-top': '-100%'}, 1550, function(){
             $('#mainMenuCloseBtn').hide();
         });
+        $('#phadiaLogo').fadeOut(500, function(){
+            $('#splash-content').fadeOut(); 
+        });
         $('#mainMenuCont').animate({bottom: '-1000px'}, 1550, function() {
             $('#mainMenuCont').removeClass('open');
-            $('#splash-content').fadeOut(200); 
             online = false
             $('#swipe-div').data('device-swipe-id', data)
             $('#layoutCont').show();
@@ -356,7 +364,7 @@ $(document).ready(function()
     When the splash screen is clicked we show the main menu
     */
 
-    $('.splash-screen, mainMenuBtnSplash').on('click',function(){
+    $('.splash-screen, .mainMenuBtnSplash').on('click',function(){
         //alert('clicked')
         // hide the splash screen
         $('.splash-screen').attr({'src': './assets/BLUE_POLLEN.png'})
