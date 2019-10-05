@@ -130,6 +130,7 @@ function showMainMenu(){
         $('#showMainMenuBtn').hide();
         // $('.overlayFrame').show();
         $('#phadiaLogo').fadeIn(750);
+        $('#playAllBut').unbind();
         $('#mainMenuCloseBtn').show(function(){
             $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 1550);
         });
