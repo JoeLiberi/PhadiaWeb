@@ -249,7 +249,7 @@ $(document).ready(function()
     // });
 
     // Phadia prime tile should close its self when the video ends
-    $('.primeImgTile, .itemTile').on('click', function(){
+    $('.primeImgTile, .itemTile, .edgeTile').on('click', function(){
         $('#overlay-frame').css({'opacity': 1});
         $('#overlay-frame').show();
         $('#overlay-frame').append("<Video id='tileVideo' controls autoplay onended='primeVideoEnd()' onpause='videoPause()'><source src='"+ $(this).data('video-url') +"'></Video>")
