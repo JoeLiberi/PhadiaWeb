@@ -365,11 +365,39 @@ $(document).ready(function()
     When the splash screen is clicked we show the main menu
     */
 
-    $('.splash-screen, .mainMenuBtnSplash').on('click',function(){
+    $('.splash-screen').on('click',function(){
         //alert('clicked')
         // hide the splash screen
         $('.splash-screen').attr({'src': './assets/BLUE_POLLEN.png'})
-        $('#thermoLogo').hide();
+        $('#thermoLogo').fadeOut(500);
+        $('#mainMenuCont').show();
+
+        
+        $('#showMainMenuBtn').animate({'margin-bottom': '-100%'}, 1550, function(){
+            $('#showMainMenuBtn').hide();
+        });
+        
+        // $('#mainMenuCloseBtn').show();
+        $('#mainMenuCloseBtn').css({'margin-top': '-100%'});
+        $('#mainMenuCloseBtn').show();
+        $('#mainMenuCloseBtn').animate({'margin-top': '0%'}, 1550, function(){
+            $('.splash-screen').unbind( "click" );
+        });
+        // open it
+        var ipad = window.matchMedia("(max-width: 1024px)")
+        if (ipad.matches){
+            $('#mainMenuCont').animate({bottom: '16%'}, 1550)
+        } else {
+            $('#mainMenuCont').animate({bottom: '5%'}, 1550)
+        }
+        
+    })
+
+    $('.mainMenuBtnSplash').on('click',function(){
+        //alert('clicked')
+        // hide the splash screen
+        $('.splash-screen').attr({'src': './assets/BLUE_POLLEN.png'})
+        $('#thermoLogo').fadeOut(500);
         $('#mainMenuCont').show();
 
         
