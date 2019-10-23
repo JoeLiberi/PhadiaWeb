@@ -959,6 +959,9 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
     
     function setPos(relPos, hideId)
     {
+        $('.hotspotCont').show();
+        $('.hotspotCircleCont').show();
+
         systemWasRotated = true;
         // console.log('relpos' + relPos)
         relPos = 1.0 -  Math.max(Math.min(relPos / vidContSize[0], 1.0), 0.0);
@@ -1106,13 +1109,11 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         $('.hotspotCircleCont').fadeOut("slow");
     })
 
-    // $('.splash-screen').on('click',function(){
-    //     setPos(lastX, true)
-    //     //TODO - look at starting the device at the middle posisiton using setPOs, and setting a cutomer headline and message right darn here
-    // })
+    $('.splash-screen').on('click',function(){
+        setPos(lastX, true)
+        //TODO - look at starting the device at the middle posisiton using setPOs, and setting a cutomer headline and message right darn here
+    })
 
-
-       
     //------------------------------------------------------------------
     $('.playHotspotButton').on('click',function(event){ 
         hsClicked(event)

@@ -1,6 +1,7 @@
 let hotspotSize;
 let timeoutIDshort;
 let timeoutIDlong;
+let timeoutIDreallylong;
 
 function readTextFile(file, callback) {
     var rawFile = new XMLHttpRequest();
@@ -602,55 +603,97 @@ $(document).ready(function()
         this.addEventListener("touchmove", resetTimer, false);
         this.addEventListener("MSPointerMove", resetTimer, false);
     }
+    let deviceScreenID
+    let primeScreenID
 
-    var timeoutIDreallylong;
-    function startShortTimer() {
+    function startShortTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDshort = window.setTimeout(goInactiveShort, 30000);
+        // timeoutIDshort = window.setTimeout(goInactiveShort, 30000);
+        // testing
+        timeoutIDshort = window.setTimeout(goInactiveShort.bind(null, callback), 2000);
     }
 
-    function startLongTimer() {
+    function startLongTimer(callback) {
         // wait 2 seconds before calling goInactive
         timeoutIDlong = window.setTimeout(goInactiveLong, 120000);
+        // testing
+        // timeoutIDlong = window.setTimeout(goInactiveLong.bind(null, callback), 4000);
     }
 
-    function startReallyLongTimer() {
+    function startdeviceScreenTimer(callback) {
+        // wait 2 seconds before calling goInactive
+        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong, 120000);
+        // testing
+        // deviceScreenID = window.setTimeout(goInactiveDeviceScreen.bind(null, callback), 4000);
+    }
+
+    function startprimeScreenTimer(callback) {
+        // wait 2 seconds before calling goInactive
+        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong, 120000);
+        // testing
+        // primeScreenID = window.setTimeout(goInactivePrimeScreen.bind(null, callback), 4000);
+    }
+
+    function startReallyLongTimer(callback) {
         // wait 2 seconds before calling goInactive
         timeoutIDreallylong = window.setTimeout(goInactiveReallyLong, 240000);
+        // testing
+        // timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 16000);
     }
     
     function clearTimers(){
         window.clearTimeout(timeoutIDshort);
         window.clearTimeout(timeoutIDlong);
         window.clearTimeout(timeoutIDreallylong);
+        window.clearTimeout(primeScreenID);
+        window.clearTimeout(deviceScreenID);
     }
+
     function resetTimer(e) {
         clearTimers();
         goActive();
     }
      
-    function goInactiveShort() {
+    function goInactiveShort(callback) {
         // check if the overlay frame is visible first
-        if (!isHidden(document.getElementById('overlay-frame'))){
-            $('#videoCloseBtn').trigger('click');
-            setTimeout(function(){
+        if (!isHidden(document.getElementById('layoutCont'))){
+            if (!isHidden(document.getElementById('overlay-frame'))){
+                $('#videoCloseBtn').trigger('click');
+                setTimeout(function(){
+                    $('#hideHotspots').trigger('click');
+                }, 1000);
+            } else {
+                // if its not hidden we just need to hide the hotspots
                 $('#hideHotspots').trigger('click');
-            }, 1000);
-        } else {
-            // if its not hidden we just need to hide the hotspots
-            $('#hideHotspots').trigger('click');
+            }
         }
+
+        callback && callback();
     }
 
-    function goInactiveLong() {
-        // $("#overlay-details").animate({
-        //     right: "-70%"
-        // });
-        // $('#overlay-frame').show();
-        // $('.splash-screen').show();
+    function goInactiveDeviceScreen(callback){
+        $('#showMainMenuBtnVideo').find(".mainMenuBtn").trigger('click');
+        callback && callback();
     }
 
-    function goInactiveReallyLong() {
+    function goInactivePrimeScreen(callback){
+        $('#phadiaPrimeClose').find(".closeButton").trigger('click');
+        callback && callback();
+    }
+
+    function goInactiveLong(callback) {
+        if ($('#phadiaPrimeClose:visible').length > 0){
+            console.log('clicking prime close button')
+            $('#phadiaPrimeClose').find(".closeButton").trigger('click')
+        } else {
+            console.log('clicking main menu button')
+            $('#showMainMenuBtnVideo').find(".mainMenuBtn").trigger('click')
+        }
+
+        callback && callback();
+    }
+
+    function goInactiveReallyLong(callback) {
         if (!isHidden(document.getElementById('mainMenuCont'))){
             mainMenuClose();
         } else {
@@ -660,15 +703,34 @@ $(document).ready(function()
                 mainMenuClose();
             }, 1000);
         }
+
+        callback && callback();
+
     }
      
     function goActive() {
-        if (isHidden(document.getElementById('mainMenuCont'))){
-            startShortTimer();
-            startLongTimer();
+        if ($('#thermoLogo:visible').length  > 0){
+            // do nothing
+        } else if($('.hotspotCont').css('opacity') == 1){
+            startShortTimer(function(){
+                startdeviceScreenTimer(function(){
+                    startReallyLongTimer();
+                });
+            });
+
+        } else if ($('#videoContainer:visible').length > 0){
+            startdeviceScreenTimer(function(){
+                startReallyLongTimer();
+            });
+
+        } else if ($('#phadiaPrime-content:visible').length > 0){
+            startprimeScreenTimer(function(){
+                startReallyLongTimer();
+            });
+
+        } else if ($('#mainMenuCont:visible').length > 0){
             startReallyLongTimer();
         }
     }
-
     setup();
 });
