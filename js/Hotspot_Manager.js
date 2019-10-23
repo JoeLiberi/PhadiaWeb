@@ -991,6 +991,37 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
             lastFrame = nextValid;
         }
     }
+
+    function setPosNoHotspots(relPos, hideId)
+    {
+
+        systemWasRotated = true;
+        //alert('relpos' + relPos)
+        relPos = 1.0 -  Math.max(Math.min(relPos / vidContSize[0], 1.0), 0.0);
+        lastRelPos = 1.0 - relPos;
+
+        // get corresponding frame to this relPos;
+        var relFrame = Math.floor(relPos * vidNrFrames);
+        var nextValid = closest(relFrame, validImages);
+        //console.log(validImages)
+        // if we need a new frame
+        if (lastFrame != nextValid)
+        {
+            imgDivs[nextValid].style.opacity = "1.0";
+            imgDivs[nextValid].style.filter = 'alpha(opacity=100)'; // IE fallback
+
+            if (lastFrame != -1) 
+            {
+                $("#" + imgDivs[lastFrame].id).fadeTo(imgFadeTime, 0);  // 1.0 works best in firefox/linux, 0.0 in all others
+                 imgDivs[nextValid].style.filter = 'alpha(opacity=0)';  // IE fallback
+            } else 
+            {
+                vid.parentNode.removeChild(vid);
+            }
+
+            lastFrame = nextValid;
+        }
+    }
     
     //------------------------------------------------------------------
     
@@ -1066,11 +1097,21 @@ function Hotspot_Manager(jsonFilePath, sysSelect, videoId, imgPath, videoPath, b
         lastX = relX;        
     });
     
-
-    $('.splash-screen').on('click',function(){
-        setPos(lastX, true)
-        //TODO - look at starting the device at the middle posisiton using setPOs, and setting a cutomer headline and message right darn here
+    $('#hideHotspots').bind('click', function(e){
+        $('#hsNumberCont').hide();
+        $("#headline").text(jsonObj.headline).fadeIn("slow");
+        $("#message").text( jsonObj.text).fadeIn("slow");
+        setPosNoHotspots(lastX, true)
+        $('.hotspotCont').fadeOut("slow");
+        $('.hotspotCircleCont').fadeOut("slow");
     })
+
+    // $('.splash-screen').on('click',function(){
+    //     setPos(lastX, true)
+    //     //TODO - look at starting the device at the middle posisiton using setPOs, and setting a cutomer headline and message right darn here
+    // })
+
+
        
     //------------------------------------------------------------------
     $('.playHotspotButton').on('click',function(event){ 

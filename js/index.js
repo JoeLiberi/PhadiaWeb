@@ -587,4 +587,88 @@ $(document).ready(function()
         $('#addtionalResources-content').fadeOut();
         $('#layoutCont').fadeIn();
     });
+
+    /// Used to check if an element is hidden
+    function isHidden(el) {
+        return (el.offsetParent === null)
+    }
+
+    function setup() {
+        this.addEventListener("mousemove", resetTimer, false);
+        this.addEventListener("mousedown", resetTimer, false);
+        this.addEventListener("keypress", resetTimer, false);
+        this.addEventListener("DOMMouseScroll", resetTimer, false);
+        this.addEventListener("mousewheel", resetTimer, false);
+        this.addEventListener("touchmove", resetTimer, false);
+        this.addEventListener("MSPointerMove", resetTimer, false);
+    }
+
+    var timeoutIDreallylong;
+    function startShortTimer() {
+        // wait 2 seconds before calling goInactive
+        timeoutIDshort = window.setTimeout(goInactiveShort, 30000);
+    }
+
+    function startLongTimer() {
+        // wait 2 seconds before calling goInactive
+        timeoutIDlong = window.setTimeout(goInactiveLong, 120000);
+    }
+
+    function startReallyLongTimer() {
+        // wait 2 seconds before calling goInactive
+        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong, 240000);
+    }
+    
+    function clearTimers(){
+        window.clearTimeout(timeoutIDshort);
+        window.clearTimeout(timeoutIDlong);
+        window.clearTimeout(timeoutIDreallylong);
+    }
+    function resetTimer(e) {
+        clearTimers();
+        goActive();
+    }
+     
+    function goInactiveShort() {
+        // check if the overlay frame is visible first
+        if (!isHidden(document.getElementById('overlay-frame'))){
+            $('#videoCloseBtn').trigger('click');
+            setTimeout(function(){
+                $('#hideHotspots').trigger('click');
+            }, 1000);
+        } else {
+            // if its not hidden we just need to hide the hotspots
+            $('#hideHotspots').trigger('click');
+        }
+    }
+
+    function goInactiveLong() {
+        // $("#overlay-details").animate({
+        //     right: "-70%"
+        // });
+        // $('#overlay-frame').show();
+        // $('.splash-screen').show();
+    }
+
+    function goInactiveReallyLong() {
+        if (!isHidden(document.getElementById('mainMenuCont'))){
+            mainMenuClose();
+        } else {
+            // we should really never get here but just in case the main menu is hidden
+            $(".closeButtonCont:visible").trigger('click');
+            setTimeout(function(){
+                mainMenuClose();
+            }, 1000);
+        }
+    }
+     
+    function goActive() {
+        if (isHidden(document.getElementById('mainMenuCont'))){
+            startShortTimer();
+            startLongTimer();
+            startReallyLongTimer();
+        }
+    }
+
+    setup();
 });
