@@ -608,37 +608,37 @@ $(document).ready(function()
 
     function startShortTimer(callback) {
         // wait 2 seconds before calling goInactive
-        // timeoutIDshort = window.setTimeout(goInactiveShort, 30000);
+        timeoutIDshort = window.setTimeout(goInactiveShort, 30000);
         // testing
-        timeoutIDshort = window.setTimeout(goInactiveShort.bind(null, callback), 2000);
+        // timeoutIDshort = window.setTimeout(goInactiveShort.bind(null, callback), 2000);
     }
 
     function startLongTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDlong = window.setTimeout(goInactiveLong, 120000);
+        timeoutIDlong = window.setTimeout(goInactiveLong.bind(null, callback), 120000);
         // testing
         // timeoutIDlong = window.setTimeout(goInactiveLong.bind(null, callback), 4000);
     }
 
     function startdeviceScreenTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong, 120000);
+        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 120000);
         // testing
         // deviceScreenID = window.setTimeout(goInactiveDeviceScreen.bind(null, callback), 4000);
     }
 
     function startprimeScreenTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong, 120000);
+        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 120000);
         // testing
         // primeScreenID = window.setTimeout(goInactivePrimeScreen.bind(null, callback), 4000);
     }
 
     function startReallyLongTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong, 240000);
+        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 240000);
         // testing
-        // timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 16000);
+        // timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 8000);
     }
     
     function clearTimers(){
@@ -711,24 +711,25 @@ $(document).ready(function()
     function goActive() {
         if ($('#thermoLogo:visible').length  > 0){
             // do nothing
-        } else if($('.hotspotCont').css('opacity') == 1){
+        } else if($('.hotspotCont').css('opacity') == 1 && $('.hotspotCont:visible').length > 0){
+            console.log("starting hotspotCont");
             startShortTimer(function(){
                 startdeviceScreenTimer(function(){
                     startReallyLongTimer();
                 });
             });
-
         } else if ($('#videoContainer:visible').length > 0){
+            console.log("starting video container");
             startdeviceScreenTimer(function(){
                 startReallyLongTimer();
             });
-
         } else if ($('#phadiaPrime-content:visible').length > 0){
+            console.log("starting prime timer");
             startprimeScreenTimer(function(){
                 startReallyLongTimer();
             });
-
         } else if ($('#mainMenuCont:visible').length > 0){
+            console.log("starting main menu");
             startReallyLongTimer();
         }
     }
