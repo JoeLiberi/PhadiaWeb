@@ -712,24 +712,20 @@ $(document).ready(function()
         if ($('#thermoLogo:visible').length  > 0){
             // do nothing
         } else if($('.hotspotCont').css('opacity') == 1 && $('.hotspotCont:visible').length > 0){
-            console.log("starting hotspotCont");
             startShortTimer(function(){
                 startdeviceScreenTimer(function(){
                     startReallyLongTimer();
                 });
             });
         } else if ($('#videoContainer:visible').length > 0){
-            console.log("starting video container");
             startdeviceScreenTimer(function(){
                 startReallyLongTimer();
             });
         } else if ($('#phadiaPrime-content:visible').length > 0){
-            console.log("starting prime timer");
             startprimeScreenTimer(function(){
                 startReallyLongTimer();
             });
         } else if ($('#mainMenuCont:visible').length > 0){
-            console.log("starting main menu");
             startReallyLongTimer();
         }
     }
