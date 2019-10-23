@@ -97,9 +97,9 @@
         div.disclaimer {color:#fff;}
 
         div.spec-message {
-            color:white;font-family: Arial; font-size:20px; margin-bottom:10px; margin-left: 5%; font-size: 2.25vh;
+            color:white;font-family: Arial; font-size:20px; margin-bottom:10px; margin-left: 7%; font-size: 2.25vh;
         }
-        ul.infoTexts { color: white; font-family: Arial; padding-left: 0; margin-left:61px; font-size: 2vh;}
+        ul.infoTexts { color: white; font-family: Arial; padding-left: 0; margin-left:9%; font-size: 2vh;}
         div.hotspotCont { position: absolute; display: inline-block; background-position: center; background-repeat: no-repeat; background-size: contain; -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; }
         .hotspotContText { -webkit-border-radius: 60; -moz-border-radius: 60; border-radius: 60px; font-family: Arial; color: #ffffff;  background: #ff0000; padding: 0px;  border: solid #ffffff; text-decoration: none;  width: inherit;  height: inherit; }
         .hotspotContText:hover { background: #a10202; text-decoration: none; }
@@ -130,6 +130,12 @@
         button.mainMenucloseButton {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Close_Button.svg"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent; width: 100%;}
         button.mainMenuBtn {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Carousel.png"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent; width: 100%;}
         button.mainMenuBtnSplash {  -webkit-border-radius: 60px; -moz-border-radius: 60; border-radius: 60px; background-image: url("./assets/buttons/Carousel.png"); background-position: center; background-size: cover; background-repeat: no-repeat; border: 0; padding-top: 100%; background-color: transparent; width: 100%;}
+
+        .hsNumberWrapper{
+            margin-right: -7%;
+            margin-top: 8px;
+        }
+
 
         /*div.topRow {padding-top: 20px;}*/
         @media only screen and (max-width: 1440px) {
@@ -385,6 +391,11 @@
 
             .systems-logo {
                 width: 140vh;
+            }
+
+            .hsNumberWrapper{
+                margin-right: -7%;
+                margin-top: 6px;
             }
         }
 
@@ -833,7 +844,6 @@
             margin: 2%;
         }
 
-
         </style>
 </head>
 
@@ -906,9 +916,9 @@
             </div>
             <div class="overlay-details" id="overlay-details" style="width: 70%; height: 100%; right: -70%; top: 0px; position: absolute;background-color: rgba(0, 0, 0, 0.72); ">
                 <!-- use this to show the product details after a video finished -->
-                <div style="margin-left: 20%;margin-top: 10%;margin-right:10%;">
+                <div style="margin-left: 10%;margin-top: 10%;margin-right:10%;">
                     <div class="row">
-                        <div class="col-sm-1" style="margin-right: -7%;margin-top: 1%;">
+                        <div class="col-sm-1 hsNumberWrapper">
                             <div class="hsNumberCont noselect">
                                  <div class="spec-hsNumber noselect" id="spec-hsNumber" ></div>
                             </div>
