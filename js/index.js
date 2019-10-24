@@ -622,14 +622,14 @@ $(document).ready(function()
 
     function startdeviceScreenTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 120000);
+        timeoutIDreallylong = window.setTimeout(goInactiveDeviceScreen.bind(null, callback), 120000);
         // testing
         // deviceScreenID = window.setTimeout(goInactiveDeviceScreen.bind(null, callback), 4000);
     }
 
     function startprimeScreenTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 120000);
+        timeoutIDreallylong = window.setTimeout(goInactivePrimeScreen.bind(null, callback), 120000);
         // testing
         // primeScreenID = window.setTimeout(goInactivePrimeScreen.bind(null, callback), 4000);
     }
