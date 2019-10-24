@@ -608,37 +608,37 @@ $(document).ready(function()
 
     function startShortTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDshort = window.setTimeout(goInactiveShort, 30000);
+        // timeoutIDshort = window.setTimeout(goInactiveShort, 30000);
         // testing
-        // timeoutIDshort = window.setTimeout(goInactiveShort.bind(null, callback), 2000);
+        timeoutIDshort = window.setTimeout(goInactiveShort.bind(null, callback), 2000);
     }
 
     function startLongTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDlong = window.setTimeout(goInactiveLong.bind(null, callback), 120000);
+        // timeoutIDlong = window.setTimeout(goInactiveLong.bind(null, callback), 120000);
         // testing
-        // timeoutIDlong = window.setTimeout(goInactiveLong.bind(null, callback), 4000);
+        timeoutIDlong = window.setTimeout(goInactiveLong.bind(null, callback), 4000);
     }
 
     function startdeviceScreenTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 120000);
+        // timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 120000);
         // testing
-        // deviceScreenID = window.setTimeout(goInactiveDeviceScreen.bind(null, callback), 4000);
+        deviceScreenID = window.setTimeout(goInactiveDeviceScreen.bind(null, callback), 4000);
     }
 
     function startprimeScreenTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 120000);
+        // timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 120000);
         // testing
-        // primeScreenID = window.setTimeout(goInactivePrimeScreen.bind(null, callback), 4000);
+        primeScreenID = window.setTimeout(goInactivePrimeScreen.bind(null, callback), 4000);
     }
 
     function startReallyLongTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 240000);
+        // timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 240000);
         // testing
-        // timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 8000);
+        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 8000);
     }
     
     function clearTimers(){
@@ -656,16 +656,14 @@ $(document).ready(function()
      
     function goInactiveShort(callback) {
         // check if the overlay frame is visible first
-        if (!isHidden(document.getElementById('layoutCont'))){
-            if (!isHidden(document.getElementById('overlay-frame'))){
-                $('#videoCloseBtn').trigger('click');
-                setTimeout(function(){
-                    $('#hideHotspots').trigger('click');
-                }, 1000);
-            } else {
-                // if its not hidden we just need to hide the hotspots
+        if ($('#overlay-frame:visible').length > 0){
+            $('#videoCloseBtn').trigger('click');
+            setTimeout(function(){
                 $('#hideHotspots').trigger('click');
-            }
+            }, 1000);
+        } else {
+            // if its not hidden we just need to hide the hotspots
+            $('#hideHotspots').trigger('click');
         }
 
         callback && callback();
