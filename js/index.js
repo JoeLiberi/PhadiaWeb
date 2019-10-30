@@ -348,9 +348,9 @@ $(document).ready(function()
             }
             $('#videoContainer').on('touchstart touchmove mousedown', function(){
                 // set the title and the disclaimer
-                $("#title").remove();
-                $("#headline-disclaimer").remove();
-                $("#disclaimer").remove();
+                $("#title").fadeOut();
+                $("#disclaimer").fadeOut();
+                $("#headline-disclaimer").fadeOut();
                 $("<div class='col title noselect' id='title'><h1>" + title + "</h1></div>").appendTo("#deviceTitle").fadeIn(1000);
                 $("<div class='col title-disclaimer' id='disclaimer'><h3>" + disclaimer + "</h3></div>").appendTo("#deviceTitle").fadeIn(1000);
             });
@@ -608,37 +608,37 @@ $(document).ready(function()
 
     function startShortTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDshort = window.setTimeout(goInactiveShort.bind(null, callback), 30000);
+        // timeoutIDshort = window.setTimeout(goInactiveShort.bind(null, callback), 30000);
         // testing
-        // timeoutIDshort = window.setTimeout(goInactiveShort.bind(null, callback), 2000);
+        timeoutIDshort = window.setTimeout(goInactiveShort.bind(null, callback), 2000);
     }
 
     function startLongTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDlong = window.setTimeout(goInactiveLong.bind(null, callback), 120000);
+        // timeoutIDlong = window.setTimeout(goInactiveLong.bind(null, callback), 120000);
         // testing
-        // timeoutIDlong = window.setTimeout(goInactiveLong.bind(null, callback), 4000);
+        timeoutIDlong = window.setTimeout(goInactiveLong.bind(null, callback), 4000);
     }
 
     function startdeviceScreenTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDreallylong = window.setTimeout(goInactiveDeviceScreen.bind(null, callback), 120000);
+        // timeoutIDreallylong = window.setTimeout(goInactiveDeviceScreen.bind(null, callback), 120000);
         // testing
-        // deviceScreenID = window.setTimeout(goInactiveDeviceScreen.bind(null, callback), 4000);
+        deviceScreenID = window.setTimeout(goInactiveDeviceScreen.bind(null, callback), 4000);
     }
 
     function startprimeScreenTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDreallylong = window.setTimeout(goInactivePrimeScreen.bind(null, callback), 120000);
+        // timeoutIDreallylong = window.setTimeout(goInactivePrimeScreen.bind(null, callback), 120000);
         // testing
-        // primeScreenID = window.setTimeout(goInactivePrimeScreen.bind(null, callback), 4000);
+        primeScreenID = window.setTimeout(goInactivePrimeScreen.bind(null, callback), 4000);
     }
 
     function startReallyLongTimer(callback) {
         // wait 2 seconds before calling goInactive
-        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 240000);
+        // timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 240000);
         // testing
-        // timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 8000);
+        timeoutIDreallylong = window.setTimeout(goInactiveReallyLong.bind(null, callback), 8000);
     }
     
     function clearTimers(){
@@ -727,5 +727,5 @@ $(document).ready(function()
             startReallyLongTimer();
         }
     }
-    setup();
+    // setup();
 });
