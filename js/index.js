@@ -351,6 +351,9 @@ $(document).ready(function()
                 $("#title").fadeOut();
                 $("#disclaimer").fadeOut();
                 $("#headline-disclaimer").fadeOut();
+                $("#title").remove();
+                $("#headline-disclaimer").remove();
+                $("#disclaimer").remove();
                 $("<div class='col title noselect' id='title'><h1>" + title + "</h1></div>").appendTo("#deviceTitle").fadeIn(1000);
                 $("<div class='col title-disclaimer' id='disclaimer'><h3>" + disclaimer + "</h3></div>").appendTo("#deviceTitle").fadeIn(1000);
             });
